@@ -136,7 +136,7 @@ const PsgPage= ()=> {
       
       const blob= await pdf(<DocumentData
         biodata={formData}  
-        data={apiResult}
+        calculationResult={apiResult}
         imageBbPerU={imageBbPerU}
         imageBbPerP={imageBbPerPb}
         imagePbPerUChart={imagePbPerUChart}

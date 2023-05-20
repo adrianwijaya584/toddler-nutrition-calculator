@@ -47,5 +47,19 @@ interface APIResult {
     protein_malam: number,
     lemak_malam: number,
     karbo_malam: number1
+  }
 }
+
+interface PdfData {
+  biodata: {
+    name: string
+    age: number
+    weight: number
+    height: number
+    gender: string
+  }
+  calculationResult: APIResult
+  imageBbPerU: string
+  imageBbPerP: string
+  imagePbPerUChart: string
 }

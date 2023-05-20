@@ -11,7 +11,7 @@ interface ChartProps {
   width: number
 }
 
-export default (props: ChartProps)=> {
+const ResultChart= (props: ChartProps)=> {
   const datas: ChartJsonData & ResultType=  {
     ...props.chartData,
     hasil: [
@@ -146,3 +146,5 @@ export default (props: ChartProps)=> {
     </div>
   )
 }
+
+export default ResultChart

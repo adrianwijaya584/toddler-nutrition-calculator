@@ -1,24 +1,8 @@
+/* eslint-disable jsx-a11y/alt-text */
 import {  Page, Document, Text, Image, View } from "@react-pdf/renderer"
 import { createTw } from "react-pdf-tailwind";
 import moment from 'moment'
 
-interface propsData {
-  biodata: {
-    name: string
-    age: number
-    weight: number
-    height: number
-    gender: string
-  }
-  data: {
-    bbu: number
-    bb_pb: number
-    pb_tb_u: number
-  }
-  imageBbPerU: string
-  imageBbPerP: string
-  imagePbPerUChart: string
-}
 
 const tw = createTw({
   theme: {
@@ -32,64 +16,146 @@ const tw = createTw({
   },
 })
 
-export default (props: propsData)=> {
+const DocumentData= (props: PdfData)=> {
   const dateCreated= moment().format("DD-MM-YYYY HH:mm:ss");
-  const {biodata}= props
+  const {biodata, calculationResult}= props
     
   return (
     <Document>
       <Page size="A4" style={tw('p-8')}>
-        <View style={tw('flex justify-between flex-row w-full text-base')}>
+        <View style={tw('flex justify-between flex-row w-full text-base mb-5')}>
           <Text>by me</Text>
           <Text>{dateCreated}</Text>
         </View>
 
-        <Text style={tw('text-center text-2xl font-bold')}>
+        <Text style={tw('text-center text-2xl font-extrabold')}>
           Hasil perhitungan status gizi
         </Text>
 
-        <View style={tw('border-2 rounded-md px-5 py-2')}>
-          <Text style={tw('text-base')}>Nama : {biodata.name}</Text>
-          <Text style={tw('text-base')}>Umur : {biodata.age} Bulan</Text>
-          <Text style={tw('text-base')}>Berat : {biodata.weight} Kg</Text>
-          <Text style={tw('text-base')}>Panjang Badan : {biodata.height} Cm</Text>
-          <Text style={tw('text-base')}>Jenis Kelamin : {biodata.gender=='male'?'Laki-laki':'Perempuan'}</Text>
+        <View style={tw('border-2 rounded-md px-6 py-3 mb-7 flex flex-row text-base')}>
+          <View>
+            <Text>Nama</Text>
+            <Text>Umur</Text>
+            <Text>Berat</Text>
+            <Text>Panjang Badan</Text>
+            <Text>Jenis Kelamin</Text>
+          </View>
+
+          <View style={tw('mx-2')}>
+            <Text>:</Text>
+            <Text>:</Text>
+            <Text>:</Text>
+            <Text>:</Text>
+            <Text>:</Text>
+          </View>
+
+          <View>
+            <Text>{biodata.name}</Text>
+            <Text>{biodata.age} Bulan</Text>
+            <Text>{biodata.weight} Kg</Text>
+            <Text>{biodata.height} Cm</Text>
+            <Text>{biodata.gender=='male'?'Laki-laki':'Perempuan'}</Text>
+          </View>
         </View>
 
-        <Text style={tw('text-center text-base font-bold text-xl')}>
-          chart berat badan per umur
+        {/* <View style={tw('table w-full border-2 border-r-0 border-b-0')}>
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
+              <Text style={tw('text-md text-center')}>name</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
+              <Text style={tw('text-md text-center')}>abc</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
+              <Text style={tw('text-md text-center')}>abc</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
+              <Text style={tw('text-md text-center')}>abc</Text>
+            </View>
+          </View>
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
+              <Text style={tw('text-lg text-center mt-2')}>name</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
+              <Text style={tw('text-lg text-center mt-2')}>abc</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
+              <Text style={tw('text-lg text-center mt-2')}>abc</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
+              <Text style={tw('text-lg text-center mt-2')}>abc</Text>
+            </View>
+          </View>
+        </View> */}
+
+        <View>
+          <Image src={props.imageBbPerU} />
+
+          <Text style={tw('text-center text-base font-bold text-[15px]')}>
+            chart berat badan per umur
+          </Text>
+        </View>
+
+        <View>
+          <Image src={props.imageBbPerP} />
+          
+          <Text style={tw('text-center text-base font-bold text-[15px]')}>
+            chart berat badan per tinggi badan
+          </Text>
+        </View>
+
+        <View>
+          <Image src={props.imagePbPerUChart} />
+
+          <Text style={tw('text-center text-base font-bold text-[15px]')}>
+            chart panjang badan per umur
+          </Text>
+        </View>
+
+        <Text style={tw('text-justify text-sm font-normal mt-3')}>
+          BB per U : {calculationResult.bbu}, 
+          BB per PB : {calculationResult.bb_pb}, 
+          PB per U : {calculationResult.pb_tb_u}
         </Text>
 
-        <Image src={props.imageBbPerU} />
+        <Text style={tw('text-justify text-sm font-normal mt-3')}>
+          status BB per U : {calculationResult.bb_u_informations.status}, 
 
-        <Text style={tw('text-center text-base font-bold text-xl')}>
-          chart berat badan per tinggi badan
+          status BB per PB : {calculationResult.bb_pb_informations.status}, 
+
+          status PB per U : {calculationResult.pb_tb_u_informations.status}
         </Text>
 
-        <Image src={props.imageBbPerP} />
-
-        <Text style={tw('text-center text-base font-bold text-xl')}>
-          chart panjang badan per umur
+        <Text style={tw('text-justify text-sm font-normal mt-3')}>
+          Total energi : {calculationResult.nutritionNeeds.energi}, 
+          Total karbo : {calculationResult.nutritionNeeds.karbo}, 
+          Total lemak : {calculationResult.nutritionNeeds.lemak}, 
+          Total protein : {calculationResult.nutritionNeeds.protein}, 
         </Text>
 
-        <Image src={props.imagePbPerUChart} />
-
-        <Text style={tw('text-justify text-sm font-normal')}>
-          BB per U : {props.data?.bbu}
+        <Text style={tw('text-justify text-sm font-normal mt-3')}>
+          Total energi untuk pagi dan siang : {calculationResult.nutritionNeedsPerServing.energi_pagi_siang}, 
+          Total karbo untuk pagi dan siang : {calculationResult.nutritionNeedsPerServing.karbo_pagi_siang}, 
+          Total lemak untuk pagi dan siang : {calculationResult.nutritionNeedsPerServing.lemak_pagi_siang}, 
+          Total protein untuk pagi dan siang : {calculationResult.nutritionNeedsPerServing.protein_pagi_siang}, 
         </Text>
-
-        <Text style={tw('text-justify text-sm font-normal')}>
-          BB per PB : {props.data?.bb_pb}
-        </Text>
-
-        <Text style={tw('text-justify text-sm font-normal')}>
-          PB TB per U : {props.data?.pb_tb_u}
-        </Text>
-
-        <Text style={tw('text-justify text-sm font-normal')}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda eaque veritatis, nesciunt consequatur perferendis similique quisquam animi! Et aperiam, quisquam iste dolore corporis vel, doloribus ex ad culpa, voluptates amet?
+        
+        <Text style={tw('text-justify text-sm font-normal mt-3')}>
+          Total energi untuk malam : {calculationResult.nutritionNeedsPerServing.energi_malam}, 
+          Total karbo untuk malam : {calculationResult.nutritionNeedsPerServing.karbo_malam}, 
+          Total lemak untuk malam : {calculationResult.nutritionNeedsPerServing.lemak_malam}, 
+          Total protein untuk malam : {calculationResult.nutritionNeedsPerServing.protein_malam}, 
         </Text>
       </Page>
    </Document>
   )
 }
+
+export default DocumentData
