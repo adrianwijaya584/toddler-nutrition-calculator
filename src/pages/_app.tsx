@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <meta name="description" content="Aplikasi informasi perhitungan gizi balita" />
     </Head>
 
-    <div className="min-h-screen">
+    <div className="min-h-screen px-4">
       <Component {...pageProps} />
     </div>
   </>

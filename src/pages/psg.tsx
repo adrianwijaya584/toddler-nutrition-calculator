@@ -10,6 +10,7 @@ import bbPerU from '@/data/bbperu.json'
 import pbPerU from '@/data/pbtbperu.json'
 
 import DocumentData from '@/components/DocumentData'
+import Link from "next/link"
 const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
   ssr: false
 })
@@ -248,10 +249,7 @@ const PsgPage= ()=> {
             <Button color="primary">PB per U : {apiResult.pb_tb_u}</Button>
           </div>
 
-          <Button disabled={isDownloading} onClick={()=> downloadPdf()} className="bg-primary-1 duration-500">
-            {isDownloading&&
-              <Spinner size="sm" className="mr-2" />
-            }
+          <Button disabled={isDownloading} onClick={()=> downloadPdf()} isProcessing={isDownloading} className="bg-primary-1 duration-500">
             Download hasil perhitungan.
           </Button>
 
@@ -347,15 +345,13 @@ const PsgPage= ()=> {
                 <p>Protein : {apiResult.nutritionNeeds.protein}</p>
                 <p>Lemak : {apiResult.nutritionNeeds.lemak}</p>
 
-                <Tabs.Group>
-                  <Tabs.Item title="pagi">
-                    <p>Energi Pagi & siang : {apiResult.nutritionNeedsPerServing.energi_pagi_siang}</p>
-                  </Tabs.Item>
+                <p>Energi Pagi & siang : {apiResult.nutritionNeedsPerServing.energi_pagi_siang}</p>
 
-                  <Tabs.Item title="malam">
-                    <p>Energi Malam : {apiResult.nutritionNeedsPerServing.energi_malam}</p>
-                  </Tabs.Item>
-                </Tabs.Group>
+                <p>Energi Malam : {apiResult.nutritionNeedsPerServing.energi_malam}</p>
+                
+                <Link href="/resep" className="underline">
+                  Cek resep sehat untuk anak anda disini
+                </Link>
               </Accordion.Content>
             </Accordion.Panel>
 

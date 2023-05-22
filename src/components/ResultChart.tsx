@@ -15,10 +15,10 @@ const ResultChart= (props: ChartProps)=> {
   const datas: ChartJsonData & ResultType=  {
     ...props.chartData,
     hasil: [
-      {
-        x: 21,
-        y: 40
-      },
+      // {
+      //   x: 21,
+      //   y: 40
+      // },
       // {
       //   x: 70,
       //   y: 9
@@ -43,7 +43,7 @@ const ResultChart= (props: ChartProps)=> {
     <div className="min-w-screen">
       <Line
         width={props.width}
-        height="550"
+        height="600"
         options={{
           responsive: false,
           animation: false,

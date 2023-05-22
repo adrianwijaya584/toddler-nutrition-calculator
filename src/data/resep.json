@@ -1,0 +1,302 @@
+[{
+    "nama": "Kurma Kukus Santan",
+    "Waktu memasak": "10 - 20 menit",
+    "Usia": "6-8",
+    "Porsi": "1 Porsi",
+    "funFacts": "Kurma merupakan sumber energi yang baik untuk tumbuh kembang anak dan mengandung vitamin B kompleks.",
+    "KandunganPerPorsi": [
+      "297,8 kkal energi",
+      "46.24 g karbohidrat",
+      "8.8 lemak",
+      "11.2 g protein"
+    ],
+    "bahan": [
+      "3,5 sdm Sun Kurma",
+      "25 ml santan kekentalan sedang",
+      "1 sdm tepung beras",
+      "1 sdt gula merah yang sudah dihaluskan 1 butir telur, ambil kuningnya"
+    ],
+    "bumbu_halus": null,
+    "tutorial": [
+      "Campurkan tepung beras dan santan. Aduk hingga rata.",
+      "Masukkan gula merah, telur, dan 3.5 sdm Sun Kurma yang sudah dilarutkan dengan air. Aduk hingga rata.",
+      "Tuangkan ke wadah, Kukus selama 20 menit. Angkat. Sajikan hangat."
+    ]
+  },
+  {
+    "nama": "Bubur Ikan Dori",
+    "Waktu memasak": "10 - 20 menit",
+    "Usia": "6-8",
+    "Porsi": "3 Porsi",
+    "funFacts": "Ikan dori mengandung vitamin A dan kalsium yang dapat menyehatkan mata.",
+    "KandunganPerPorsi": [
+      "114 kkal energi",
+      "8 gram karbohidrat",
+      "7.7 gram lemak",
+      "3.5 gram protein",
+      "0.3 gram zat besi",
+      "0.2 gram zinc",
+      "2.8 gram kalsium"
+    ],
+    "bahan": [
+      "60 g nasi putih",
+      "40 g ikan dori",
+      "15 g jagung manis pipil",
+      "10 g wortel parut 1 siung bawang merah",
+      "1 siung bawang putih",
+      "1 kuning telur bebek • Gula secukupnya",
+      "Garam secukupnya",
+      "Unsalted butter untuk menumis",
+      "1 sdt evoo",
+      "Air secukupnya",
+      "1/2 bungkus santan kemasan"
+    ],
+    "bumbu_halus": null,
+    "tutorial": [
+      "Tumis bawang merah dan bawang putih dengan unsalted butter hingga harum. Masukkan ikan dori, tumis hingga layu.",
+      "Masukkan air, lalu tambahkan wortel.",
+      "Masukkan jagung, nasi putih, santan, lalu bumbui.",
+      "Terakhir, masukkan kuning telur, aduk hingga merata dan sampai kuahnya mengental, lalu koreksi rasa.",
+      "Saring dengan sarigan kawat, siapkan wadah, lalu tuang evoo saat disajikan."
+    ]
+  },
+  {
+    "nama": "Puree Naga Mangga Yoghurt",
+    "Waktu memasak": "5 - 10 menit",
+    "Usia": "6-8",
+    "Porsi": "1 Porsi",
+    "funFacts": "Mangga memiliki kandungan karotenoid yang tinggi, khususnya beta karoten, dan vitamin C. Kandungan mineral kalsium dan magnesium mangga dapat membantu pertumbuhan tulang dan gigi bayi.",
+    "KandunganPerPorsi": [
+      "297.8 kkal energi",
+      "11,2 gram karbohidrat",
+      "03 gram lemak",
+      "1.2 gram protein",
+      "0 gram zat besi",
+      "0 gram zinc",
+      "3 gram kalsium"
+    ],
+    "bahan": [
+      "30 g buah naga",
+      "20 g mangga",
+      "2 sdm yoghurt"
+    ],
+    "bumbu_halus": null,
+    "tutorial": [
+      "Haluskan buah naga dan mangga pada masing-masing mangkok Saring buah naga dan mangga",
+      "Siapkan mangkok, tuang buah naga dan mangga, campur dengan yoghurt. Sajikan"
+    ]
+  },
+  {
+    "nama": "Nasi Tim Hati Sapi",
+    "Waktu memasak": "30-45 menit",
+    "Usia": "9-11",
+    "Porsi": "3 Porsi",
+    "funFacts": "Hati sapi kaya akan vitamin A yang bermanfaat untuk kesehatan mata dan kekebalan tubuh.",
+    "KandunganPerPorsi": [
+      "100,2 kkal energi",
+      "10,2 gram karbohidrat",
+      "4,6 gram lemak",
+      "3.8 gram protein",
+      "0.9 gram zat besi",
+      "0,8 gram zinc",
+      "10,6 gram kalsium"
+    ],
+    "bahan": [
+      "100 g nasi putih",
+      "30 g hati sapi 12 sdm santan",
+      "Tahu sutra, potong dadu",
+      "1/2 ruas jahe 1/2 ruas lengkuas",
+      "1 lembar daun salam",
+      "1 lembar daun jeruk",
+      "1 batang serai",
+      "10 ml minyak canola",
+      "Daun bawang, secukupnya, potong lembut",
+      "Kaldu bubuk secukupnya",
+      "Gula secukupnya",
+      "Garam secukupnya"
+    ],
+    "bumbu_halus": [
+      "1 siung bawang putih",
+      "1 siung bawang merah",
+      "1 butir kemiri"
+    ],
+    "tutorial": [
+      "Rebus hati sapi dengan jahe hingga matang, potong dadu dan sisihkan.",
+      "Tumis bumbu halus dengan minyak canola serta masukkan lengkuas. daun salam, daun jeruk, dan serai hingga harum dan layu.",
+      "Masukkan hati sapi, tahu sutra, dan santan. Aduk hingga merata.",
+      "Tambahkan gula, garam, daun bawang dan kaldu bubuk. Koreksi rasa dan masak hingga menyusut.",
+      "Campur nasi putih dan tumis hati sapi di wadah kedap udara, kukus hingga 15 menit atau matang."
+    ]
+  },
+  {
+    "nama": "Tim Kentang Daging Giling",
+    "Waktu memasak": "10-20 menit",
+    "Usia": "9-11",
+    "Porsi": "1 Porsi",
+    "funFacts": "Kentang memiliki komposisi gizi yang relatif lebih baik jika dibandingkan umbi-umbian lain, khususnya kandungan karbohidrat, protein, dan lemak.",
+    "KandunganPerPorsi": [
+      "264,4 kkal energi",
+      "34,4 gram karbohidrat",
+      "10,9 gram lemak",
+      "8 gram protein"
+    ],
+    "bahan": [
+      "1 butir kentang",
+      "1 sdm margarin",
+      "1 tangkai daun bawang",
+      "5 lembar daun seledri ",
+      "1 sdm daging giling",
+      "200 ml air"
+    ],
+    "bumbu_halus": [
+      "1 siung bawang putih",
+      "1 siung bawang merah",
+      "1 butir kemiri"
+    ],
+    "tutorial": [
+      "Cuci bersih kentang, daun bawang, dan daun seledri. Kupas kentang kemudian serut dengan serutan buah. Iris halus daun bawang dan daun seledri.",
+      "Panaskan margarin, tumis irisan daun bawang, seledri, dan daging giling sampai daging berubah warna menjadi cokelat.",
+      "Masukkan kentang dan air. Masak dengan api kecil sampai kentang matang. Aduk rata. Teruskan mengukus sampai air terserap dan kentang lunak. Angkat dan sajikan."
+    ]
+  },
+  {
+    "nama": "Kentang Bolognese",
+    "Waktu memasak": "30-45 menit",
+    "Usia": "9-11",
+    "Porsi": "3 Porsi",
+    "funFacts": "Kentang memiliki komposisi gizi yang relatif lebih baik jika dibandingkan umbi-umbian lain, khususnya kandungan karbohidrat, protein, dan lemak.",
+    "KandunganPerPorsi": [
+      "105.3 kkal energi",
+      "13,6 gram karbohidrat",
+      "2.9 gram lemak",
+      "6,2 gram protein",
+      "0,5 gram zat besi",
+      "0.7 gram zinc",
+      "15.8 gram kalsium"
+    ],
+    "bahan": [
+      "150 g kentang kukus, lumatkan 1 buah tomat, haluskan (puree)",
+      "50 g cumi, cincang halus",
+      "1 siung bawang putih, cincang halus",
+      "1/2 siung bawang bombay, cincang halus",
+      "10 g margarin",
+      "1 daun parsley, cincang halus",
+      "Garam, gula, lada, dan kaldu bubuk secukupnya"
+    ],
+    "bumbu_halus": null,
+    "tutorial": [
+      "Tumis bawang putih dan bombay dengan margarin hingga wangi.",
+      "Masukkan cumi cincang, aduk hingga matang.",
+      "Tambahkan puree tomat, parsley, garam, gula, dan kaldu bubuk.",
+      "Tes rasa dan tuggu adonan matang sempurna.",
+      "Campurkan kentang lumat dengan adonan bolognese."
+    ]
+  },
+  {
+    "nama": "Steak Ayam & Kentang Tumbuk",
+    "Waktu memasak": "30-45 menit",
+    "Usia": "12",
+    "Porsi": "3 Porsi",
+    "funFacts": "Kentang memiliki komposisi gizi yang relatif lebih baik jika dibandingkan umbi-umbian lain, khususnya kandungan karbohidrat, protein, dan lemak.",
+    "KandunganPerPorsi": [
+      "289 kkal energi",
+      "25,5 gram karbohidrat",
+      "10 gram lemak",
+      "24,7 gram protein",
+      "1,6 mg zat besi",
+      "1,4 mg seng"
+    ],
+    "bahan": [
+      "150 g daging ayam giling",
+      "1/2 buah bawang bombai, cincang halus 2 siung bawang putih, cincang halus.",
+      "1 batang daun bawang, iris tipis",
+      "3 sdm tepung terigu",
+      "1 butir telur",
+      "3 sdm tepung terigu",
+      "1 butir telur",
+      "Garam secukupnya",
+      "1 sdm minyak untuk menumis",
+      "250 g kentang, rebus dan haluskan selagi panas",
+      "30 ml susu",
+      "1 sdm mentega",
+      "Merica dan garam secukupnya",
+      "50 g kacang polong",
+      "rebus 50 g jagung pipil",
+      "rebus 50 g wortel, rebus"
+    ],
+    "bumbu_halus": null,
+    "tutorial": [
+      "Tumis bawang bombay dan bawang putih hingga harum.",
+      "Di wadah terpisah, campurkan dagung ayam, daun bawang, garam, tepung terigu, dan telur.",
+      "Masukkan tumisan bawang ke dalam campuran daging ayam, lalu aduk hingga tercampur rata.",
+      "Bagi adonan menjadi 3. lalu dibentuk bulat pipih.",
+      "Kukus hingga matang.",
+      "Oleskan sedikit minyak di atas wajan anti lengket.",
+      "Panggang ayam di atasnya hingga kedua sisinya kecokelatan.",
+      "Kentang tumbuk: Campur kentang dengan susu cair dan mentega menggunakan api kecil. Aduk terus hingga mengental, lalu tambahkan merica dan garam.",
+      "Sajikan ayam dengan kentang tumbuk dengan 50 g kacang polong, rebus 50 g jagung pipil, rebus 50 g wortel, rebus."
+    ]
+  },
+  {
+    "nama": "Bihun Ayam Kukus",
+    "Waktu memasak": "30-45 menit",
+    "Usia": "12",
+    "Porsi": "3 Porsi",
+    "funFacts": "Bihun terbuat dari tepung beras yang mengandung karbohidrat, protein, vitamin A, mangan, dan selenium.",
+    "KandunganPerPorsi": [
+      "233 kkal energi",
+      "18,4 gram karbohidrat",
+      "11.9 gram lemak",
+      "12,2 gram protein",
+      "0.7 mg zat besi",
+      "0.9 mg seng"
+    ],
+    "bahan": [
+      "60 g bihun kering, rendam kurang lebih 30 menit. lalu tiriskan",
+      "100 g daging ayam cincang",
+      "1 sdm minyak",
+      "50 g wortel, potong dadu kecil 2 batang daun bawang, iris",
+      "1 butir telur, dadar dengan 1/2 sdm minyak"
+    ],
+    "bumbu_halus": null,
+    "tutorial": [
+      "Campur bihun yang telah direndam dengan bumbu halus dan minyak hingga rata.",
+      "Tambahkan ayam, wortel, dan daun bawang, lalu aduk hingga tercampur rata.",
+      "Masukkan dalam wadah tahan panas.",
+      "Kukus hingga matang.",
+      "Setelah matang.sajikan dengan irisan telur dadar."
+    ]
+  },
+  {
+    "nama": "Pasta Creamy Daging & Wortel",
+    "Waktu memasak": "10-15 menit",
+    "Usia": "12",
+    "Porsi": "1 Porsi",
+    "funFacts": "Promina Pasta Creamy Chicken Spinach berbentuk fusili yang unik untuk eksplorasi makanan baru si Kecil serta aman karena tanpa pengawet & MSG.",
+    "KandunganPerPorsi": [
+      "192 kkal energi",
+      "21,64 gram karbohidrat",
+      "2 gram lemak",
+      "12 gram protein",
+      "1.75 mg zat besi"
+    ],
+    "bahan": [
+      "1 sachet Promina Promina Pasta Creamy Chicken Spinach",
+      "30 g daging sapi, iris tipis ",
+      "20 g wortel, rebus. potong dadu",
+      "2 siung bawang putih",
+      "Keju cheddar",
+      "Air secukupnya",
+      "Minyak goreng secukupnya"
+    ],
+    "bumbu_halus": null,
+    "tutorial": [
+      "Panaskan minyak goreng. Masukkan bawang putih, tumis hingga harum. Masukkan irisan daging sapi. Aduk-aduk hingga matang. Sisihkan.",
+      "Rebus 1 sachet Promina Pasta Creamy Chicken Spinach (20 g) dengan air mendidih 250 ml.",
+      "Masak selama 10 menit, aduk sesekali. Tiriskan.",
+      "Tuangkan 1 sachet bumbu (100 g) saus krim ayam bayam ke dalam mangkuk.",
+      "Tambahkan 30 ml air masak hangat, aduk hingga rata. Tuangkan krim ayam bayam.",
+      "Taburkan tumisan daging sapi, wortel, dan parutan keju cheddar. Sajikan."
+    ]
+  }
+]
