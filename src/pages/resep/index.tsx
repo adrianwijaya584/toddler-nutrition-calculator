@@ -5,6 +5,7 @@ import { useRouter } from "next/router"
 import recipeJson from '@/data/resep.json'
 import Image from "next/image"
 import {FaCircle} from 'react-icons/fa'
+import { rgbDataURL } from "@/helpers/config"
 
 const RecipeIndexPage= ()=> {
   const router= useRouter()
@@ -57,6 +58,8 @@ const RecipeIndexPage= ()=> {
                   width={800}
                   height={300}
                   priority={true}
+                  placeholder="blur"
+                  blurDataURL={rgbDataURL(237, 181, 6)}
                   className="h-52 object-cover object-center"  
                 />
                 <h4 className="text-center font-bold">{recipe.nama}</h4>

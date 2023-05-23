@@ -27,8 +27,11 @@ const nextConfig = {
 
 const withPWA = require('next-pwa')({
   dest: 'public',
-  
+  // disable: ''
+  fallbacks: {
+    image: '/not_found.png'
+  }
 })
 
 
-module.exports = withPWA(nextConfig)
+module.exports = process.env.NODE_ENV=='production'?withPWA(nextConfig):nextConfig

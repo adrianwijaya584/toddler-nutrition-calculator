@@ -11,7 +11,7 @@ const CustomFooter= ()=> {
           <Link href="/" className="flex flex-row justify-center items-center">
             <Image
               src="https://flowbite.com/docs/images/logo.svg"
-              className="mr-2 w-auto h-auto"
+              className="mr-2 w-auto h-auto max-w-md"
               width={30}
               height={30}
               alt="Flowbite Logo"

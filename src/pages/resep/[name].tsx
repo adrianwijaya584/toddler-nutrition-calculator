@@ -4,6 +4,7 @@ import recipeJson from "@/data/resep.json"
 import Link from "next/link"
 import { Button, Modal } from "flowbite-react"
 import Image from "next/image"
+import { rgbDataURL } from "@/helpers/config"
 
 const RecipeDetailPage= ()=> {
   type recipeType= typeof recipeJson[0]
@@ -15,9 +16,13 @@ const RecipeDetailPage= ()=> {
   useEffect(()=> {
     const findRecipe= recipeJson.find((recipe)=> recipe.nama==(route.query.name ?? ''))
     setRecipe(findRecipe)
-
-    setIsLoading(false)
   }, [route.query])
+
+  useEffect(()=> {
+    if (recipe!=undefined) {
+      setIsLoading(false)
+    }
+  }, [recipe])
 
   return (
     <div className="w-full m-auto min-h-screen justify-center lg:w-4/5 xl:w-3/5">
@@ -44,6 +49,8 @@ const RecipeDetailPage= ()=> {
                   height={200}
                   priority={true}
                   onClick={()=> setShowModal(true)}
+                  placeholder="blur"
+                  blurDataURL={rgbDataURL(237, 181, 6)}
                   className="w-full h-[420px] object-cover object-center rounded-md mb-6 cursor-pointer"  />
 
                 <Modal
@@ -56,7 +63,14 @@ const RecipeDetailPage= ()=> {
                   <Modal.Header/>
 
                   <Modal.Body>
-                    <Image src={recipe.fotoResep} alt={`Gambar ${recipe.nama}`} width={1200} height={200} />
+                    <Image
+                      src={recipe.fotoResep}
+                      alt={`Gambar${recipe.nama}`}
+                      placeholder="blur"
+                      blurDataURL={rgbDataURL(237, 181, 6)}
+                      width={1200}
+                      height={600}
+                    />
 
                   </Modal.Body>
                 </Modal>
