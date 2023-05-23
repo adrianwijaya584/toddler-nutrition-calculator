@@ -35,7 +35,7 @@ const CustomNavbar= ()=> {
         <Link href="/" className="flex flex-row justify-center items-center">
           <Image
             src="https://flowbite.com/docs/images/logo.svg"
-            className="mr-1 h-6 sm:h-9"
+            className="mr-1 w-auto h-auto"
             width={30}
             height={30}
             alt="Flowbite Logo"
@@ -48,7 +48,7 @@ const CustomNavbar= ()=> {
         />
         
         <ul
-          className={`${showMenu?'fixed w-full top-[70px] left-0 bg-gray-50 border-gray-100 sm:bg-transparent sm:relative':'hidden'}  font-medium  flex-col px-4 md:p-0 borde rounded-lg pb-5 sm:flex md:flex-row md:space-x-8 md:mt-0 md:border-0 md:top-0`}
+          className={`${showMenu?'fixed w-full top-[70px] left-0 bg-gray-50 border-gray-100 md:bg-transparent md:relative':'hidden'}  font-medium flex-col px-4 md:p-0 rounded-lg pb-5 md:flex md:flex-row md:space-x-8 md:mt-0 md:border-0 md:top-0`}
         >
           {
             routes.map((route, k)=> (

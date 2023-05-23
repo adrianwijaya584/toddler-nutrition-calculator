@@ -4,6 +4,7 @@ import { useMemo, useState } from "react"
 import { useRouter } from "next/router"
 import recipeJson from '@/data/resep.json'
 import Image from "next/image"
+import {FaCircle} from 'react-icons/fa'
 
 const RecipeIndexPage= ()=> {
   const router= useRouter()
@@ -50,9 +51,21 @@ const RecipeIndexPage= ()=> {
           recipes.map((recipe, k)=> (
             <Link href={`resep/${recipe.nama}`} key={k}>
               <Card>
-                <Image src="https://www.seriouseats.com/thmb/e-nROXUuxOt0NIb39WL3FpTRkPc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2019__09__20190530-ramen-noodles-vicky-wasik-76-ad495b42ee784ad7bb7e2affa7d57d50.jpg" alt={`Gambar ${recipe.nama}`} width={800} height={200} className="w-full h-52 object-cover object-center"  />
+                <Image
+                  src={recipe.fotoResep}
+                  alt={`Gambar ${recipe.nama}`}
+                  width={800}
+                  height={300}
+                  priority={true}
+                  className="h-52 object-cover object-center"  
+                />
                 <h4 className="text-center font-bold">{recipe.nama}</h4>
                 <p>umur : {recipe.Usia} {recipe.Usia=='12'&&'keatas'}</p>
+                <div className="line-clamp-2">{
+                  recipe.bahan.map((bahan, k)=> (
+                    <span key={k}>{bahan} <span className="inline-block px-xs text-gray-400">•</span> </span>
+                  ))
+                }</div>
                 </Card>
               </Link>
           ))
