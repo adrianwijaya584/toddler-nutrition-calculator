@@ -42,6 +42,7 @@ const RecipeDetailPage= ()=> {
                   alt={`Gambar ${recipe.nama}`}
                   width={800}
                   height={200}
+                  priority={true}
                   onClick={()=> setShowModal(true)}
                   className="w-full h-[420px] object-cover object-center rounded-md mb-6 cursor-pointer"  />
 
@@ -53,7 +54,7 @@ const RecipeDetailPage= ()=> {
                   className="h-screen"
                 >
                   <Modal.Header/>
-                  
+
                   <Modal.Body>
                     <Image src={recipe.fotoResep} alt={`Gambar ${recipe.nama}`} width={1200} height={200} />
 

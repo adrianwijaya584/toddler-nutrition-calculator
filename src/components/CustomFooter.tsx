@@ -1,14 +1,24 @@
 import { Footer } from "flowbite-react"
+import Image from "next/image"
+import Link from "next/link"
 
 const CustomFooter= ()=> {
   return (
     <Footer container={true}>
       <div className="w-full text-center">
         <div className="w-full justify-between flex flex-col items-start space-y-5 sm:flex-row sm:items-center sm:space-y-0">
-          <Footer.Brand
-            src="https://flowbite.com/docs/images/logo.svg"
-            alt="Flowbite Logo"
-          />
+          <div>
+          <Link href="/" className="flex flex-row justify-center items-center">
+            <Image
+              src="https://flowbite.com/docs/images/logo.svg"
+              className="mr-2 w-auto h-auto"
+              width={30}
+              height={30}
+              alt="Flowbite Logo"
+            />
+          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">TNC</span>
+        </Link>
+          </div>
           <Footer.LinkGroup
             className="flex-row space-x-3 items-center sm:mt-0"
           >
