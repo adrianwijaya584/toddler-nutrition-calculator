@@ -4,6 +4,14 @@ const nextConfig = {
   publicRuntimeConfig: {
   
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
+  },
   typescript: {
     tsconfigPath: '/tsconfig.json'
   },
