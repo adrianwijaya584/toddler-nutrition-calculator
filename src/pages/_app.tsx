@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <link rel="apple-touch-icon" href="/icons/touch-icon-192x192.png" />
     </Head>
 
-    <div className="min-h-screen px-4 pt-[70px] pb-8">
+    <div className="min-h-screen px-5 pt-[70px] pb-8">
       <CustomNavbar/>
       <Component {...pageProps} />
     </div>

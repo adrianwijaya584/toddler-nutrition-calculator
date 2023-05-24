@@ -104,6 +104,7 @@ const ResultChart= (props: ChartProps)=> {
               label: 'Median',
               data: datas['median'],
               borderColor: 'black',
+              borderDash: [10,5],
               fill: '-1',
               pointRadius: 0,
               backgroundColor: 'rgba(80, 146, 49, .4)',
@@ -127,7 +128,7 @@ const ResultChart= (props: ChartProps)=> {
             {
               label: '+3SD',
               data: datas['+3 SD'],
-              borderColor: 'black',
+              borderColor: 'red',
               fill: '-1',
               pointRadius: 0,
               backgroundColor: 'rgb(228, 208, 57, .4)',
