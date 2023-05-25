@@ -4,7 +4,6 @@ import { useMemo, useState } from "react"
 import { useRouter } from "next/router"
 import recipeJson from '@/data/resep.json'
 import Image from "next/image"
-import {FaCircle} from 'react-icons/fa'
 import { rgbDataURL } from "@/helpers/config"
 
 const RecipeIndexPage= ()=> {

@@ -132,6 +132,10 @@ const PsgPage= ()=> {
         cacheBust: true,
         width: canvasWidth
       })
+
+      accordionHeadingElements.forEach((accordionHeading)=> {
+        accordionHeading.click()
+      })
   
       const dateCreated= moment().format("DD-MM-YYYY_HH-mm-ss");
       
@@ -144,11 +148,7 @@ const PsgPage= ()=> {
       />).toBlob()
   
       saveAs(blob, `hasil-status-gizi-${formData.name.replace(" ", "_")}-${dateCreated}.pdf`)
-  
-      accordionHeadingElements.forEach((accordionHeading)=> {
-        accordionHeading.click()
-      })
-  
+
       setIsDownloading(false)
     }, 0)
   }
