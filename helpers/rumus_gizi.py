@@ -37,4 +37,4 @@ class rumus_gizi():
       lemak = 0.25 * energi / 9  
       karbo = 0.65 * energi / 4
     
-    return {'energi':energi, 'protein':protein, 'lemak':lemak, 'karbo':karbo}
+    return {'energi':round(energi, 2), 'protein':round(protein, 2), 'lemak':round(lemak, 2), 'karbo':round(karbo, 2)}
