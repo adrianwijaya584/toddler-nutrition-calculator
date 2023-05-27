@@ -71,8 +71,9 @@ class psg():
 
 		try:	
 			panjang_badan = panjangBadanData.index(self.pb_tb)
-		finally:
+		except:
 			panjang_badan= len(panjangBadanData) - 1
+		finally:
 			if self.bb <= median[panjang_badan]:
 					bbpb = (self.bb - median[panjang_badan]) / (median[panjang_badan] - mins1sd[panjang_badan])
 					z_score = bbpb
@@ -80,5 +81,7 @@ class psg():
 			elif self.bb > median[panjang_badan]:
 					bbpb = (self.bb - median[panjang_badan]) / (plus1sd[panjang_badan] - median[panjang_badan])
 					z_score = bbpb
+
+			print(median[panjang_badan])
 			
 			return round(z_score, 2)   

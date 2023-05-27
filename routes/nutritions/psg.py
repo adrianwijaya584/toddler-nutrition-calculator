@@ -36,11 +36,10 @@ def nutritionCalculation():
 
   return {
     "bbu": bbuScore,
-    "bb_pb": bbpbScore,
     "pb_tb_u": pbtbuScore,
+    "bb_pb": bbpbScore,
     "nutritionNeeds": nutritionNeeds,
     "nutritionNeedsPerServing": nutritionNeedsPerServing,
-    "bb_u_informations":  bbuScoreInformations,
     "bb_u_informations":  bbuScoreInformations,
     "bb_pb_informations":  bbPbInformations,
     "pb_tb_u_informations":  pbUInformations,
