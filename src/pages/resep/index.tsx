@@ -37,7 +37,7 @@ const RecipeIndexPage= ()=> {
   }
 
   return (
-    <div className="container min-h-screen m-auto px-4 flex flex-col space-y-4 py-4">
+    <div className="container min-h-screen m-auto px-4 flex flex-col space-y-4 py-4 lg:px-24">
       <div className="grid  grid-cols-2 gap-3 md:grid-cols-4">
         {
           ages.map((age, k)=> (
@@ -46,7 +46,7 @@ const RecipeIndexPage= ()=> {
         }
       </div>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
         {
           recipes.map((recipe, k)=> (
             <Link href={`resep/${recipe.nama}`} key={k}>

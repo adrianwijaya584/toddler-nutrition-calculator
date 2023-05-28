@@ -89,7 +89,7 @@ const RecipeDetailPage= ()=> {
                   </div>
                 </div>
 
-                <div className="flex flex-col space-y-4 pb-4">
+                <div className="flex flex-col space-y-4 pb-4 w-full">
                   <Image 
                     src={recipe.fotoResep} 
                     alt={`Gambar ${recipe.nama}`}

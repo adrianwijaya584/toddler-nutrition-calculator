@@ -1,22 +1,29 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import "aos/dist/aos.css";
+
 import '../styles/globals.css'
 import {poppins, suisseNeue} from '@/helpers/registerFont'
 import CustomNavbar from '@/components/CustomNavbar'
 import CustomFooter from '@/components/CustomFooter'
+import { useEffect } from 'react';
+import MetaHead from '@/components/MetaHead';
 
 export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <>
-    <Head>
-      <title>Toddler Nutrition Calculator</title>
-      <meta name="description" content="Aplikasi informasi perhitungan gizi balita" />
-      <link rel="manifest" href="/app.webmanifest"></link>
-      <link rel="apple-touch-icon" href="/icons/icon-192x192.png"></link>
-      <link rel="apple-touch-icon" href="/icons/touch-icon-192x192.png" />
-    </Head>
+  async function initAos() {
+    const Aos= await import('aos')
+    Aos.init()
+  }
 
-    <div className={`min-h-screen px-5 pt-[70px] pb-8 ${poppins.variable} ${suisseNeue.variable}`}>
+  useEffect(()=> {
+    initAos()
+  }, [])
+
+  return (
+  <>
+    <MetaHead/>
+
+    <div className={`min-h-screen pt-[70px] pb-12 overflow-hidden ${poppins.variable} ${suisseNeue.variable}`}>
       <CustomNavbar/>
       <Component {...pageProps} />
     </div>

@@ -4,11 +4,9 @@ import dynamic from 'next/dynamic'
 import axios from "axios"
 import moment from "moment"
 import * as yup from 'yup'
-
 import bbPerPb from '@/data/bbperpb.json'
 import bbPerU from '@/data/bbperu.json'
 import pbPerU from '@/data/pbtbperu.json'
-
 import DocumentData from '@/components/DocumentData'
 import Link from "next/link"
 const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
@@ -37,13 +35,11 @@ const PsgPage= ()=> {
   const pbPerUChart= useRef<HTMLDivElement>(null)
 
   const [chartWidth, setChartWidth]= useState(1000)
-  const [formData, setFormData]= useState({
-    name: "aaa",
-    age: 60,
-    weight: 21,
-    height: 110,
-    gender: "male"
-  })
+  const [name, setName]= useState('aaa')
+  const [age, setAge]= useState(60)
+  const [weight, setWeight]= useState(21)
+  const [height, setHeight]= useState(110)
+  const [gender, setGender]= useState('male')
   const [isLoading, setIsLoading]= useState(false)
   const [isDownloading, setIsDownloading]= useState(false)
   const [apiResult, setApiResult]= useState<APIResult>()
@@ -52,6 +48,14 @@ const PsgPage= ()=> {
     e.preventDefault()
 
     try {
+      const formData= {
+        name,
+        age,
+        weight,
+        height,
+        gender,
+      }
+
       await validationDto.validate(formData, {
         abortEarly: false
       })
@@ -59,9 +63,9 @@ const PsgPage= ()=> {
       setIsLoading(true)
 
       const {data}= await axios.post<APIResult>("/api/psg", {
-        weight: formData.weight,
-        height: formData.height,
-        age: formData.age
+        weight,
+        height,
+        age
       })
 
       setIsLoading(false)
@@ -140,14 +144,20 @@ const PsgPage= ()=> {
       const dateCreated= moment().format("DD-MM-YYYY_HH-mm-ss");
       
       const blob= await pdf(<DocumentData
-        biodata={formData}  
+        biodata={{
+          name,
+          weight,
+          height,
+          age,
+          gender
+        }}  
         calculationResult={apiResult}
         imageBbPerU={imageBbPerU}
         imageBbPerP={imageBbPerPb}
         imagePbPerUChart={imagePbPerUChart}
       />).toBlob()
   
-      saveAs(blob, `hasil-status-gizi-${formData.name.replace(" ", "_")}-${dateCreated}.pdf`)
+      saveAs(blob, `hasil-status-gizi-${name.replace(" ", "_")}-${dateCreated}.pdf`)
 
       setIsDownloading(false)
     }, 0)
@@ -164,29 +174,20 @@ const PsgPage= ()=> {
   }, [])
 
   return (
-    <div className="p-4">
+    <div className="py-4 px-6">
       <form className="space-y-4" onSubmit={(e)=> submitForm(e)}>
         <FormDiv>
           <div className="w-full md:w-2/4">
             <FormLabel label="Nama Balita" />
             <TextInput placeholder="Masukan nama balita." 
             ref={firstInput}
-            onChange={(e)=> setFormData(v=> {
-              return {
-                ...v,
-                name: e.target.value
-              }
-            })} />
+            onChange={(e)=> setName(e.target.value)} />
           </div>
 
           <div className="w-full md:w-2/4">
             <FormLabel label="Umur Balita" />
             <TextInput type="number" placeholder="Masukan umur balita dalam bulan."  max={60} min={0} 
-            onChange={(e)=> setFormData(v=> {
-              return {
-                ...v,
-                age: +e.target.value
-              }})}
+            onChange={(e)=> setAge(+e.target.value)}
             />
           </div>
         </FormDiv>
@@ -195,33 +196,21 @@ const PsgPage= ()=> {
           <div className="w-full md:w-1/3">
             <FormLabel label="Berat Badan"  />
             <TextInput type="number" placeholder="Masukan berat badan dalam Kg." inputMode="decimal" step={.1}
-               onChange={(e)=> setFormData(v=> {
-                return {
-                  ...v,
-                  weight: +e.target.value
-                }})}
+               onChange={(e)=> setWeight(+e.target.value)}
             />
           </div>
 
           <div className="w-full md:w-1/3">
             <FormLabel label="Tinggi Badan" />
             <TextInput type="number" placeholder="Masukan tinggi badan dalam Cm." inputMode="decimal" step={.1}
-               onChange={(e)=> setFormData(v=> {
-                return {
-                  ...v,
-                  height: +e.target.value
-                }})}
+               onChange={(e)=> setHeight(+e.target.value)}
             />
           </div>
 
           <div className="w-full md:w-1/3">
             <FormLabel label="Jenis Kelamin" />
             <Select placeholder="Masukan jenis kelamin balita." 
-               onChange={(e)=> setFormData(v=> {
-                return {
-                  ...v,
-                  gender: e.target.value
-                }})}
+               onChange={(e)=> setGender(e.target.value)}
             >
               <option value="">Pilih Jenis Kelamin</option>
               <option value="male">Laki-laki</option>
