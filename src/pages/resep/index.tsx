@@ -37,7 +37,7 @@ const RecipeIndexPage= ()=> {
   }
 
   return (
-    <div className="container min-h-screen m-auto px-4 flex flex-col space-y-4 py-4 lg:px-24">
+    <div className="container min-h-screen m-auto px-4 flex flex-col space-y-4 py-4 lg:px-12 xl:px-24">
       <div className="grid  grid-cols-2 gap-3 md:grid-cols-4">
         {
           ages.map((age, k)=> (
@@ -54,8 +54,8 @@ const RecipeIndexPage= ()=> {
                 <Image
                   src={recipe.fotoResep}
                   alt={`Gambar ${recipe.nama}`}
-                  width={800}
-                  height={300}
+                  width="500"
+                  height="300"
                   priority={true}
                   placeholder="blur"
                   blurDataURL={rgbDataURL(237, 181, 6)}

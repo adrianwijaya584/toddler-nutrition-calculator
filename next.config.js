@@ -29,7 +29,7 @@ const withPWA = require('next-pwa')({
   dest: 'public',
   // disable: ''
   fallbacks: {
-    image: '/not_found.png'
+    image: '/images/not_found.png'
   }
 })
 

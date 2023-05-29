@@ -30,7 +30,7 @@ const CustomNavbar= ()=> {
   return (
     <div className="h-[70px] fixed top-0 left-0 z-50 w-full flex items-center">
       <Navbar
-        className="w-full h-full px-6 sm:py-0 lg:px-24 flex items-center"
+        className="w-full h-full px-6 sm:py-0 lg:px-12 xl:px-24 flex items-center"
       >
         <Link href="/" className="flex flex-row justify-center items-center py-4">
           <Image
@@ -38,6 +38,7 @@ const CustomNavbar= ()=> {
             className="mr-2 w-auto h-auto max-w-md"
             width={30}
             height={30}
+            priority={true}
             alt="Flowbite Logo"
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">TNC</span>

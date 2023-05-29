@@ -1,12 +1,11 @@
 import type { AppProps } from 'next/app'
-import Head from 'next/head'
 import "aos/dist/aos.css";
 
+import { useEffect } from 'react';
 import '../styles/globals.css'
 import {poppins, suisseNeue} from '@/helpers/registerFont'
 import CustomNavbar from '@/components/CustomNavbar'
 import CustomFooter from '@/components/CustomFooter'
-import { useEffect } from 'react';
 import MetaHead from '@/components/MetaHead';
 
 export default function App({ Component, pageProps }: AppProps) {

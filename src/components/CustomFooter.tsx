@@ -14,6 +14,7 @@ const CustomFooter= ()=> {
               className="mr-2 w-auto h-auto max-w-md"
               width={30}
               height={30}
+              priority={true}
               alt="Flowbite Logo"
             />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">TNC</span>
