@@ -7,10 +7,10 @@ const Home= ()=> {
   return (
     <div className="flex flex-col space-y-[70px]">
       <div className="jumbotron w-full h-[calc(100vh-70px)] bg-[#EAF7FF]">
-        <div className="container h-full mx-auto flex flex-row px-6 lg:px-12 xl:px-24">
-          <div className="w-[55%] flex flex-col justify-center space-y-4" data-aos="fade-right">
-            <h1 className="font-bold text-xl font-suisseNeue lg:text-5xl lg:leading-snug">Hai Moms yuk ukur <br className="hidden lg:block" /> Gizi balitamu.</h1>
-            <h2 className="font-semibold text-2xl leading-normal">dan mulai terapkan <br className="hidden lg:block" /> nutrisi yang tepat!</h2>
+        <div className="container h-full mx-auto flex flex-row px-6 lg:space-x-8 lg:px-12 xl:px-24">
+          <div className="flex flex-col justify-center items-center space-y-4 w-full lg:w-[40%] lg:items-start" data-aos="fade-right">
+            <h1 className="font-bold text-xl font-suisseNeue lg:text-3xl xl:text-5xl lg:leading-snug xl:leading-normal">Hai Moms yuk ukur <br className="hidden lg:block" /> Gizi balitamu.</h1>
+            <h2 className="font-semibold text-lg leading-normal lg:text-xl xl:text-2xl">dan mulai terapkan <br className="hidden lg:block" /> nutrisi yang tepat!</h2>
 
             <div className="flex flex-row space-x-3">
               <Link href="/psg">
@@ -27,15 +27,14 @@ const Home= ()=> {
             </div>
           </div>
 
-          <div className="hidden flex-grow items-end lg:flex" data-aos="fade-left">
+          <div className="relative w-[60%] hidden items-center lg:flex" data-aos="fade-left">
             <Image
               src={DoctorImage}
               alt="Gambar dokter"
-              width="1000"
-              height="500"
               priority={true}
-              quality={100}
-              className="object-bottom"
+              fill
+              sizes="(max-width: 500px) 0vw, (max-width: 800px) 30vw, (max-width: 1200px) 40vw, 50vw"
+              className="relative h-auto"
             />
           </div>
         </div>
