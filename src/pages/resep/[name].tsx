@@ -4,7 +4,7 @@ import recipeJson from "@/data/resep.json"
 import Link from "next/link"
 import { Button, Modal } from "flowbite-react"
 import Image from "next/image"
-import { rgbDataURL } from "@/helpers/config"
+import { rgbDataURL } from "@/helpers/rgbDataURL"
 import { IconType } from "react-icons"
 import {FaWhatsapp, FaFacebook, FaTwitter} from 'react-icons/fa'
 

@@ -276,8 +276,8 @@ const PsgPage= ()=> {
               <Accordion.Content id="accordion-collapse-body-2">
                 <div className="overflow-x-auto py-4" ref={bbPerPbChart}>
                   <ResultChart
-                    xTitle="Berat Badan (kg)"
-                    yTitle="Panjang Badan (cm)"
+                    xTitle="Panjang Badan (cm)"
+                    yTitle="Berat Badan (kg)"
                     chartData={bbPerPb}
                     xSkipSize={5}
                     width={chartWidth}

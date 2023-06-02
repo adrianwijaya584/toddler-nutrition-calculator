@@ -1,7 +1,6 @@
-'use client';
-import DocumentData from "@/components/DocumentData";
-import { PDFViewer,PDFDownloadLink, } from "@react-pdf/renderer"
-import { useEffect, useState } from "react";
+import DocumentData from '@/components/DocumentData';
+import { PDFViewer } from '@react-pdf/renderer'
+import { useEffect, useState } from 'react';
 
 const PdfPage= ()=> {
   const [isClient, setIsClient] = useState(false)

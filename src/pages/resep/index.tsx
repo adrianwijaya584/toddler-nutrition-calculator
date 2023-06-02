@@ -4,11 +4,11 @@ import { useMemo, useState } from "react"
 import { useRouter } from "next/router"
 import recipeJson from '@/data/resep.json'
 import Image from "next/image"
-import { rgbDataURL } from "@/helpers/config"
+import { rgbDataURL } from "@/helpers/rgbDataURL"
 
 const RecipeIndexPage= ()=> {
   const router= useRouter()
-  const ages= ['semua', '6-8', '9-11', '12']
+  const ages= ['Semua', '6-8', '9-11', '12']
   const [filteredAge, setFilteredAge]= useState('semua')
   const recipes= useMemo(()=> {
     const {umur= ''}= router.query
@@ -41,7 +41,13 @@ const RecipeIndexPage= ()=> {
       <div className="grid  grid-cols-2 gap-3 md:grid-cols-4">
         {
           ages.map((age, k)=> (
-            <Button className={`${age==filteredAge?'':'bg-primary-1'}`} key={k} onClick={()=> filterAge(age)}>{age} {age=='12'&&'keatas'}</Button>
+            <Button 
+              className={`${age==filteredAge?'':'bg-primary-1'}`} 
+              key={k} 
+              onClick={()=> filterAge(age)}
+            >
+                {age} {age!='Semua'?'bulan':'usia'} {age=='12'&&'ke atas'}
+            </Button>
           ))
         }
       </div>
@@ -62,7 +68,7 @@ const RecipeIndexPage= ()=> {
                   className="h-52 object-cover object-center"  
                 />
                 <h4 className="text-center font-bold">{recipe.nama}</h4>
-                <p>umur : {recipe.Usia} {recipe.Usia=='12'&&'keatas'}</p>
+                <p>umur : {recipe.Usia} {recipe.Usia!='Semua'?'bulan':'usia'} {recipe.Usia=='12'&&'ke atas'}</p>
                 <div className="line-clamp-2">{
                   recipe.bahan.map((bahan, k)=> (
                     <span key={k}>{bahan} <span className="inline-block px-xs text-gray-400">•</span> </span>
