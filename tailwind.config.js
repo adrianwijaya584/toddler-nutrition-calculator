@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         "primary-1": '#16B3AC',
         "primary-2": '#D2DC02',
+        "paragraph": '#637381',
       },
       fontFamily: {
         poppins: ['var(--font-poppins)'],

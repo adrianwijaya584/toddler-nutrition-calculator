@@ -51,7 +51,7 @@ const Home= ()=> {
         </div>
       </div>
 
-      <article className="container px-6 lg:px-12 xl:px-24">
+      <article className="container mx-auto px-6 lg:px-12 xl:px-24">
         <div className="" data-aos="fade-up">
           <div className="text-center">
             <h1 className="text-[#3056D3] font-bold text-base">Rekomendasi Artikel</h1>
@@ -63,17 +63,18 @@ const Home= ()=> {
             <div className="main">
               <Link href="/artikel/1">
                 <Card className="h-full">
-                  <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] xl:h-[450px]">
+                  <div className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] xl:h-[450px]">
                     <Image
                       src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2023/01/eat-it-or-leave-it-healthlines-comprehensive-ingredient-dictionary-to-simplify-your-shopping-trip-thumb-732x549-1-732x549.jpg?w=1092"
                       alt="gambar artikel"
                       fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
 
                   <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-green-600">Yuk Mengenal Stunting, Penyebab Hingga Cara Mengatasinya</h3>
-                  <p className="line-clamp-3 text-[#637381] text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis harum illum natus accusantium deserunt? Accusantium, iusto, qui a temporibus reiciendis repudiandae debitis nam accusamus provident deserunt, ullam perferendis quis libero?</p>
+                  <p className="line-clamp-3 text-paragraph text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis harum illum natus accusantium deserunt? Accusantium, iusto, qui a temporibus reiciendis repudiandae debitis nam accusamus provident deserunt, ullam perferendis quis libero?</p>
                 </Card>
               </Link>
             </div>
@@ -83,12 +84,13 @@ const Home= ()=> {
                 <Link href="/artikel/1" key={k}>
                   <Card>
                     <div className="flex flex-col md:flex-row md:space-x-3">
-                      <div className="relative w-full h-[250px] bg-red-300 md:h-[110px] md:w-[40%] xl:h-[150px]">
+                      <div className="relative w-full h-[250px] bg-red-300 md:h-[130px] md:w-[40%] xl:h-[150px]">
                         <Image
                           src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2023/01/eat-it-or-leave-it-healthlines-comprehensive-ingredient-dictionary-to-simplify-your-shopping-trip-thumb-732x549-1-732x549.jpg?w=1092"
                           alt="gambar artikel"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           fill
+                          className="object-cover"
                         />
                       </div>
 

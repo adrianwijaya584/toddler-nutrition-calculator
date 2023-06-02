@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
   <>
     <MetaHead/>
 
-    <div className={`min-h-screen pt-[70px] pb-12 overflow-hidden ${poppins.variable} ${suisseNeue.variable}`}>
+    <div className={`min-h-screen pt-[70px] pb-12 relative ${poppins.variable} ${suisseNeue.variable}`}>
       <CustomNavbar/>
       <Component {...pageProps} />
     </div>

@@ -13,11 +13,6 @@ const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
   ssr: false
 })
 
-const FormDiv= ({children}: {children: JSX.Element[]})=> 
-  <div className="flex flex-col space-y-2 md:space-y-0 md:space-x-3 md:flex-row">
-    {children}
-  </div>
-
 const FormLabel= ({label}: {label: string})=> <p className="mb-1 font-semibold text-sm">{label}</p>
 
 const validationDto= yup.object({
@@ -166,60 +161,66 @@ const PsgPage= ()=> {
   useEffect(()=> {    
     const width= window.innerWidth
 
-    if (width > 1300) {
-      setChartWidth(width - 150)
+    if (width > 1500) {
+      setChartWidth(1500 - 150)
     }
 
     firstInput.current?.focus()
   }, [])
 
   return (
-    <div className="py-4 px-6">
-      <form className="space-y-4" onSubmit={(e)=> submitForm(e)}>
-        <FormDiv>
-          <div className="w-full md:w-2/4">
-            <FormLabel label="Nama Balita" />
-            <TextInput placeholder="Masukan nama balita." 
-            ref={firstInput}
-            onChange={(e)=> setName(e.target.value)} />
-          </div>
+    <div className="container mx-auto py-7 px-6 md:px-12">
+      <div className="mb-3 space-y-4">
+        <h1 className="font-bold text-2xl">Kalkulator Perhitungan Gizi</h1>
+        <h2>Yuk moms ukur Gizi dan kebutuhan nutrisi balitamu sekarang <br className="hidden md:block"  /> menggunakan Perhitungan gizi berstandar kemenkes.</h2>
+      </div>
 
-          <div className="w-full md:w-2/4">
-            <FormLabel label="Umur Balita" />
-            <TextInput type="number" placeholder="Masukan umur balita dalam bulan."  max={60} min={0} 
-            onChange={(e)=> setAge(+e.target.value)}
-            />
-          </div>
-        </FormDiv>
+      <form className="grid gap-x-5 gap-y-5 grid-cols-1 md:grid-cols-2 md:gap-y-6" onSubmit={(e)=> submitForm(e)}>
+        <div className="w-full">
+          <FormLabel label="Nama Balita" />
+          <TextInput placeholder="Masukan nama balita." 
+          ref={firstInput}
+          onChange={(e)=> setName(e.target.value)} />
+        </div>
 
-        <FormDiv>
-          <div className="w-full md:w-1/3">
-            <FormLabel label="Berat Badan"  />
-            <TextInput type="number" placeholder="Masukan berat badan dalam Kg." inputMode="decimal" step={.1}
-               onChange={(e)=> setWeight(+e.target.value)}
-            />
-          </div>
+        <div className="w-full">
+          <FormLabel label="Umur Balita" />
+          <TextInput type="number" placeholder="Masukan umur balita dalam bulan."  max={60} min={0} 
+          onChange={(e)=> setAge(+e.target.value)}
+          />
+        </div>
 
-          <div className="w-full md:w-1/3">
-            <FormLabel label="Tinggi Badan" />
-            <TextInput type="number" placeholder="Masukan tinggi badan dalam Cm." inputMode="decimal" step={.1}
-               onChange={(e)=> setHeight(+e.target.value)}
-            />
-          </div>
+        <div className="w-full">
+          <FormLabel label="Berat Badan"  />
+          <TextInput type="number" placeholder="Masukan berat badan dalam Kg." inputMode="decimal" step={.1}
+              onChange={(e)=> setWeight(+e.target.value)}
+          />
+        </div>
 
-          <div className="w-full md:w-1/3">
-            <FormLabel label="Jenis Kelamin" />
-            <Select placeholder="Masukan jenis kelamin balita." 
-               onChange={(e)=> setGender(e.target.value)}
-            >
-              <option value="">Pilih Jenis Kelamin</option>
-              <option value="male">Laki-laki</option>
-              <option value="female">Perempuan</option>
-            </Select>
-          </div>
-        </FormDiv>
+        <div className="w-full">
+          <FormLabel label="Tinggi Badan" />
+          <TextInput type="number" placeholder="Masukan tinggi badan dalam Cm." inputMode="decimal" step={.1}
+              onChange={(e)=> setHeight(+e.target.value)}
+          />
+        </div>
 
-        <Button type="submit" className="w-full bg-primary-1 duration-500">Hitung</Button>
+        <div className="w-full">
+          <FormLabel label="Jenis Kelamin" />
+          <Select placeholder="Masukan jenis kelamin balita." 
+              onChange={(e)=> setGender(e.target.value)}
+          >
+            <option value="">Pilih Jenis Kelamin</option>
+            <option value="male">Laki-laki</option>
+            <option value="female">Perempuan</option>
+          </Select>
+        </div>
+
+        <Button 
+          type="submit" 
+          className="w-full bg-primary-1 col-span-1 duration-500 md:col-span-2"
+        >
+          Hitung
+        </Button>
       </form>
 
       {
@@ -247,7 +248,8 @@ const PsgPage= ()=> {
               <Accordion.Title id="accordion-collapse-heading-1">Chart BB per U</Accordion.Title>
 
               <Accordion.Content id="accordion-collapse-body-1" className="overflow-x-auto">
-                <div className="py-4" ref={bbPerUChart}>
+                {/* <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea, consequatur ipsam quas, soluta vel id explicabo odit aut molestias earum rem delectus nostrum fugit ullam reprehenderit. Veniam delectus libero cupiditate.</p> */}
+                <div className="py-4 flex lg:justify-center lg:items-center" ref={bbPerUChart}>
                   <ResultChart
                     xTitle="Umur (bulan)"
                     yTitle="Berat Badan (kg)"
@@ -273,8 +275,8 @@ const PsgPage= ()=> {
             <Accordion.Panel>
               <Accordion.Title id="accordion-collapse-heading-2">Chart BB per PB</Accordion.Title>
 
-              <Accordion.Content id="accordion-collapse-body-2">
-                <div className="overflow-x-auto py-4" ref={bbPerPbChart}>
+              <Accordion.Content id="accordion-collapse-body-2" className="overflow-x-auto">
+                <div className="overflow-x-auto py-4 flex lg:justify-center lg:items-center" ref={bbPerPbChart}>
                   <ResultChart
                     xTitle="Panjang Badan (cm)"
                     yTitle="Berat Badan (kg)"
@@ -301,8 +303,8 @@ const PsgPage= ()=> {
             <Accordion.Panel>
               <Accordion.Title id="accordion-collapse-heading-3">Chart PB per U</Accordion.Title>
 
-              <Accordion.Content id="accordion-collapse-body-3">
-                 <div className="overflow-x-auto py-4" ref={pbPerUChart}>
+              <Accordion.Content id="accordion-collapse-body-3" className="overflow-x-auto">
+                 <div className="overflow-x-auto py-4 flex lg:justify-center lg:items-center" ref={pbPerUChart}>
                   <ResultChart
                     xTitle="Umur (bulan)"
                     yTitle="Panjang Badan (cm)"

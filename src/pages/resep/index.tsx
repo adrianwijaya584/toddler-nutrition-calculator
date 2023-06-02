@@ -13,9 +13,7 @@ const RecipeIndexPage= ()=> {
   const recipes= useMemo(()=> {
     const {umur= ''}= router.query
 
-    const getAge= (ages.includes(umur.toString())?umur:'semua').toString()
-
-    setFilteredAge(getAge)
+    const getAge= (ages.includes(umur.toString())?umur:'semua').toString().toLowerCase()
 
     if (getAge=='semua') {
       return recipeJson
@@ -23,7 +21,7 @@ const RecipeIndexPage= ()=> {
 
     return recipeJson.filter((recipe)=> recipe.Usia==getAge)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router])
+  }, [router.query])
 
   function filterAge(age: string) {
     setFilteredAge(age)
@@ -42,7 +40,7 @@ const RecipeIndexPage= ()=> {
         {
           ages.map((age, k)=> (
             <Button 
-              className={`${age==filteredAge?'':'bg-primary-1'}`} 
+              className={`${age.toLowerCase()==filteredAge?'':'bg-primary-1'}`} 
               key={k} 
               onClick={()=> filterAge(age)}
             >

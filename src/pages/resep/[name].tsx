@@ -2,11 +2,10 @@ import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import recipeJson from "@/data/resep.json"
 import Link from "next/link"
-import { Button, Modal } from "flowbite-react"
-import Image from "next/image"
-import { rgbDataURL } from "@/helpers/rgbDataURL"
+import { Breadcrumb, Button } from "flowbite-react"
 import { IconType } from "react-icons"
-import {FaWhatsapp, FaFacebook, FaTwitter} from 'react-icons/fa'
+import {FaUtensils} from 'react-icons/fa'
+import ArticleLayout from "@/layouts/ArticleLayout"
 
 interface SocialMediaBtnType {
   Icon: IconType
@@ -27,8 +26,9 @@ const RecipeDetailPage= ()=> {
   type recipeType= typeof recipeJson[0]
   const route= useRouter()
   const [currentUrl, setCurrentUrl]= useState('') 
+  const [nutritionFacts, setNutritionFacts]= useState<string[][]>([]) 
   const [isLoading, setIsLoading]= useState(true)
-  const [showModal, setShowModal]= useState(false)
+  const [recommendedRecipe, setRecommendedRecipe]= useState<RecomendationArticles[]>([])
   const [recipe, setRecipe]= useState<recipeType | undefined>(undefined)
 
   useEffect(()=> {
@@ -40,13 +40,30 @@ const RecipeDetailPage= ()=> {
   }, [route.query])
 
   useEffect(()=> {
-    if (recipe!=undefined) {
-      setIsLoading(false)
+    setIsLoading(false)
+
+    if (recipe) {      
+      setNutritionFacts(recipe.KandunganPerPorsi.map((kandungan)=> {
+        const nutritions= kandungan.split(' ')
+        const nutrition= nutritions.pop() ?? ''
+
+        return [nutritions.join(' '), nutrition]
+      }))
+
+      const recommendation: RecomendationArticles[]= recipeJson.filter((recipeData)=> recipeData.Usia==recipe.Usia && recipeData.nama!=route.query.name).map(
+        (recipe)=> ({
+          title: recipe.nama,
+          headline: recipe.funFacts
+        })
+      )
+
+      setRecommendedRecipe(recommendation)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [recipe])
 
   return (
-    <div className="w-full m-auto min-h-screen justify-center relative lg:w-4/5 xl:w-4/6">
+    <div className="px-6 pt-4 lg:px-36">
     
       {
         isLoading?
@@ -63,109 +80,137 @@ const RecipeDetailPage= ()=> {
                   <Button>Kembali ke halaman resep</Button>
                 </Link>
               </div>:
-              <div className="flex flex-col space-y-3 md:space-x-6 md:space-y-0 md:flex-row">
-                <div className="flex flex-col top-[70px] left-0 h-fit pt-3  md:sticky md:pt-8">
-                  <div className="flex flex-row space-x-3 md:flex-col md:space-y-4 md:space-x-0">
-                    <SocialMediaBtn
-                      title="bagikan ke Whatsapp"
-                      className="bg-green-500"
-                      href={`https://wa.me/?text=Cek resep untuk balita disini ${currentUrl}`}
-                      Icon={FaWhatsapp}
-                    />
+              <div className="">
+                <Breadcrumb
+                  className="mb-6"
+                >
+                  <Breadcrumb.Item>
+                    <Link href="/resep"
+                      className="text-black flex items-center gap-x-2"
+                    >
+                      <FaUtensils/> Resep MPASI
+                    </Link>
+                  </Breadcrumb.Item>
 
-                    <SocialMediaBtn
-                      title="bagikan ke Facebook"
-                      className="bg-blue-500"
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
-                      Icon={FaFacebook}
-                    />
+                  <Breadcrumb.Item>
+                    <Link href={`/resep?umur=${recipe.Usia}`}
+                      className="text-black flex items-center gap-x-2"
+                    >
+                      {recipe.Usia} {recipe.Usia!='Semua'?'bulan':'usia'} {recipe.Usia=='12'&&'ke atas'}
+                    </Link>
+                  </Breadcrumb.Item>
 
-                    <SocialMediaBtn
-                      title="bagikan ke Twitter"
-                      className="bg-blue-500"
-                      href={`https://twitter.com/intent/tweet?url=${currentUrl}&text=`}
-                      Icon={FaTwitter}
-                    />
+                  <Breadcrumb.Item>
+                    {recipe.nama}
+                  </Breadcrumb.Item>
+                </Breadcrumb>
+
+                <ArticleLayout
+                  baseUrl="/resep"
+                  data={{
+                    title: recipe.nama,
+                    headline: recipe.funFacts
+                  }}
+                  recomendations={recommendedRecipe}
+                >
+                  <div className="bg-gray-500 rounded-md p-5 grid grid-cols-3">
+                      <div className="">
+                        <h2 className="font-bold">Waktu Memasak :</h2>
+                        <p>{recipe["Waktu memasak"]}</p>
+                      </div>
+
+                      <div className="">
+                        <h2 className="font-bold">Porsi :</h2>
+                        <p>{recipe.Porsi}</p>
+                      </div>
+
+                      <div className="">
+                        <h2 className="font-bold">Usia :</h2>
+                        <p>{recipe.Usia} {recipe.Usia!='Semua'?'bulan':'usia'} {recipe.Usia=='12'&&'ke atas'}</p>
+                      </div>
+
                   </div>
-                </div>
 
-                <div className="flex flex-col space-y-4 pb-4 w-full">
-                  <Image 
-                    src={recipe.fotoResep} 
-                    alt={`Gambar ${recipe.nama}`}
-                    width={800}
-                    height={200}
-                    priority={true}
-                    onClick={()=> setShowModal(true)}
-                    placeholder="blur"
-                    blurDataURL={rgbDataURL(237, 181, 6)}
-                    className="w-full h-[420px] object-cover object-center rounded-md mb-6 cursor-pointer"  />
-
-                  <Modal
-                    show={showModal}
-                    dismissible={true}
-                    onClose={()=> setShowModal(false)}
-                    size="3xl"
-                    className="h-screen"
+                  <h1
+                    className="font-bold text-3xl"
                   >
-                    <Modal.Header/>
-
-                    <Modal.Body>
-                      <Image
-                        src={recipe.fotoResep}
-                        alt={`Gambar${recipe.nama}`}
-                        placeholder="blur"
-                        blurDataURL={rgbDataURL(237, 181, 6)}
-                        width={1200}
-                        height={600}
-                      />
-
-                    </Modal.Body>
-                  </Modal>
-
-                  <h1 className="font-bold text-3xl ">{recipe.nama}</h1>
-                  <p>{recipe.Porsi}</p>
-                  <p>Umur {recipe.Usia} {recipe.Usia=='12'&&'keatas'}</p>
-                  <p>Waktu Memasak {recipe["Waktu memasak"]}</p>
-
-                  <h3 className="font-bold text-xl">Kandungan per Porsi</h3>
-                  <ol className="list-decimal pl-8">
-                    {recipe.KandunganPerPorsi.map((kandungan, k)=> (
-                      <li key={k}>{kandungan}</li>
-                    ))}
-                  </ol>
-
-                  <h3 className="font-bold text-xl">Fakta Menarik</h3>
-                  <p>{recipe.funFacts}</p>
-                  <h3 className="font-bold text-xl">Bahan</h3>
-                  <ul className="list-decimal pl-10">
-                    {recipe.bahan.map((bahan, k)=> (
-                      <li key={k}>{bahan}</li>
-                    ))}
+                    Bahan
+                  </h1>
+                  <ul
+                    className="list-disc pl-5 space-y-2"
+                  >
+                    {
+                      recipe.bahan.map((bahan, k)=> (
+                        <li
+                          key={k}
+                        >
+                          {bahan}
+                        </li>
+                      ))
+                    }
                   </ul>
 
                   {
                     recipe.bumbu_halus&&
                     <>
-                      <h3 className="font-bold">Bumbu Halus</h3>
-                      <ol>
-                        {recipe.bumbu_halus.map((bumbu, k)=> (
-                          <li className="" key={k}>{bumbu}</li>
-                        ))}
-                      </ol>
+                      <h1
+                        className="font-bold text-3xl"
+                      >
+                        Bumbu Halus
+                      </h1>
+                      <ul
+                        className="list-disc pl-5 space-y-2"
+                      >
+                        {
+                          recipe.bumbu_halus.map((bumbu, k)=> (
+                            <li
+                              key={k}
+                            >
+                              {bumbu}
+                            </li>
+                          ))
+                        }
+                      </ul>
                     </>
                   }
 
-                  <h3 className="font-bold text-xl">Cara Memasak</h3>                
-                  <ul className="list-decimal pl-8">
-                    {recipe.tutorial.map((tutorial, k)=> (
-                      <li key={k}>{tutorial}</li>
-                    ))}
-                  </ul>
-                </div>
+                  <h1
+                    className="font-bold text-3xl"
+                  >
+                    Cara Memasak
+                  </h1>
+
+                  {
+                    recipe.tutorial.map((tutorial, k)=>(
+                      <div key={k}>
+                        <h3 className="font-bold mb-1">Langkah {k+1}</h3>
+                        <p>{tutorial}</p>
+                      </div>
+                    ))
+                  }
+
+                  <hr className="border-1 border-gray-300" />
+
+                  <h1
+                    className="font-bold text-3xl"
+                  >
+                    Nutrition Facts <span className="text-sm font-normal">(per serving)</span>
+                  </h1>
+
+                  <div className="grid grid-cols-4 gap-7">
+                    {
+                      nutritionFacts.map((nutritions, k)=> (
+                        <div key={k}>
+                          <h3 className="font-bold mb-1">{nutritions[0]}</h3>
+                          <p>{nutritions[1]}</p>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </ArticleLayout>
               </div>
           }
-          </div>
+        </div>
       }
     </div>
   )
