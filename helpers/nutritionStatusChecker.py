@@ -2,7 +2,7 @@
 
 def bbuStatusCheker(score):
   scoreStatus= ['BB sangat kurang', 'BB kurang', 'BB normal', 'BB lebih']
-  scoreTexts= ['Berat badan anak tergolong sangat kurang dari normal usia. Periksa segera ke dokter spesialis anak atau puskesmas terdekat untuk pemeriksaan dan penanganan  lebih lanjut.', 'Berat badan anak tergolong kurang dari normal usia. Periksa segera ke dokter spesialis anak atau puskesmas terdekat untuk pemeriksaan dan penanganan  lebih lanjut.', 'Berat badan anak sesuai usia, lihat kurva berat badan per Tinggi Badan untuk menilai status gizi anak lebih akurat, dan pantau ulang berat badan tan tinggi badan secara berkala.', 'Berat badan tergolong lebih tinggi dari usia normal, lihat kurva berat badan per usia. Periksa segera ke dokter spesialis anak atau puskesmas terdekat untuk pemeriksaan dan penanganan lebih lanjut.']
+  scoreTexts= ['Berat badan anak tergolong sangat kurang dari normal usia. Periksa segera ke dokter spesialis anak atau puskesmas terdekat untuk pemeriksaan dan penanganan  lebih lanjut.', 'Berat badan anak tergolong kurang dari normal usia. Periksa segera ke dokter spesialis anak atau puskesmas terdekat untuk pemeriksaan dan penanganan  lebih lanjut.', 'Berat badan anak sesuai usia, lihat kurva berat badan per Usia untuk menilai status gizi anak lebih akurat, dan pantau ulang berat badan tan tinggi badan secara berkala.', 'Berat badan tergolong lebih tinggi dari usia normal, lihat kurva berat badan per usia. Periksa segera ke dokter spesialis anak atau puskesmas terdekat untuk pemeriksaan dan penanganan lebih lanjut.']
   index= 0
 
   if score < -3:
@@ -40,7 +40,7 @@ def pbuStatusCheker(score):
 
 def bbpbStatusCheker(score):
   scoreStatus= ['Gizi buruk', 'Gizi Kurang', 'Gizi Baik', 'Beresiko Gizi Lebih', 'Gizi Lebih', 'Obesitas']
-  scoreTexts= ['Anak mengalami gizi buruk / sangat kurus (severeky wasted). Segera bawa ke fasilitas kesehatan terdekat.', 'Anak tergolong gizi kurang / kurus (wasted). Jadwalkan kunjungan ke dokter spesialis anak atau fasilitas kesehatan terdekat untuk pemeriksaan dan penanganan lebih lanjut.', 'Anak tergolong gizi baik. Pantau ulang berat badan dan tinggi badan berkala.', 'Anak beresiko mengalami gizi lebih. Jadwalkan kunjungan ke dokter spesialis anak atau fasilitas kesehatan terdekat untuk pemeriksaan dan penanganan lebih lanjut.', 'Anak mengalami obesitas (obese). Jadwalkan kunjungan ke dokter spesialis anak atau fasilitas kesehatan terdekat untuk pemeriksaan dan penanganan lebih lanjut.']
+  scoreTexts= ['Anak mengalami gizi buruk / sangat kurus (severely wasted). Segera bawa ke fasilitas kesehatan terdekat.', 'Anak tergolong gizi kurang / kurus (wasted). Jadwalkan kunjungan ke dokter spesialis anak atau fasilitas kesehatan terdekat untuk pemeriksaan dan penanganan lebih lanjut.', 'Anak tergolong gizi baik. Pantau ulang berat badan dan tinggi badan berkala.', 'Anak beresiko mengalami gizi lebih. Jadwalkan kunjungan ke dokter spesialis anak atau fasilitas kesehatan terdekat untuk pemeriksaan dan penanganan lebih lanjut.', 'Anak mengalami obesitas (obese). Jadwalkan kunjungan ke dokter spesialis anak atau fasilitas kesehatan terdekat untuk pemeriksaan dan penanganan lebih lanjut.']
   index= 2
 
   if score < -3:

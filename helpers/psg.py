@@ -82,6 +82,4 @@ class psg():
 					bbpb = (self.bb - median[panjang_badan]) / (plus1sd[panjang_badan] - median[panjang_badan])
 					z_score = bbpb
 
-			print(median[panjang_badan])
-			
 			return round(z_score, 2)   
