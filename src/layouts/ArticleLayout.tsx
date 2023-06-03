@@ -18,11 +18,11 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
   return (
     <div className="container mx-auto">
       <div className="title space-y-5">
-        <h1 className="font-bold text-4xl">{data.title}</h1>
-        <p className="w-[60%] leading-relaxed text-paragraph font-semibold">{data.headline}</p>
+        <h1 className="font-bold text-2xl md:text-4xl">{data.title}</h1>
+        <p className="leading-relaxed text-paragraph font-semibold md:w-[60%]">{data.headline}</p>
       </div>
 
-      <div className="flex mt-8 md:flex-row md:space-x-10">
+      <div className="flex flex-col space-y-12 mt-8 md:flex-row md:space-x-10">
         <div className="space-y-6 md:w-[60%] ">
           <div className="h-[300px] w-full bg-gray-400 rounded-md"></div>
           {props.children}
