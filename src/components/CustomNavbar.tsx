@@ -3,6 +3,7 @@ import { Navbar } from "flowbite-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from 'next/router'
+import TncLogo from '~/icons/tnc_logo.png'
 
 const CustomNavbar= ()=> {
   const router= useRouter()
@@ -34,7 +35,7 @@ const CustomNavbar= ()=> {
       >
         <Link href="/" className="flex flex-row justify-center items-center py-4">
           <Image
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={TncLogo}
             className="mr-2 w-auto h-auto max-w-md"
             width={30}
             height={30}
