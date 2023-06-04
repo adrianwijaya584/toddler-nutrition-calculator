@@ -1,4 +1,4 @@
-import { Accordion, Button, Select, TextInput,  } from "flowbite-react"
+import { Accordion, Button, Select, Tabs, TextInput  } from "flowbite-react"
 import { FormEvent, useEffect, useRef, useState } from "react"
 import dynamic from 'next/dynamic'
 import axios from "axios"
@@ -8,7 +8,6 @@ import bbPerPb from '@/data/bbperpb.json'
 import bbPerU from '@/data/bbperu.json'
 import pbPerU from '@/data/pbtbperu.json'
 import DocumentData from '@/components/DocumentData'
-import Link from "next/link"
 const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
   ssr: false
 })
@@ -38,6 +37,7 @@ const PsgPage= ()=> {
   const [isLoading, setIsLoading]= useState(false)
   const [isDownloading, setIsDownloading]= useState(false)
   const [apiResult, setApiResult]= useState<APIResult>()
+  const [activeTab, setActiveTab]= useState(0)
 
   async function submitForm(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -79,34 +79,11 @@ const PsgPage= ()=> {
   }
 
   async function downloadPdf() {
-    if (!bbPerUChart.current || !apiResult) {
+    if (!apiResult) {
       return
     }
 
     setIsDownloading(true)
-
-    const accordionHeading1= document.querySelector('#accordion-collapse-heading-1') as HTMLElement
-    const accordionBody1= document.querySelector('#accordion-collapse-body-1') as HTMLElement
-    const accordionHeading2= document.querySelector('#accordion-collapse-heading-2') as HTMLElement
-    const accordionBody2= document.querySelector('#accordion-collapse-body-2') as HTMLElement
-    const accordionHeading3= document.querySelector('#accordion-collapse-heading-3') as HTMLElement
-    const accordionBody3= document.querySelector('#accordion-collapse-body-3') as HTMLElement
-    const accordionHeadingElements: HTMLElement[]= []
-
-    if (accordionBody1.hidden) {
-      accordionHeading1.click()
-      accordionHeadingElements.push(accordionHeading1)
-    }
-
-    if (accordionBody2.hidden) {
-      accordionHeading2.click()
-      accordionHeadingElements.push(accordionHeading2)
-    }
-
-    if (accordionBody3.hidden) {
-      accordionHeading3.click()
-      accordionHeadingElements.push(accordionHeading3)
-    }
 
     const {toPng}= (await import('html-to-image'))
     const {saveAs}= (await import('file-saver')).default
@@ -115,27 +92,30 @@ const PsgPage= ()=> {
     setTimeout(async ()=> {
       let canvasWidth= undefined
 
-      if (window.innerWidth <= 1000) {
+      if (window.innerWidth > 1500) {
+        canvasWidth= 1500 - 150
+      } else {
         canvasWidth= 1000
       }
 
       const imageBbPerU= await toPng(bbPerUChart.current as HTMLDivElement, {
         cacheBust: true,
-        width: canvasWidth
-      })
-      const imageBbPerPb= await toPng(bbPerPbChart.current as HTMLDivElement, {
-        cacheBust: true,
-        width: canvasWidth
-      })
-      const imagePbPerUChart= await toPng(pbPerUChart.current as HTMLDivElement, {
-        cacheBust: true,
+        height: 600,
         width: canvasWidth
       })
 
-      accordionHeadingElements.forEach((accordionHeading)=> {
-        accordionHeading.click()
+      const imageBbPerPb= await toPng(bbPerPbChart.current as HTMLDivElement, {
+        cacheBust: true,
+        height: 600,
+        width: canvasWidth
       })
-  
+
+      const imagePbPerUChart= await toPng(pbPerUChart.current as HTMLDivElement, {
+        cacheBust: true,
+        height: 600,
+        width: canvasWidth
+      })
+
       const dateCreated= moment().format("DD-MM-YYYY_HH-mm-ss");
       
       const blob= await pdf(<DocumentData
@@ -243,40 +223,33 @@ const PsgPage= ()=> {
             Download hasil perhitungan.
           </Button>
 
-          <Accordion alwaysOpen collapseAll>
-            <Accordion.Panel>
-              <Accordion.Title id="accordion-collapse-heading-1">Chart BB per U</Accordion.Title>
-
-              <Accordion.Content id="accordion-collapse-body-1" className="overflow-x-auto">
-                {/* <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea, consequatur ipsam quas, soluta vel id explicabo odit aut molestias earum rem delectus nostrum fugit ullam reprehenderit. Veniam delectus libero cupiditate.</p> */}
-                <div className="py-4 flex lg:justify-center lg:items-center" ref={bbPerUChart}>
+          <Tabs.Group
+            style="underline"
+            className="border border-gray-200 rounded-md"
+          >
+            <Tabs.Item
+              title="Berat Badan per Umur"
+            >
+              <div className="overflow-x-auto">
+                <div className="py-4 flex xl:justify-center xl:items-center" ref={bbPerUChart}>
                   <ResultChart
                     xTitle="Umur (bulan)"
                     yTitle="Berat Badan (kg)"
                     chartData={bbPerU}
                     width={chartWidth}
-                  />  
+                  />   
                 </div>
-              </Accordion.Content>
-            </Accordion.Panel>
+              </div>
 
-            <Accordion.Panel>
-              <Accordion.Title>
-                Artikel Berat Badan per Umur
-              </Accordion.Title>
+              <h3>Interpretasi {apiResult.bb_u_informations.status}</h3>
+              <p>{apiResult.bb_u_informations.articles}</p>
+            </Tabs.Item>
 
-              <Accordion.Content>
-                <p>berdasarkan berat badan per umur anak anda <span className="font-bold">{apiResult.bb_u_informations.status}</span></p>
-                <p>{apiResult.bb_u_informations.symtomps}</p>
-                <p>{apiResult.bb_u_informations.articles}</p>
-              </Accordion.Content>
-            </Accordion.Panel>
-            
-            <Accordion.Panel>
-              <Accordion.Title id="accordion-collapse-heading-2">Chart BB per PB</Accordion.Title>
-
-              <Accordion.Content id="accordion-collapse-body-2" className="overflow-x-auto">
-                <div className="overflow-x-auto py-4 flex lg:justify-center lg:items-center" ref={bbPerPbChart}>
+            <Tabs.Item
+              title="Berat Badan per Panjang Badan"
+            >
+               <div className="overflow-x-auto">
+                <div className="py-4 flex xl:justify-center xl:items-center" ref={bbPerPbChart}>
                   <ResultChart
                     xTitle="Panjang Badan (cm)"
                     yTitle="Berat Badan (kg)"
@@ -285,26 +258,17 @@ const PsgPage= ()=> {
                     width={chartWidth}
                   />  
                 </div>
-              </Accordion.Content>
-            </Accordion.Panel>
+              </div>
 
-            <Accordion.Panel>
-              <Accordion.Title>
-                Artikel Berat Badan per Panjang Badan
-              </Accordion.Title>
+              <h3>Interpretasi {apiResult.bb_pb_informations.status}</h3>
+              <p>{apiResult.bb_pb_informations.articles}</p>
+            </Tabs.Item>
 
-              <Accordion.Content>
-                <p>berdasarkan berat badan per panjang badan anak anda <span className="font-bold">{apiResult.bb_pb_informations.status}</span></p>
-                <p>{apiResult.bb_pb_informations.symtomps}</p>
-                <p>{apiResult.bb_pb_informations.articles}</p>
-              </Accordion.Content>
-            </Accordion.Panel>
-
-            <Accordion.Panel>
-              <Accordion.Title id="accordion-collapse-heading-3">Chart PB per U</Accordion.Title>
-
-              <Accordion.Content id="accordion-collapse-body-3" className="overflow-x-auto">
-                 <div className="overflow-x-auto py-4 flex lg:justify-center lg:items-center" ref={pbPerUChart}>
+            <Tabs.Item
+              title="Panjang Badan per Umur"
+            >
+              <div className="overflow-x-auto">
+                <div className="py-4 flex xl:justify-center xl:items-center" ref={pbPerUChart}>
                   <ResultChart
                     xTitle="Umur (bulan)"
                     yTitle="Panjang Badan (cm)"
@@ -312,41 +276,12 @@ const PsgPage= ()=> {
                     width={chartWidth}
                   />  
                 </div>
-              </Accordion.Content>
-            </Accordion.Panel>
+              </div>
 
-            <Accordion.Panel>
-              <Accordion.Title>Artikel Panjang Badan per Umur</Accordion.Title>
-
-              <Accordion.Content>
-                <p>berdasarkan panjang badan per umur anak anda <span className="font-bold">{apiResult.pb_tb_u_informations.status}</span></p>
-                <p>{apiResult.pb_tb_u_informations.symtomps}</p>
-                <p>{apiResult.pb_tb_u_informations.articles}</p>
-              </Accordion.Content>
-            </Accordion.Panel>
-
-            <Accordion.Panel>
-              <Accordion.Title>
-                Karbohidrat, Protein, dan Lemak
-              </Accordion.Title>
-
-              <Accordion.Content>
-                <p>Energi : {apiResult.nutritionNeeds.energi}</p>
-                <p>Karbohidrat : {apiResult.nutritionNeeds.karbo}</p>
-                <p>Protein : {apiResult.nutritionNeeds.protein}</p>
-                <p>Lemak : {apiResult.nutritionNeeds.lemak}</p>
-
-                <p>Energi Pagi & siang : {apiResult.nutritionNeedsPerServing.energi_pagi_siang}</p>
-
-                <p>Energi Malam : {apiResult.nutritionNeedsPerServing.energi_malam}</p>
-                
-                <Link href="/resep" className="underline">
-                  Cek resep sehat untuk anak anda disini
-                </Link>
-              </Accordion.Content>
-            </Accordion.Panel>
-
-          </Accordion>
+              <h3>Interpretasi {apiResult.pb_tb_u_informations.status}</h3>
+              <p>{apiResult.pb_tb_u_informations.articles}</p>
+            </Tabs.Item>
+          </Tabs.Group>
         </div>
       }
 

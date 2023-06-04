@@ -32,7 +32,6 @@ const ResultChart= (props: ChartProps)=> {
   const xTicksOption: Partial<CartesianTickOptions>= !props.xSkipSize?{}:{
     autoSkip: false,
     callback(value, index) {
-      // console.log();
       const skip= props.xSkipSize?props.xSkipSize:1
       
       return +this.getLabelForValue(+value)%skip==0?this.getLabelForValue(+value): ''

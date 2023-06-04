@@ -26,7 +26,6 @@ interface NutritionNeeds {
 
 interface NutritionArticles {
   status: string
-  symtomps: string[]
   articles: string[]
 }
 

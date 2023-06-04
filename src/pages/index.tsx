@@ -19,7 +19,7 @@ const Home= ()=> {
     <div className="flex flex-col space-y-[70px]">
       <div className="jumbotron w-full h-[calc(100vh-70px)] bg-[#EAF7FF]">
         <div className="container h-full mx-auto flex flex-row px-6 lg:space-x-8 lg:px-12 xl:px-24">
-          <div className="flex flex-col justify-center items-center space-y-4 w-full lg:w-[40%] lg:items-start" data-aos="fade-right">
+          <div className="flex flex-col justify-center items-center space-y-4 w-full lg:w-[45%] lg:items-start" data-aos="fade-right">
             <h1 className="font-bold text-2xl font-suisseNeue lg:text-3xl xl:text-5xl lg:leading-snug xl:leading-normal">Hai Moms yuk ukur <br className="hidden lg:block" /> Gizi balitamu.</h1>
             <h2 className="font-semibold text-lg leading-normal lg:text-xl xl:text-2xl">dan mulai terapkan <br className="hidden lg:block" /> nutrisi yang tepat!</h2>
 
@@ -38,7 +38,7 @@ const Home= ()=> {
             </div>
           </div>
 
-          <div className="relative w-[60%] hidden items-center lg:flex" data-aos="fade-left">
+          <div className="relative hidden items-center lg:flex lg:w-[55%]" data-aos="fade-left">
             <Image
               src={DoctorImage}
               alt="Gambar dokter"

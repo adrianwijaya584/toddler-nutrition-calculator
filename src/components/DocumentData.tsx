@@ -95,8 +95,12 @@ const DocumentData= (props: PdfData)=> {
           </View>
         </View> */}
 
-        <View>
-          <Image src={props.imageBbPerU} />
+        <View
+          style={tw('mx-auto')}
+        >
+          <Image 
+            src={props.imageBbPerU}
+          />
 
           <Text style={tw('text-center text-base font-bold text-[15px]')}>
             chart berat badan per umur

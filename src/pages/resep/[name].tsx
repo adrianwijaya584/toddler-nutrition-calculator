@@ -184,7 +184,7 @@ const RecipeDetailPage= ()=> {
                     recipe.tutorial.map((tutorial, k)=>(
                       <div key={k}>
                         <h3 className="font-bold mb-1">Langkah {k+1}</h3>
-                        <p>{tutorial}</p>
+                        <p className="pr-14 lg:pr-2">{tutorial}</p>
                       </div>
                     ))
                   }
@@ -197,7 +197,7 @@ const RecipeDetailPage= ()=> {
                     Nutrition Facts <span className="text-sm font-normal">(per serving)</span>
                   </h1>
 
-                  <div className="grid grid-cols-4 gap-7">
+                  <div className="grid grid-cols-3 gap-5 md:grid-cols-4 md:gap-7">
                     {
                       nutritionFacts.map((nutritions, k)=> (
                         <div key={k}>

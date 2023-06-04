@@ -22,13 +22,13 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
         <p className="leading-relaxed text-paragraph font-semibold md:w-[60%]">{data.headline}</p>
       </div>
 
-      <div className="flex flex-col space-y-12 mt-8 md:flex-row md:space-x-10">
-        <div className="space-y-6 md:w-[60%] ">
+      <div className="flex flex-col space-y-12 mt-8 lg:space-y-0 lg:flex-row lg:space-x-10">
+        <div className="space-y-6 lg:w-[60%] ">
           <div className="h-[300px] w-full bg-gray-400 rounded-md"></div>
           {props.children}
         </div>
 
-        <div className="space-y-7 right-0 h-fit md:w-[40%] md:sticky md:top-[80px] ">
+        <div className="space-y-7 right-0 h-fit lg:sticky lg:top-[80px] lg:md:w-[40%] ">
           {
             props.recomendations.map((recomendation, k)=> (
               <div 
@@ -36,7 +36,7 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
                 className="space-y-2 border border-gray-200 py-4 px-6 rounded-md"
               >
                 <h2 className="font-bold text-xl line-clamp-2">{recomendation.title}</h2>
-                <p className="pr-5 line-clamp-2 text-paragraph leading-loose">{recomendation.headline}</p>
+                <p className="line-clamp-2 text-paragraph leading-loose md:pr-5 ">{recomendation.headline}</p>
                 <Link 
                   href={`${props.baseUrl}/${recomendation.title}`}
                   className="flex items-center text-paragraph gap-x-2"
