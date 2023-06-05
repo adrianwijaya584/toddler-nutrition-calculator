@@ -22,13 +22,17 @@ class psg():
 	
 			umur= self.umur
 
-			if self.bb <= median[umur]:
-					bbu = (self.bb - median[umur]) / (median[umur] - mins1sd[umur])
-					z_score = bbu   
+			if self.bb == median[umur]:
+				bbu = (self.bb - median[umur]) / (median[umur])
+				z_score= bbu
+
+			elif self.bb < median[umur]:
+				bbu = (self.bb - median[umur]) / (median[umur] - mins1sd[umur])
+				z_score = bbu   
 			
 			elif self.bb > median[umur]:
-					bbu = (self.bb - median[umur]) / (plus1sd[umur] - median[umur])
-					z_score = bbu   
+				bbu = (self.bb - median[umur]) / (plus1sd[umur] - median[umur])
+				z_score = bbu   
 						
 			return round(z_score,2)
 
@@ -46,7 +50,11 @@ class psg():
 			
 			umur= self.umur
 
-			if self.pb_tb <= median[umur]:
+			if self.pb_tb == median[umur]:
+					pbtb_u = (self.pb_tb - median[umur]) / (median[umur])
+					z_score = pbtb_u
+
+			elif self.pb_tb < median[umur]:
 					pbtb_u = (self.pb_tb - median[umur]) / (median[umur] - mins1sd[umur])
 					z_score = pbtb_u
 			
@@ -74,7 +82,11 @@ class psg():
 		except:
 			panjang_badan= len(panjangBadanData) - 1
 		finally:
-			if self.bb <= median[panjang_badan]:
+			if self.bb == median[panjang_badan]:
+					bbpb = (self.bb - median[panjang_badan]) / (median[panjang_badan])
+					z_score = bbpb
+
+			elif self.bb < median[panjang_badan]:
 					bbpb = (self.bb - median[panjang_badan]) / (median[panjang_badan] - mins1sd[panjang_badan])
 					z_score = bbpb
 			
