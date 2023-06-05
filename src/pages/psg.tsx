@@ -7,6 +7,7 @@ import * as yup from 'yup'
 import {MdOutlineEggAlt} from 'react-icons/md'
 import {LuWheat} from 'react-icons/lu'
 import {GiAlmond} from 'react-icons/gi'
+import { FormLabel, NutritionBox, PerDayNutritionBox, validationDto } from "@/components/PsgPageComponents"
 
 import bbPerPb from '@/data/bbperpb.json'
 import bbPerU from '@/data/bbperu.json'
@@ -16,15 +17,6 @@ const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
   ssr: false
 })
 
-const FormLabel= ({label}: {label: string})=> <p className="mb-1 font-semibold text-sm">{label}</p>
-
-const validationDto= yup.object({
-  name: yup.string().required(),
-  age: yup.number().required(),
-  weight: yup.number().required(),
-  height: yup.number().required(),
-  gender: yup.string().oneOf(['male', 'female']).required(),
-})
 
 const PsgPage= ()=> {
   const firstInput= useRef<HTMLInputElement>(null)
@@ -96,7 +88,7 @@ const PsgPage= ()=> {
       let canvasWidth= undefined
 
       if (window.innerWidth > 1500) {
-        canvasWidth= 1500 - 150
+        canvasWidth= 1500 - 250
       } else {
         canvasWidth= 1000
       }
@@ -107,7 +99,7 @@ const PsgPage= ()=> {
         width: canvasWidth
       })
 
-      const imageBbPerPb= await toPng(bbPerPbChart.current as HTMLDivElement, {
+      const imageBbPerPBb= await toPng(bbPerPbChart.current as HTMLDivElement, {
         cacheBust: true,
         height: 600,
         width: canvasWidth
@@ -131,7 +123,7 @@ const PsgPage= ()=> {
         }}  
         calculationResult={apiResult}
         imageBbPerU={imageBbPerU}
-        imageBbPerP={imageBbPerPb}
+        imageBbPerPB={imageBbPerPBb}
         imagePbPerUChart={imagePbPerUChart}
       />).toBlob()
   
@@ -145,7 +137,7 @@ const PsgPage= ()=> {
     const width= window.innerWidth
 
     if (width > 1500) {
-      setChartWidth(1500 - 150)
+      setChartWidth(1500 - 250)
     }
 
     firstInput.current?.focus()
@@ -228,147 +220,88 @@ const PsgPage= ()=> {
             style="underline"
             className="border border-gray-200 rounded-md"
           >
-            <Tabs.Item title="Rangkuman">
-              <div className="space-y-8 px-5 mx-auto lg:w-10/12">
+            <Tabs.Item 
+              title="Rangkuman"
+              tabIndex={0}
+            >
+              <div className="space-y-8 px-5 pb-6 mx-auto xl:w-10/12">
 
-                <div className="border-1 p-4 grid mx-auto gap-x-3 lg:grid-cols-3">
-                  <h2>Balita anda memiliki : <span className="font-bold">{apiResult.bb_u_informations.status} ({apiResult.bbu.toFixed(2)})</span></h2>
-                  <h2>Balita anda tergolong Gizi : <span className="font-bold">{apiResult.bb_pb_informations.status} ({apiResult.bb_pb.toFixed(2)})</span></h2>
-                  <h2>Tinggi/Panjang Badan Balita anda : <span className="font-bold">{apiResult.pb_tb_u_informations.status} ({apiResult.pb_tb_u.toFixed(2)})</span></h2>
+                <div className="border-1 p-4 grid mx-auto gap-x-3 gap-y-4 lg:grid-cols-3">
+                  <h2>Balita anda memiliki : <span className="font-bold">{apiResult.bb_u_informations.status} </span></h2>
+                  <h2>Balita anda tergolong Gizi : <span className="font-bold">{apiResult.bb_pb_informations.status} </span></h2>
+                  <h2>Tinggi/Panjang Badan Balita anda : <span className="font-bold">{apiResult.pb_tb_u_informations.status} </span></h2>
                 </div>
 
-                <h1 className="text-center font-bold text-2xl">Nutrisi Yang Di Butuhkan Per Hari</h1>
+                <h1 className="text-center font-bold text-lg lg:text-2xl">Nutrisi Yang Di Butuhkan Per Hari</h1>
 
-                <div className="flex flex-col justify-center items-center lg:flex-row lg:justify-center lg:space-x-20">
+                <div className="flex flex-col justify-center items-center space-y-12 lg:flex-row lg:justify-center lg:space-x-14 xl:space-x-20">
                   <div className="border-8 rounded-full w-[150px] h-[150px] flex justify-center items-center flex-col space-y-2 lg:w-[180px] lg:h-[180px]">
                     <h2 className="lg:text-lg">Total Energi</h2>
                     <h3 className="font-bold text-3xl">{apiResult.nutritionNeeds.energi}</h3>
                     <p>Energi</p>
                   </div>
 
-                  <div className="flex flex-row items-center space-x-3 text-center lg:space-x-10">
-                    <div className="bg-gray-300 w-28 h-28 rounded-md flex flex-col justify-end pb-5 relative ">
-                      <MdOutlineEggAlt
-                        className="text-6xl absolute -top-7 left-1/2 transform -translate-x-1/2"
-                      />
-                      <h4 className="font-bold text-lg">{apiResult.nutritionNeeds.karbo}</h4>
-                      <p>Karbohidrat</p>
-                    </div>
+                  <div className="flex flex-row items-center space-x-3 text-center md:space-x-6 xl:space-x-10">
+                    <NutritionBox
+                      Icon={LuWheat}
+                      result={apiResult.nutritionNeeds.karbo}
+                      title="Karbohidrat"
+                    />
 
-                    <div className="bg-gray-300 w-28 h-28 rounded-md flex flex-col justify-end pb-5 relative">
-                      <LuWheat
-                        className="text-6xl absolute -top-7 left-1/2 transform -translate-x-1/2"
-                      />
-                      <h4 className="font-bold text-lg">{apiResult.nutritionNeeds.protein}</h4>
-                      <p>Protein</p>
-                    </div>
+                    <NutritionBox
+                      Icon={MdOutlineEggAlt}
+                      result={apiResult.nutritionNeeds.protein}
+                      title="Protein"
+                    />
 
-                    <div className="bg-gray-300 w-28 h-28 rounded-md flex flex-col justify-end pb-5 relative">
-                      <GiAlmond
-                        className="text-6xl absolute -top-7 left-1/2 transform -translate-x-1/2"
-                      />
-                      <h4 className="font-bold text-lg">{apiResult.nutritionNeeds.lemak}</h4>
-                      <p>Lemak</p>
-                    </div>
+                    <NutritionBox
+                      Icon={GiAlmond}
+                      result={apiResult.nutritionNeeds.lemak}
+                      title="Lemak"
+                    />
                   </div>
                 </div>
 
-                <h1 className="text-center font-bold text-2xl">Konsumsi Gizi Seimbang yang disarankan</h1>
+                <h1 className="text-center font-bold text-xl lg:text-2xl">Konsumsi Gizi Seimbang yang disarankan</h1>
 
-                <table className="border w-full rounded-md">
-                  <tr className="border rounded-md">
-                    <td className="p-6">
-                      <h2 className="font-bold text-xl">Makan Pagi</h2>
+                <div className="border border-b-0 w-full rounded-md">
+                  <PerDayNutritionBox
+                    time="Pagi"
+                    nutritionNeeds={{
+                      energy: apiResult.nutritionNeedsPerServing.energi_pagi_siang,
+                      carbo: apiResult.nutritionNeedsPerServing.karbo_pagi_siang,
+                      fat: apiResult.nutritionNeedsPerServing.lemak_pagi_siang,
+                      protein: apiResult.nutritionNeedsPerServing.protein_pagi_siang,
+                    }}
+                  />
 
-                      <div className="grid grid-cols-2 lg:grid-cols-4">
-                        <div className="">
-                          <h3 className="font-bold">445 kkal</h3>
-                          <p>Energi</p>
-                        </div>
+                  <PerDayNutritionBox
+                    time="Siang"
+                    nutritionNeeds={{
+                      energy: apiResult.nutritionNeedsPerServing.energi_pagi_siang,
+                      carbo: apiResult.nutritionNeedsPerServing.karbo_pagi_siang,
+                      fat: apiResult.nutritionNeedsPerServing.lemak_pagi_siang,
+                      protein: apiResult.nutritionNeedsPerServing.protein_pagi_siang,
+                    }}
+                  />
 
-                        <div className="">
-                          <h3 className="font-bold">34g</h3>
-                          <p>Lemak</p>
-                        </div>
-
-                        <div className="">
-                          <h3 className="font-bold">445g</h3>
-                          <p>Karbohidrat</p>
-                        </div>
-
-                        <div className="">
-                          <h3 className="font-bold">445g</h3>
-                          <p>Protein</p>
-                        </div>
-
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr className="border rounded-md">
-                    <td className="p-6">
-                      <h2 className="font-bold text-xl">Makan Siang</h2>
-
-                          <div className="grid grid-cols-2 lg:grid-cols-4">
-                        <div className="">
-                          <h3 className="font-bold">445 kkal</h3>
-                          <p>Energi</p>
-                        </div>
-
-                        <div className="">
-                          <h3 className="font-bold">34g</h3>
-                          <p>Lemak</p>
-                        </div>
-
-                        <div className="">
-                          <h3 className="font-bold">445g</h3>
-                          <p>Karbohidrat</p>
-                        </div>
-
-                        <div className="">
-                          <h3 className="font-bold">445g</h3>
-                          <p>Protein</p>
-                        </div>
-
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr className="border rounded-md">
-                    <td className="p-6">
-                      <h2 className="font-bold text-xl">Makan Malam</h2>
-
-                          <div className="grid grid-cols-2 lg:grid-cols-4">
-                        <div className="">
-                          <h3 className="font-bold">445 kkal</h3>
-                          <p>Energi</p>
-                        </div>
-
-                        <div className="">
-                          <h3 className="font-bold">34g</h3>
-                          <p>Lemak</p>
-                        </div>
-
-                        <div className="">
-                          <h3 className="font-bold">445g</h3>
-                          <p>Karbohidrat</p>
-                        </div>
-
-                        <div className="">
-                          <h3 className="font-bold">445g</h3>
-                          <p>Protein</p>
-                        </div>
-
-                      </div>
-                    </td>
-                  </tr>
-                </table>
+                  <PerDayNutritionBox
+                    time="Malam"
+                    nutritionNeeds={{
+                      energy: apiResult.nutritionNeedsPerServing.energi_malam,
+                      carbo: apiResult.nutritionNeedsPerServing.karbo_malam,
+                      fat: apiResult.nutritionNeedsPerServing.lemak_malam,
+                      protein: apiResult.nutritionNeedsPerServing.protein_malam,
+                    }}
+                  />
+                </div>
 
               </div>
             </Tabs.Item>
 
             <Tabs.Item
               title="Berat Badan per Umur"
+              tabIndex={0}
             >
               <div className="overflow-x-auto mb-5">
                 <div className="py-4 flex xl:justify-center xl:items-center" ref={bbPerUChart}>
@@ -394,6 +327,7 @@ const PsgPage= ()=> {
 
             <Tabs.Item
               title="Berat Badan per Panjang Badan"
+              tabIndex={0}
             >
                <div className="overflow-x-auto mb-6">
                 <div className="py-4 flex xl:justify-center xl:items-center" ref={bbPerPbChart}>
@@ -417,6 +351,7 @@ const PsgPage= ()=> {
 
             <Tabs.Item
               title="Panjang Badan per Umur"
+              tabIndex={0}
             >
               <div className="overflow-x-auto mb-6">
                 <div className="py-4 flex xl:justify-center xl:items-center" ref={pbPerUChart}>

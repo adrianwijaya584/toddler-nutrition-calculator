@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { Button, Card } from "flowbite-react"
+import { Card } from "flowbite-react"
 import Image from 'next/image'
 import Link from 'next/link'
 import DoctorImage from 'public/images/dokter-min.png'
+import TncLogo from '~/icons/tnc_logo.png'
 import 'aos/dist/aos.css'
 
 const Home= ()=> {
@@ -19,26 +20,33 @@ const Home= ()=> {
     <div className="flex flex-col space-y-[70px]">
       <div className="jumbotron w-full h-[calc(100vh-70px)] bg-[#EAF7FF]">
         <div className="container h-full mx-auto flex flex-row px-6 lg:space-x-8 lg:px-12 xl:px-24">
-          <div className="flex flex-col justify-center items-center space-y-4 w-full lg:w-[45%] lg:items-start" data-aos="fade-right">
-            <h1 className="font-bold text-2xl font-suisseNeue lg:text-3xl xl:text-5xl lg:leading-snug xl:leading-normal">Hai Moms yuk ukur <br className="hidden lg:block" /> Gizi balitamu.</h1>
-            <h2 className="font-semibold text-lg leading-normal lg:text-xl xl:text-2xl">dan mulai terapkan <br className="hidden lg:block" /> nutrisi yang tepat!</h2>
+          <div className="flex flex-col justify-center items-center space-y-4 w-full lg:w-[50%] lg:items-start" data-aos="fade-right">
+            <Image
+              className="block lg:hidden"
+              src={TncLogo}
+              width={150}
+              height={150}
+              alt="Logo TNC"
+            />
+            <h1 className="font-bold text-2xl leading-normal font-suisseNeue text-center lg:text-left lg:text-3xl xl:text-5xl lg:leading-snug xl:leading-normal">Hai Moms yuk ukur <br className="hidden lg:block" /> Gizi balitamu.</h1>
+            <h2 className="font-semibold text-lg leading-normal text-center lg:text-left lg:text-xl xl:text-2xl">dan mulai terapkan <br className="hidden lg:block" /> nutrisi yang tepat!</h2>
 
             <div className="flex flex-row space-x-3">
               <Link href="/psg">
-                <Button className="py-2 bg-[#2AA8FF]">
+                <button className="text-white text-sm bg-[#2AA8FF] font-semibold rounded-md h-12 px-4  duration-500 hover:bg-blue-700 md:text-base">
                   Hitung Status Gizi
-                </Button>
+                </button>
               </Link>
 
               <Link href="/resep">
-                <Button className="py-2">
-                  Resep MPASI
-                </Button>
+                <button className="text-white text-sm bg-[#32B6C1] font-semibold rounded-md h-12 px-4 duration-500 hover:bg-blue-700 md:text-base">
+                  Resep MPASI  
+                </button>
               </Link>
             </div>
           </div>
 
-          <div className="relative hidden items-center lg:flex lg:w-[55%]" data-aos="fade-left">
+          <div className="relative hidden items-center lg:flex lg:w-[50%]" data-aos="fade-left">
             <Image
               src={DoctorImage}
               alt="Gambar dokter"

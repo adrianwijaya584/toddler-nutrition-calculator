@@ -19,144 +19,360 @@ const tw = createTw({
 const DocumentData= (props: PdfData)=> {
   const dateCreated= moment().format("DD-MM-YYYY HH:mm:ss");
   const {biodata, calculationResult}= props
+  const {nutritionNeeds, nutritionNeedsPerServing}= calculationResult
     
   return (
     <Document>
-      <Page size="A4" style={tw('p-8')}>
-        <View style={tw('flex justify-between flex-row w-full text-base mb-5')}>
-          <Text>by me</Text>
+      <Page size="A4" style={tw('p-8 space-y-4')}>
+        <View style={tw('flex justify-between flex-row w-full text-base')}>
+          <Text>by TNC Team</Text>
           <Text>{dateCreated}</Text>
         </View>
 
-        <Text style={tw('text-center text-2xl font-extrabold')}>
+        <Text style={tw('text-center text-2xl font-extrabold mt-4')}>
           Hasil perhitungan status gizi
         </Text>
 
-        <View style={tw('border rounded-md px-6 py-5 mb-7 flex flex-row text-base')}>
-          <View >
-            <Text style={tw('mb-2')}>Nama</Text>
-            <Text style={tw('mb-2')}>Umur</Text>
-            <Text style={tw('mb-2')}>Berat</Text>
-            <Text style={tw('mb-2')}>Panjang Badan</Text>
-            <Text>Jenis Kelamin</Text>
+        {/* Table Biodata */}
+        <View style={tw('table w-full border border-r-0 border-b-0')}>
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-full border-b border-r py-2')}>
+              <Text style={tw('text-center text-base')}>Data Diri Balita</Text>
+            </View>
           </View>
 
-          <View style={tw('mx-2')}>
-            <Text style={tw('mb-2')}>:</Text>
-            <Text style={tw('mb-2')}>:</Text>
-            <Text style={tw('mb-2')}>:</Text>
-            <Text style={tw('mb-2')}>:</Text>
-            <Text>:</Text>
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>Nama</Text>
+            </View>
+
+            <View style={tw('w-2/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>{biodata.name}</Text>
+            </View>
           </View>
 
-          <View>
-            <Text style={tw('mb-2')}>{biodata.name}</Text>
-            <Text style={tw('mb-2')}>{biodata.age} Bulan</Text>
-            <Text style={tw('mb-2')}>{biodata.weight} Kg</Text>
-            <Text style={tw('mb-2')}>{biodata.height} Cm</Text>
-            <Text>{biodata.gender=='male'?'Laki-laki':'Perempuan'}</Text>
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>Umur</Text>
+            </View>
+
+            <View style={tw('w-2/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>{biodata.age} Bulan</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>Berat</Text>
+            </View>
+
+            <View style={tw('w-2/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>{biodata.weight} kg</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>Panjang/Tinggi Badan</Text>
+            </View>
+
+            <View style={tw('w-2/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>{biodata.height} cm</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>Jenis Kelamin</Text>
+            </View>
+
+            <View style={tw('w-2/3 border-b border-r px-3 py-2')}>
+              <Text style={tw('text-sm')}>{biodata.gender=='male'?'Laki-laki':'Perempuan'}</Text>
+            </View>
           </View>
         </View>
 
-        {/* <View style={tw('table w-full border-2 border-r-0 border-b-0')}>
+        {/* Table Status Gizi */}
+        <View style={tw('table w-full border border-r-0 border-b-0 mt-7')}>
           <View style={tw('flex-row items-center')}>
-            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
-              <Text style={tw('text-md text-center')}>name</Text>
-            </View>
-
-            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
-              <Text style={tw('text-md text-center')}>abc</Text>
-            </View>
-
-            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
-              <Text style={tw('text-md text-center')}>abc</Text>
-            </View>
-
-            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
-              <Text style={tw('text-md text-center')}>abc</Text>
+            <View style={tw('w-full border-b border-r py-2')}>
+              <Text style={tw('text-center text-base')}>Status Gizi</Text>
             </View>
           </View>
+
           <View style={tw('flex-row items-center')}>
-            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
-              <Text style={tw('text-lg text-center mt-2')}>name</Text>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>Data</Text>
             </View>
 
-            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
-              <Text style={tw('text-lg text-center mt-2')}>abc</Text>
-            </View>
-
-            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
-              <Text style={tw('text-lg text-center mt-2')}>abc</Text>
-            </View>
-
-            <View style={tw('w-1/4 border-2 border-l-0 border-t-0')}>
-              <Text style={tw('text-lg text-center mt-2')}>abc</Text>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>Hasil</Text>
             </View>
           </View>
-        </View> */}
 
-        <View
-          style={tw('mx-auto')}
-        >
-          <Image 
-            src={props.imageBbPerU}
-          />
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-base px-3 text-sm')}>Berdasarkan Berat Badan per Umur</Text>
+            </View>
 
-          <Text style={tw('text-center text-base font-bold text-[15px]')}>
-            chart berat badan per umur
-          </Text>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{calculationResult.bb_u_informations.status}</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-base px-3 text-sm')}>Berdasarkan Berat Badan per Panjang Badan</Text>
+            </View>
+
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{calculationResult.bb_pb_informations.status}</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-base px-3 text-sm')}>Berdasarkan Panjang/Tinggi Badan per Umur</Text>
+            </View>
+
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{calculationResult.pb_tb_u_informations.status}</Text>
+            </View>
+          </View>
+
         </View>
 
-        <View>
-          <Image src={props.imageBbPerP} />
+        {/* Table Nutrisi full */}
+        <View style={tw('table w-full border border-r-0 border-b-0 mt-7')}>
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-full border-b border-r py-2')}>
+              <Text style={tw('text-center text-base')}>Nutrisi yang Dibutuhkan Per Hari</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-base px-3 text-sm')}>Total Energi</Text>
+            </View>
+
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeeds.energi} kkal</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-base px-3 text-sm')}>Karbohidrat</Text>
+            </View>
+
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeeds.karbo}g</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-base px-3 text-sm')}>Protein</Text>
+            </View>
+
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeeds.protein}g</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-base px-3 text-sm')}>Lemak</Text>
+            </View>
+
+            <View style={tw('w-1/2 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeeds.lemak}g</Text>
+            </View>
+          </View>
+
+        </View>
+
+        {/* Table Nutrisi per 1x makan */}
+        <View style={tw('table w-full border border-r-0 border-b-0 mt-7')}>
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-full border-b border-r py-2')}>
+              <Text style={tw('text-center text-base')}>Nutrisi Untuk Sekali Makan</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm text-white')}>a</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>Makan Pagi</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>Makan Siang</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>Makan Malam</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm ')}>Total Energi</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_pagi_siang} kkal</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_pagi_siang} kkal</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_malam} kkal</Text>
+            </View>
+          </View>
           
-          <Text style={tw('text-center text-base font-bold text-[15px]')}>
-            chart berat badan per tinggi badan
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm ')}>Karbohidrat</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_pagi_siang}g</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_pagi_siang}g</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_malam}g</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm ')}>Protein</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_pagi_siang}g</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_pagi_siang}g</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_malam}g</Text>
+            </View>
+          </View>
+
+          <View style={tw('flex-row items-center')}>
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm ')}>Lemak</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_pagi_siang}g</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_pagi_siang}g</Text>
+            </View>
+
+            <View style={tw('w-1/4 border-b border-r py-2')}>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_malam}g</Text>
+            </View>
+          </View>
+
+        </View>
+
+        {/* BB/U */}
+        <View>  
+          <Text style={tw('text-xl font-extrabold mb-4')} break>
+            Berat Badan per Umur
+          </Text>
+
+          <View style={tw('mx-auto')}>
+            <Image src={props.imageBbPerU} style={tw('max-h-[600px] object-scale-down')}/>
+          </View>
+
+          <Text style={tw('text-base font-bold mb-3')}>
+            Hasil Perhitungan Berat Badan per Umur : {calculationResult.bbu.toFixed(2)}
+          </Text>
+
+          <Text style={tw('text-sm font-bold')}>
+            Interpretasi <Text style={tw('font-bold')}>{calculationResult.bb_u_informations.status}</Text>
+          </Text>
+
+          <Text style={tw('text-sm font-bold')}>
+            {calculationResult.bb_u_informations.articles}
           </Text>
         </View>
 
-        <View>
-          <Image src={props.imagePbPerUChart} />
+        {/* BB/PB */}
+        <View style={tw('mt-4')}> 
+          <Text style={tw('text-xl font-extrabold mb-4')} break>
+            Berat Badan per Tinggi Badan
+          </Text>
 
-          <Text style={tw('text-center text-base font-bold text-[15px]')}>
-            chart panjang badan per umur
+          <View style={tw('mx-auto')}>
+            <Image src={props.imageBbPerPB} style={tw('max-h-[600px] object-scale-down')}/>
+          </View>
+
+          <Text style={tw('text-base font-bold mb-3')}>
+            Hasil Perhitungan Berat Badan per Tinggi Badan : {calculationResult.bb_pb.toFixed(2)}
+          </Text>
+
+          <Text style={tw('text-sm font-bold')}>
+            Interpretasi <Text style={tw('font-bold')}>{calculationResult.bb_pb_informations.status}</Text>
+          </Text>
+
+          <Text style={tw('text-sm font-bold')}>
+            {calculationResult.bb_pb_informations.articles}
           </Text>
         </View>
 
-        <Text style={tw('text-justify text-sm font-normal mt-3')}>
-          BB per U : {calculationResult.bbu}, 
-          BB per PB : {calculationResult.bb_pb}, 
-          PB per U : {calculationResult.pb_tb_u}
-        </Text>
+        {/* PB/U */}
+        <View style={tw('mt-4')}>  
+          <Text style={tw('text-xl font-extrabold mb-4')} break>
+            Panjang Badan per Umur
+          </Text>
 
-        <Text style={tw('text-justify text-sm font-normal mt-3')}>
-          status BB per U : {calculationResult.bb_u_informations.status}, 
+          <View style={tw('mx-auto')}>
+            <Image src={props.imagePbPerUChart} style={tw('max-h-[600px] object-scale-down')}/>
+          </View>
 
-          status BB per PB : {calculationResult.bb_pb_informations.status}, 
+          <Text style={tw('text-base font-bold mb-3')}>
+            Hasil Perhitungan Panjang Badan per Umur : {calculationResult.pb_tb_u.toFixed(2)}
+          </Text>
 
-          status PB per U : {calculationResult.pb_tb_u_informations.status}
-        </Text>
+          <Text style={tw('text-sm font-bold')}>
+            Interpretasi <Text style={tw('font-bold')}>{calculationResult.pb_tb_u_informations.status}</Text>
+          </Text>
 
-        <Text style={tw('text-justify text-sm font-normal mt-3')}>
-          Total energi : {calculationResult.nutritionNeeds.energi}, 
-          Total karbo : {calculationResult.nutritionNeeds.karbo}, 
-          Total lemak : {calculationResult.nutritionNeeds.lemak}, 
-          Total protein : {calculationResult.nutritionNeeds.protein}, 
-        </Text>
+          <Text style={tw('text-sm font-bold')}>
+            {calculationResult.pb_tb_u_informations.articles}
+          </Text>
+        </View>
 
-        <Text style={tw('text-justify text-sm font-normal mt-3')}>
-          Total energi untuk pagi dan siang : {calculationResult.nutritionNeedsPerServing.energi_pagi_siang}, 
-          Total karbo untuk pagi dan siang : {calculationResult.nutritionNeedsPerServing.karbo_pagi_siang}, 
-          Total lemak untuk pagi dan siang : {calculationResult.nutritionNeedsPerServing.lemak_pagi_siang}, 
-          Total protein untuk pagi dan siang : {calculationResult.nutritionNeedsPerServing.protein_pagi_siang}, 
-        </Text>
-        
-        <Text style={tw('text-justify text-sm font-normal mt-3')}>
-          Total energi untuk malam : {calculationResult.nutritionNeedsPerServing.energi_malam}, 
-          Total karbo untuk malam : {calculationResult.nutritionNeedsPerServing.karbo_malam}, 
-          Total lemak untuk malam : {calculationResult.nutritionNeedsPerServing.lemak_malam}, 
-          Total protein untuk malam : {calculationResult.nutritionNeedsPerServing.protein_malam}, 
-        </Text>
+
+        <Text style={{
+           position: 'absolute',
+           fontSize: 12,
+           bottom: 30,
+           left: 0,
+           right: 0,
+           textAlign: 'center',
+           color: 'grey',
+        }} render={({ pageNumber, totalPages }) => (
+        `${pageNumber} / ${totalPages}`
+        )} fixed />
       </Page>
    </Document>
   )

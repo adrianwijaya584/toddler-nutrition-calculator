@@ -60,6 +60,6 @@ interface PdfData {
   }
   calculationResult: APIResult
   imageBbPerU: string
-  imageBbPerP: string
+  imageBbPerPB: string
   imagePbPerUChart: string
 }

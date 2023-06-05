@@ -60,7 +60,7 @@ const PdfPage= ()=> {
                       protein_malam: 100
                     }
                   }}
-                  imageBbPerP="https://www.svgrepo.com/show/327408/logo-vercel.svg"
+                  imageBbPerPB="https://www.svgrepo.com/show/327408/logo-vercel.svg"
                   imageBbPerU="https://www.svgrepo.com/show/327408/logo-vercel.svg"
                   imagePbPerUChart="https://www.svgrepo.com/show/327408/logo-vercel.svg"
                 />
