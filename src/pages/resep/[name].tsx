@@ -194,7 +194,7 @@ const RecipeDetailPage= ()=> {
                   <h1
                     className="font-bold text-3xl"
                   >
-                    Nutrition Facts <span className="text-sm font-normal">(per serving)</span>
+                    Nutrition Facts <span className="text-sm font-normal">(per sajian)</span>
                   </h1>
 
                   <div className="grid grid-cols-3 gap-5 md:grid-cols-4 md:gap-7">

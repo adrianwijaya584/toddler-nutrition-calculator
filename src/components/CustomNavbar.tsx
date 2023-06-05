@@ -36,9 +36,9 @@ const CustomNavbar= ()=> {
         <Link href="/" className="flex flex-row justify-center items-center py-4">
           <Image
             src={TncLogo}
-            className="mr-2 w-auto h-auto max-w-md"
-            width={30}
-            height={30}
+            className="w-auto h-auto max-w-md"
+            width={40}
+            height={40}
             priority={true}
             alt="Flowbite Logo"
           />

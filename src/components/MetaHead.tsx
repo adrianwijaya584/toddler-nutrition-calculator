@@ -15,8 +15,8 @@ const MetaHead= ()=> {
       <meta property="og:title" content="Toddler Nutrition Calculator"/>
       <meta property="og:url" content="/"/>
       <meta property="og:type" content="website"/>
-      <meta property="og:image" content="Aplikasi informasi perhitungan gizi balita"/>
-      <meta name="thumbnail" content="Aplikasi informasi perhitungan gizi balita"/>
+      <meta property="og:image" content="/icons/tnc_logo.png"/>
+      <meta name="thumbnail" content="/icons/tnc_logo.png"/>
       <meta property="og:description" content="Aplikasi informasi perhitungan gizi balita"/>
     </Head>
   )

@@ -31,14 +31,17 @@ const PdfPage= ()=> {
                     bb_pb_informations: {
                       status: 'ideal',
                       articles: ['aaa'],
+                      hex: '#000'
                     },
                     bb_u_informations: {
                       status: 'ideal',
                       articles: ['aaa'],
+                      hex: '#000'
                     },
                     pb_tb_u_informations: {
                       status: 'ideal',
                       articles: ['aaa'],
+                      hex: '#000'
                     },
                     nutritionNeeds: {
                       energi: 1800,

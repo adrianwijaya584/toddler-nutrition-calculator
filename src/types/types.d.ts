@@ -27,6 +27,7 @@ interface NutritionNeeds {
 interface NutritionArticles {
   status: string
   articles: string[]
+  hex: string
 }
 
 interface APIResult {

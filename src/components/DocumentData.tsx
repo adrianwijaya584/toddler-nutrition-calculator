@@ -32,28 +32,28 @@ const DocumentData= (props: PdfData)=> {
           Hasil perhitungan status gizi
         </Text>
 
-        <View style={tw('border-2 rounded-md px-6 py-3 mb-7 flex flex-row text-base')}>
-          <View>
-            <Text>Nama</Text>
-            <Text>Umur</Text>
-            <Text>Berat</Text>
-            <Text>Panjang Badan</Text>
+        <View style={tw('border rounded-md px-6 py-5 mb-7 flex flex-row text-base')}>
+          <View >
+            <Text style={tw('mb-2')}>Nama</Text>
+            <Text style={tw('mb-2')}>Umur</Text>
+            <Text style={tw('mb-2')}>Berat</Text>
+            <Text style={tw('mb-2')}>Panjang Badan</Text>
             <Text>Jenis Kelamin</Text>
           </View>
 
           <View style={tw('mx-2')}>
-            <Text>:</Text>
-            <Text>:</Text>
-            <Text>:</Text>
-            <Text>:</Text>
+            <Text style={tw('mb-2')}>:</Text>
+            <Text style={tw('mb-2')}>:</Text>
+            <Text style={tw('mb-2')}>:</Text>
+            <Text style={tw('mb-2')}>:</Text>
             <Text>:</Text>
           </View>
 
           <View>
-            <Text>{biodata.name}</Text>
-            <Text>{biodata.age} Bulan</Text>
-            <Text>{biodata.weight} Kg</Text>
-            <Text>{biodata.height} Cm</Text>
+            <Text style={tw('mb-2')}>{biodata.name}</Text>
+            <Text style={tw('mb-2')}>{biodata.age} Bulan</Text>
+            <Text style={tw('mb-2')}>{biodata.weight} Kg</Text>
+            <Text style={tw('mb-2')}>{biodata.height} Cm</Text>
             <Text>{biodata.gender=='male'?'Laki-laki':'Perempuan'}</Text>
           </View>
         </View>

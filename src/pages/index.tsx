@@ -25,7 +25,7 @@ const Home= ()=> {
 
             <div className="flex flex-row space-x-3">
               <Link href="/psg">
-                <Button className="py-2">
+                <Button className="py-2 bg-[#2AA8FF]">
                   Hitung Status Gizi
                 </Button>
               </Link>
