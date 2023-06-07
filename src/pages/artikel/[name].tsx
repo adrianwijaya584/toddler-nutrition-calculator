@@ -26,7 +26,7 @@ const ArticleDetailPage= ()=> {
   }, [route.query])
 
   return (
-    <div className="px-6 pt-4 lg:px-36">
+    <div className="px-6 pt-4 lg:px-24 xl:px-36">
       <Breadcrumb
         className="mb-6"
       >

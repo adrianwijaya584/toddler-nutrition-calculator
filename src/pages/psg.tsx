@@ -147,7 +147,7 @@ const PsgPage= ()=> {
   }, [])
 
   return (
-    <div className="container mx-auto py-7 px-6 md:px-14 lg:px-28">
+    <div className="container mx-auto py-7 px-6 md:px-14 lg:px-24 xl:px-28">
       <div className="mb-8 space-y-2">
         <h1 className="font-bold text-2xl lg:text-3xl">Kalkulator Perhitungan Gizi</h1>
         <h2
@@ -372,7 +372,7 @@ const PsgPage= ()=> {
                 hex={apiResult.pb_tb_u_informations.hex}
                 status={apiResult.pb_tb_u_informations.status}
               />
-              
+
               <p>Nilai PB/U : {apiResult.pb_tb_u.toFixed(2)}</p>
               <p>{apiResult.pb_tb_u_informations.articles}</p>
             </Tabs.Item>

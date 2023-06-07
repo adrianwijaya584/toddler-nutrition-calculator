@@ -63,7 +63,7 @@ const RecipeDetailPage= ()=> {
   }, [recipe])
 
   return (
-    <div className="px-6 pt-4 lg:px-36">
+    <div className="px-6 pt-4 lg:px-24 xl:px-36">
     
       {
         isLoading?
