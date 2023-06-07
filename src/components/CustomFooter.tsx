@@ -25,22 +25,18 @@ const CustomFooter= ()=> {
             className="flex-row space-x-3 items-center sm:mt-0"
           >
             <Footer.Link href="#">
-              About
+              Home
             </Footer.Link>
             <Footer.Link href="#">
-              Privacy Policy
+              Perhitungan
             </Footer.Link>
             <Footer.Link href="#">
-              Licensing
-            </Footer.Link>
-            <Footer.Link href="#">
-              Contact
+              Resep
             </Footer.Link>
           </Footer.LinkGroup>
         </div>
         <Footer.Divider />
         <Footer.Copyright
-          href="#"
           by="TNC Team"
           year={2023}
         />
