@@ -113,7 +113,7 @@ const RecipeDetailPage= ()=> {
                   }}
                   recomendations={recommendedRecipe}
                 >
-                  <div className="bg-gray-500 rounded-md p-5 grid grid-cols-3">
+                  <div className="bg-gray-500 rounded-md p-5 grid grid-cols-2  lg:grid-cols-3">
                       <div className="">
                         <h2 className="font-bold">Waktu Memasak :</h2>
                         <p>{recipe["Waktu memasak"]}</p>
