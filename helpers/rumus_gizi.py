@@ -5,7 +5,7 @@ class rumus_gizi():
       self.pb_tb = pb_tb 
 
   def nilai_gizi(self):
-    if self.umur > 0 and self.umur < 7:
+    if self.umur >= 0 and self.umur < 7:
       energi = 108 * self.bb
       protein = 0.15 * energi / 4
       lemak = 0.25 * energi / 9
