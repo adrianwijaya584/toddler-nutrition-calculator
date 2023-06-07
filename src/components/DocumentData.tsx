@@ -23,7 +23,7 @@ const DocumentData= (props: PdfData)=> {
     
   return (
     <Document>
-      <Page size="A4" style={tw('p-8 space-y-4')}>
+      <Page size="A4" style={tw('p-8')}>
         <View style={tw('flex justify-between flex-row w-full text-base')}>
           <Text>by TNC Team</Text>
           <Text>{dateCreated}</Text>
@@ -34,7 +34,7 @@ const DocumentData= (props: PdfData)=> {
         </Text>
 
         {/* Table Biodata */}
-        <View style={tw('table w-full border border-r-0 border-b-0')}>
+        <View style={tw('w-full border border-r-0 border-b-0')}>
           <View style={tw('flex-row items-center')}>
             <View style={tw('w-full border-b border-r py-2')}>
               <Text style={tw('text-center text-base')}>Data Diri Balita</Text>
@@ -93,7 +93,7 @@ const DocumentData= (props: PdfData)=> {
         </View>
 
         {/* Table Status Gizi */}
-        <View style={tw('table w-full border border-r-0 border-b-0 mt-7')}>
+        <View style={tw('w-full border border-r-0 border-b-0 mt-7')}>
           <View style={tw('flex-row items-center')}>
             <View style={tw('w-full border-b border-r py-2')}>
               <Text style={tw('text-center text-base')}>Status Gizi</Text>
@@ -143,7 +143,7 @@ const DocumentData= (props: PdfData)=> {
         </View>
 
         {/* Table Nutrisi full */}
-        <View style={tw('table w-full border border-r-0 border-b-0 mt-7')}>
+        <View style={tw('w-full border border-r-0 border-b-0 mt-7')}>
           <View style={tw('flex-row items-center')}>
             <View style={tw('w-full border-b border-r py-2')}>
               <Text style={tw('text-center text-base')}>Nutrisi yang Dibutuhkan Per Hari</Text>
@@ -193,7 +193,7 @@ const DocumentData= (props: PdfData)=> {
         </View>
 
         {/* Table Nutrisi per 1x makan */}
-        <View style={tw('table w-full border border-r-0 border-b-0 mt-7')}>
+        <View style={tw('w-full border border-r-0 border-b-0 mt-7')}>
           <View style={tw('flex-row items-center')}>
             <View style={tw('w-full border-b border-r py-2')}>
               <Text style={tw('text-center text-base')}>Nutrisi Untuk Sekali Makan</Text>
@@ -299,14 +299,14 @@ const DocumentData= (props: PdfData)=> {
           </Text>
 
           <View style={tw('mx-auto')}>
-            <Image src={props.imageBbPerU} style={tw('max-h-[600px] object-scale-down')}/>
+            <Image src={props.imageBbPerU} style={tw('object-scale-down')}/>
           </View>
 
-          <Text style={tw('text-base font-bold mb-3')}>
+          <Text style={tw('text-base font-bold my-4')}>
             Hasil Perhitungan Berat Badan per Umur : {calculationResult.bbu.toFixed(2)}
           </Text>
 
-          <Text style={tw('text-sm font-bold')}>
+          <Text style={tw('text-sm font-bold mb-3')}>
             Interpretasi <Text style={tw('font-bold')}>{calculationResult.bb_u_informations.status}</Text>
           </Text>
 
@@ -316,20 +316,20 @@ const DocumentData= (props: PdfData)=> {
         </View>
 
         {/* BB/PB */}
-        <View style={tw('mt-4')}> 
+        <View style={tw('mt-4')} break> 
           <Text style={tw('text-xl font-extrabold mb-4')} break>
             Berat Badan per Tinggi Badan
           </Text>
 
           <View style={tw('mx-auto')}>
-            <Image src={props.imageBbPerPB} style={tw('max-h-[600px] object-scale-down')}/>
+            <Image src={props.imageBbPerPB} style={tw('object-scale-down')}/>
           </View>
 
-          <Text style={tw('text-base font-bold mb-3')}>
+          <Text style={tw('text-base font-bold my-4')}>
             Hasil Perhitungan Berat Badan per Tinggi Badan : {calculationResult.bb_pb.toFixed(2)}
           </Text>
 
-          <Text style={tw('text-sm font-bold')}>
+          <Text style={tw('text-sm font-bold mb-3')}>
             Interpretasi <Text style={tw('font-bold')}>{calculationResult.bb_pb_informations.status}</Text>
           </Text>
 
@@ -339,20 +339,20 @@ const DocumentData= (props: PdfData)=> {
         </View>
 
         {/* PB/U */}
-        <View style={tw('mt-4')}>  
+        <View style={tw('mt-4')} break>  
           <Text style={tw('text-xl font-extrabold mb-4')} break>
             Panjang Badan per Umur
           </Text>
 
           <View style={tw('mx-auto')}>
-            <Image src={props.imagePbPerUChart} style={tw('max-h-[600px] object-scale-down')}/>
+            <Image src={props.imagePbPerUChart} style={tw('object-scale-down')}/>
           </View>
 
-          <Text style={tw('text-base font-bold mb-3')}>
+          <Text style={tw('text-base font-bold my-4')}>
             Hasil Perhitungan Panjang Badan per Umur : {calculationResult.pb_tb_u.toFixed(2)}
           </Text>
 
-          <Text style={tw('text-sm font-bold')}>
+          <Text style={tw('text-sm font-bold mb-3')}>
             Interpretasi <Text style={tw('font-bold')}>{calculationResult.pb_tb_u_informations.status}</Text>
           </Text>
 

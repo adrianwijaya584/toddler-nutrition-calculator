@@ -1,12 +1,18 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Card } from "flowbite-react"
 import Image from 'next/image'
 import Link from 'next/link'
 import DoctorImage from 'public/images/dokter-min.png'
+import ArticleJson from '@/data/artikel.json'
+
 import TncLogo from '~/icons/tnc_logo.png'
 import 'aos/dist/aos.css'
 
+type ArticleType= typeof ArticleJson[0]
+
 const Home= ()=> {
+  const [articles, setArticles]= useState<ArticleType[]>([])
+
   async function initAos() {
     const Aos= await import('aos')
     Aos.init()
@@ -14,6 +20,8 @@ const Home= ()=> {
 
   useEffect(()=> {
     initAos()
+
+    setArticles(ArticleJson.slice(1))
   }, [])
 
   return (
@@ -69,7 +77,7 @@ const Home= ()=> {
 
           <div className="mt-8 grid grid-cols-1 gap-y-5 md:grid-cols-2 md:gap-x-12">
             <div className="main">
-              <Link href="/artikel/1">
+              <Link href={`/artikel/${ArticleJson[0].title}`}>
                 <Card className="h-full">
                   <div className="relative w-full h-[250px] sm:h-[300px] lg:h-[350px] xl:h-[450px]">
                     <Image
@@ -81,15 +89,15 @@ const Home= ()=> {
                     />
                   </div>
 
-                  <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-green-600">Yuk Mengenal Stunting, Penyebab Hingga Cara Mengatasinya</h3>
-                  <p className="line-clamp-3 text-paragraph text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis harum illum natus accusantium deserunt? Accusantium, iusto, qui a temporibus reiciendis repudiandae debitis nam accusamus provident deserunt, ullam perferendis quis libero?</p>
+                  <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-green-600">{ArticleJson[0].title}</h3>
+                  <p className="line-clamp-3 text-paragraph text-sm">{ArticleJson[0].headline}</p>
                 </Card>
               </Link>
             </div>
 
             <div className="aside flex flex-col space-y-4">
-              {[...Array(3)].map((_, k)=> (
-                <Link href="/artikel/1" key={k}>
+              {articles.map((article, k)=> (
+                <Link href={`/artikel/${article.title}`} key={k}>
                   <Card>
                     <div className="flex flex-col md:flex-row md:space-x-3">
                       <div className="relative w-full h-[250px] bg-red-300 md:h-[130px] md:w-[40%] xl:h-[150px]">
@@ -103,8 +111,8 @@ const Home= ()=> {
                       </div>
 
                       <div className="mt-5 md:mt-0 md:w-[60%]">
-                        <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-green-600">Yuk Mengenal Stunting, Penyebab Hingga Cara Mengatasinya</h3>
-                        <p className="line-clamp-3 mt-4 text-[#637381] text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis harum illum natus accusantium deserunt? Accusantium, iusto, qui a temporibus reiciendis repudiandae debitis nam accusamus provident deserunt, ullam perferendis quis libero?</p>  
+                        <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-green-600">{article.title}</h3>
+                        <p className="line-clamp-3 mt-4 text-[#637381] text-sm">{article.headline}</p>  
                       </div>
                     </div>  
                   </Card>

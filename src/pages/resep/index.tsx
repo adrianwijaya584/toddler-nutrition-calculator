@@ -37,7 +37,13 @@ const RecipeIndexPage= ()=> {
   }
 
   return (
-    <div className="container min-h-screen m-auto px-4 flex flex-col space-y-4 py-4 lg:px-12 xl:px-24">
+    <div className="container min-h-screen m-auto px-4 flex flex-col space-y-8 py-4 lg:px-12 xl:px-24">
+       <div className="text-center">
+        <h1 className="text-[#3056D3] font-bold text-base">Daftar Resep</h1>
+        <h2 className="font-bold text-2xl mt-1 mb-3 md:text-3xl">Apakah moms tahu?</h2>
+        <p className="mx-auto text-[#637381] text-sm md:w-3/4 md:text-base xl:w-1/2"> Menurut data survei status gizi indonesia pada tahun 2022 terdapat 4 permasalahan gizi balita di indonesia. Daripada bingung, yuk cari tahu tentang permasalahan gizi pada balita.</p>
+      </div>
+
       <div className="grid  grid-cols-2 gap-3 md:grid-cols-4">
         {
           ages.map((age, k)=> (

@@ -7,12 +7,13 @@ import * as yup from 'yup'
 import {MdOutlineEggAlt} from 'react-icons/md'
 import {LuWheat} from 'react-icons/lu'
 import {GiAlmond} from 'react-icons/gi'
-import { FormLabel, NutritionBox, PerDayNutritionBox, validationDto } from "@/components/PsgPageComponents"
+import { FormLabel, InterpretationLabelBtn, NutritionBox, PerDayNutritionBox, validationDto } from "@/components/PsgPageComponents"
 
 import bbPerPb from '@/data/bbperpb.json'
 import bbPerU from '@/data/bbperu.json'
 import pbPerU from '@/data/pbtbperu.json'
 import DocumentData from '@/components/DocumentData'
+import { toast } from "react-toastify"
 const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
   ssr: false
 })
@@ -65,7 +66,9 @@ const PsgPage= ()=> {
       setIsLoading(false)
       
       if (error instanceof yup.ValidationError) {
-        console.log(error.errors);
+        toast(error.errors[0], {
+          type: 'error'
+        })
       } else {
         console.log(error);
       }
@@ -169,14 +172,14 @@ const PsgPage= ()=> {
 
         <div className="w-full">
           <FormLabel label="Berat Badan"  />
-          <TextInput type="number" placeholder="Masukan berat badan dalam Kg." inputMode="decimal" step={.1}
+          <TextInput type="number" placeholder="Masukan berat badan dalam Kg." inputMode="decimal" step={.1} min={0}
               onChange={(e)=> setWeight(+e.target.value)}
           />
         </div>
 
         <div className="w-full">
           <FormLabel label="Tinggi Badan" />
-          <TextInput type="number" placeholder="Masukan tinggi badan dalam Cm." inputMode="decimal" step={.1}
+          <TextInput type="number" placeholder="Masukan tinggi badan dalam Cm." inputMode="decimal" step={.1} min={0}
               onChange={(e)=> setHeight(+e.target.value)}
           />
         </div>
@@ -304,7 +307,7 @@ const PsgPage= ()=> {
               tabIndex={0}
             >
               <div className="overflow-x-auto mb-5">
-                <div className="py-4 flex xl:justify-center xl:items-center" ref={bbPerUChart}>
+                <div className="flex xl:justify-center xl:items-center" ref={bbPerUChart}>
                   <ResultChart
                     xTitle="Umur (bulan)"
                     yTitle="Berat Badan (kg)"
@@ -316,10 +319,10 @@ const PsgPage= ()=> {
               </div>
 
               <div className="space-y-2">
-                <div className="flex flex-row items-center">
-                  <h3 className="text-xl font-bold">Interpretasi</h3>
-                  <span className="ml-3 font-bold text-sm px-5 py-2 rounded-md text-white" style={{background: apiResult.bb_u_informations.hex}}>{apiResult.bb_u_informations.status}</span>
-                </div>
+                <InterpretationLabelBtn
+                  hex={apiResult.bb_u_informations.hex}
+                  status={apiResult.bb_u_informations.status}
+                />
                 <p>Nilai BBU : {apiResult.bbu.toFixed(2)}</p>
                 <p>{apiResult.bb_u_informations.articles}</p>
               </div>
@@ -330,7 +333,7 @@ const PsgPage= ()=> {
               tabIndex={0}
             >
                <div className="overflow-x-auto mb-6">
-                <div className="py-4 flex xl:justify-center xl:items-center" ref={bbPerPbChart}>
+                <div className="flex xl:justify-center xl:items-center" ref={bbPerPbChart}>
                   <ResultChart
                     xTitle="Panjang Badan (cm)"
                     yTitle="Berat Badan (kg)"
@@ -341,10 +344,10 @@ const PsgPage= ()=> {
                 </div>
               </div>
 
-              <div className="flex flex-row items-center">
-                <h3 className="text-xl font-bold">Interpretasi</h3>
-                <span className="ml-3 font-bold text-sm px-5 py-2 rounded-md text-white" style={{background: apiResult.bb_pb_informations.hex}}>{apiResult.bb_pb_informations.status}</span>
-              </div>
+              <InterpretationLabelBtn
+                hex={apiResult.bb_pb_informations.hex}
+                status={apiResult.bb_pb_informations.status}
+              />
               <p>Nilai BB/PB : {apiResult.bb_pb.toFixed(2)}</p>
               <p>{apiResult.bb_pb_informations.articles}</p>
             </Tabs.Item>
@@ -354,7 +357,7 @@ const PsgPage= ()=> {
               tabIndex={0}
             >
               <div className="overflow-x-auto mb-6">
-                <div className="py-4 flex xl:justify-center xl:items-center" ref={pbPerUChart}>
+                <div className="flex xl:justify-center xl:items-center" ref={pbPerUChart}>
                   <ResultChart
                     xTitle="Umur (bulan)"
                     yTitle="Panjang Badan (cm)"
@@ -365,10 +368,11 @@ const PsgPage= ()=> {
                 </div>
               </div>
 
-              <div className="flex flex-row items-center">
-                <h3 className="text-xl font-bold">Interpretasi</h3>
-                <span className="ml-3 font-bold text-sm px-5 py-2 rounded-md text-white" style={{background: apiResult.pb_tb_u_informations.hex}}>{apiResult.pb_tb_u_informations.status}</span>
-              </div>
+              <InterpretationLabelBtn
+                hex={apiResult.pb_tb_u_informations.hex}
+                status={apiResult.pb_tb_u_informations.status}
+              />
+              
               <p>Nilai PB/U : {apiResult.pb_tb_u.toFixed(2)}</p>
               <p>{apiResult.pb_tb_u_informations.articles}</p>
             </Tabs.Item>

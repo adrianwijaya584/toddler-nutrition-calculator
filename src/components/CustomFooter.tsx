@@ -9,10 +9,10 @@ const CustomFooter= ()=> {
       <div className="w-full text-center">
         <div className="w-full justify-between flex flex-col items-start space-y-5 sm:flex-row sm:items-center sm:space-y-0">
           <div>
-          <Link href="/" className="flex flex-row justify-center items-center">
+          <Link href="/" className="flex flex-row justify-center items-center relative">
             <Image
               src={TncLogo}
-              className="w-auto h-auto max-w-md"
+              className="max-w-md w-auto h-auto"
               width={40}
               height={40}
               priority={true}
