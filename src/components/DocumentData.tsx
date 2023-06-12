@@ -1,8 +1,20 @@
 /* eslint-disable jsx-a11y/alt-text */
-import {  Page, Document, Text, Image, View } from "@react-pdf/renderer"
+import {  Page, Document, Text, Image, View, Font } from "@react-pdf/renderer"
 import { createTw } from "react-pdf-tailwind";
 import moment from 'moment'
 
+Font.register({
+  family: "Arial",
+  fonts: [
+    {
+      src: "/fonts/Arimo-Regular.ttf",
+    },
+    {
+      src: "/fonts/Arimo-SemiBold.ttf",
+      fontWeight: 'bold'
+    },
+  ]
+});
 
 const tw = createTw({
   theme: {
@@ -23,13 +35,19 @@ const DocumentData= (props: PdfData)=> {
     
   return (
     <Document>
-      <Page size="A4" style={tw('p-8')}>
-        <View style={tw('flex justify-between flex-row w-full text-base')}>
+      <Page size="A4" style={tw(`p-8`)}>
+        <View style={{
+          ...tw('flex justify-between flex-row w-full text-base font-bold'),
+          fontFamily: 'Arial',
+        }}>
           <Text>by TNC Team</Text>
           <Text>{dateCreated}</Text>
         </View>
 
-        <Text style={tw('text-center text-2xl font-extrabold mt-4')}>
+        <Text style={{
+          ...tw('text-center text-2xl font-extrabold mt-4 font-bold'),
+          fontFamily: 'Arial',
+        }}>
           Hasil perhitungan status gizi
         </Text>
 
@@ -156,7 +174,7 @@ const DocumentData= (props: PdfData)=> {
             </View>
 
             <View style={tw('w-1/2 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeeds.energi} kkal</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeeds.energi.toFixed(2)} kkal</Text>
             </View>
           </View>
 
@@ -166,7 +184,7 @@ const DocumentData= (props: PdfData)=> {
             </View>
 
             <View style={tw('w-1/2 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeeds.karbo}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeeds.karbo.toFixed(2)}g</Text>
             </View>
           </View>
 
@@ -176,7 +194,7 @@ const DocumentData= (props: PdfData)=> {
             </View>
 
             <View style={tw('w-1/2 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeeds.protein}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeeds.protein.toFixed(2)}g</Text>
             </View>
           </View>
 
@@ -186,7 +204,7 @@ const DocumentData= (props: PdfData)=> {
             </View>
 
             <View style={tw('w-1/2 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeeds.lemak}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeeds.lemak.toFixed(2)}g</Text>
             </View>
           </View>
 
@@ -224,15 +242,15 @@ const DocumentData= (props: PdfData)=> {
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_pagi_siang} kkal</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_pagi_siang.toFixed(2)} kkal</Text>
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_pagi_siang} kkal</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_pagi_siang.toFixed(2)} kkal</Text>
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_malam} kkal</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.energi_malam.toFixed(2)} kkal</Text>
             </View>
           </View>
           
@@ -242,15 +260,15 @@ const DocumentData= (props: PdfData)=> {
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_pagi_siang}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_pagi_siang.toFixed(2)}g</Text>
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_pagi_siang}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_pagi_siang.toFixed(2)}g</Text>
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_malam}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.karbo_malam.toFixed(2)}g</Text>
             </View>
           </View>
 
@@ -260,15 +278,15 @@ const DocumentData= (props: PdfData)=> {
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_pagi_siang}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_pagi_siang.toFixed(2)}g</Text>
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_pagi_siang}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_pagi_siang.toFixed(2)}g</Text>
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_malam}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.protein_malam.toFixed(2)}g</Text>
             </View>
           </View>
 
@@ -278,15 +296,15 @@ const DocumentData= (props: PdfData)=> {
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_pagi_siang}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_pagi_siang.toFixed(2)}g</Text>
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_pagi_siang}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_pagi_siang.toFixed(2)}g</Text>
             </View>
 
             <View style={tw('w-1/4 border-b border-r py-2')}>
-              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_malam}g</Text>
+              <Text style={tw('text-center text-sm')}>{nutritionNeedsPerServing.lemak_malam.toFixed(2)}g</Text>
             </View>
           </View>
 
@@ -294,7 +312,10 @@ const DocumentData= (props: PdfData)=> {
 
         {/* BB/U */}
         <View>  
-          <Text style={tw('text-xl font-extrabold mb-4')} break>
+          <Text style={{
+            ...tw('text-xl font-extrabold mb-4 text-center font-bold'),
+            fontFamily: 'Arial'
+          }} break>
             Berat Badan per Umur
           </Text>
 
@@ -302,12 +323,15 @@ const DocumentData= (props: PdfData)=> {
             <Image src={props.imageBbPerU} style={tw('object-scale-down')}/>
           </View>
 
-          <Text style={tw('text-base font-bold my-4')}>
+          <Text style={tw('text-sm font-bold my-4')}>
             Hasil Perhitungan Berat Badan per Umur : {calculationResult.bbu.toFixed(2)}
           </Text>
 
-          <Text style={tw('text-sm font-bold mb-3')}>
-            Interpretasi <Text style={tw('font-bold')}>{calculationResult.bb_u_informations.status}</Text>
+          <Text style={tw('text-sm font-bold mb-1')}>
+            Interpretasi <Text style={{
+              ...tw('font-bold'),
+              fontFamily: 'Arial'
+            }}>{calculationResult.bb_u_informations.status}</Text>
           </Text>
 
           <Text style={tw('text-sm font-bold')}>
@@ -317,7 +341,10 @@ const DocumentData= (props: PdfData)=> {
 
         {/* BB/PB */}
         <View style={tw('mt-4')} break> 
-          <Text style={tw('text-xl font-extrabold mb-4')} break>
+          <Text style={{
+            ...tw('text-xl font-extrabold mb-4 text-center font-bold'),
+            fontFamily: 'Arial'
+          }} break>
             Berat Badan per Tinggi Badan
           </Text>
 
@@ -329,8 +356,11 @@ const DocumentData= (props: PdfData)=> {
             Hasil Perhitungan Berat Badan per Tinggi Badan : {calculationResult.bb_pb.toFixed(2)}
           </Text>
 
-          <Text style={tw('text-sm font-bold mb-3')}>
-            Interpretasi <Text style={tw('font-bold')}>{calculationResult.bb_pb_informations.status}</Text>
+          <Text style={tw('text-sm font-bold mb-1')}>
+            Interpretasi <Text style={{
+              ...tw('font-bold'),
+              fontFamily: 'Arial'
+            }}>{calculationResult.bb_pb_informations.status}</Text>
           </Text>
 
           <Text style={tw('text-sm font-bold')}>
@@ -340,20 +370,26 @@ const DocumentData= (props: PdfData)=> {
 
         {/* PB/U */}
         <View style={tw('mt-4')} break>  
-          <Text style={tw('text-xl font-extrabold mb-4')} break>
+          <Text style={{
+            ...tw('text-xl font-extrabold mb-4 text-center font-bold'),
+            fontFamily: 'Arial'
+          }} break>
             Panjang Badan per Umur
           </Text>
 
           <View style={tw('mx-auto')}>
-            <Image src={props.imagePbPerUChart} style={tw('object-scale-down')}/>
+            <Image src={props.imagePbPerU} style={tw('object-scale-down')}/>
           </View>
 
           <Text style={tw('text-base font-bold my-4')}>
             Hasil Perhitungan Panjang Badan per Umur : {calculationResult.pb_tb_u.toFixed(2)}
           </Text>
 
-          <Text style={tw('text-sm font-bold mb-3')}>
-            Interpretasi <Text style={tw('font-bold')}>{calculationResult.pb_tb_u_informations.status}</Text>
+          <Text style={tw('text-sm font-bold mb-1')}>
+            Interpretasi <Text style={{
+              ...tw('font-bold'),
+              fontFamily: 'Arial'
+            }}>{calculationResult.pb_tb_u_informations.status}</Text>
           </Text>
 
           <Text style={tw('text-sm font-bold')}>

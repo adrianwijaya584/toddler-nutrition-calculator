@@ -51,7 +51,8 @@ const ArticleDetailPage= ()=> {
           baseUrl="/artikel"
           data={{
             title: article.title,
-            headline: article.headline
+            headline: article.headline,
+            imageUrl: article.imageUrl,
           }}
           recomendations={articleRecommendations}
         >

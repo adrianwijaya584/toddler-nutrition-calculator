@@ -36,7 +36,7 @@ const CustomNavbar= ()=> {
         <Link href="/" className="flex flex-row justify-center items-center py-4 relative">
           <Image
             src={TncLogo}
-            className="w-auto h-auto max-w-md"
+            className="max-w-md"
             width={40}
             height={40}
             priority={true}

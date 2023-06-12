@@ -1,7 +1,4 @@
-interface AtricleDataInterface {
-  type: string
-  content: string | string[]
-}
+import { Tooltip } from "flowbite-react"
 
 export const ArticleComponent= (props: AtricleDataInterface)=> {
   if (props.type=='paragraph') {
@@ -37,4 +34,14 @@ export const ArticleComponent= (props: AtricleDataInterface)=> {
   }
 
   return <></>
+}
+
+export const SocialMediaBtn= ({Icon, className, onClick, title}: SocialMediaBtnType)=> {
+  return (
+    <div onClick={()=> onClick()} className={`${className} w-[40px] h-[40px] flex justify-center items-center text-white rounded-full cursor-pointer`}>        
+      <Tooltip content={title} placement="bottom">
+        <Icon className="text-xl"/>
+      </Tooltip>
+    </div>
+  )
 }

@@ -1,22 +1,3 @@
-interface ChartPoints {
-  x: number
-  y: number
-}
-
-interface ChartJsonData {
-  "-3 SD": ChartPoints[]
-  "-2 SD": ChartPoints[]
-  "-1 SD": ChartPoints[]
-  median: ChartPoints[]
-  "+3 SD": ChartPoints[]
-  "+2 SD": ChartPoints[]
-  "+1 SD": ChartPoints[]
-}
-
-interface ResultType {
-  hasil: ChartPoints[]
-}
-
 interface NutritionNeeds {
   energi: number
   protein: number
@@ -61,5 +42,5 @@ interface PdfData {
   calculationResult: APIResult
   imageBbPerU: string
   imageBbPerPB: string
-  imagePbPerUChart: string
+  imagePbPerU: string
 }

@@ -1,27 +1,6 @@
 import { IconType } from "react-icons"
 import * as yup from 'yup'
 
-interface NutritionBoxData {
-  Icon: IconType
-  result: number
-  title: string
-}
-
-interface PerDayNutritionBoxData {
-  time: 'Pagi' | 'Siang' | 'Malam'
-  nutritionNeeds: {
-    energy: number
-    fat: number
-    carbo: number
-    protein: number
-  }
-}
-
-interface InterpretationLabelBtnData {
-  hex: string,
-  status: string
-}
-
 export const validationDto= yup.object({
   name: yup.string().required('Nama wajib diisi'),
   age: yup.number().min(0).required('Umur wajib diisi'),
@@ -75,7 +54,6 @@ export const PerDayNutritionBox= (props: PerDayNutritionBoxData)=> {
   )
 }
 
-// TODO menambahkan interface props
 export const InterpretationLabelBtn= ({status, hex}: InterpretationLabelBtnData)=> {
   return (
     <div className="flex flex-row items-center">

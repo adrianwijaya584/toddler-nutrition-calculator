@@ -3,14 +3,6 @@ import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, To
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler)
 
-interface ChartProps {
-  xTitle: string
-  yTitle: string
-  chartData: ChartJsonData
-  xSkipSize?: number
-  width: number
-}
-
 const ResultChart= (props: ChartProps)=> {
   const datas: ChartJsonData & ResultType=  {
     ...props.chartData,

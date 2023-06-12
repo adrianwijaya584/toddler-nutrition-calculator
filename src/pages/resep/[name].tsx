@@ -3,29 +3,14 @@ import { useEffect, useState } from "react"
 import recipeJson from "@/data/resep.json"
 import Link from "next/link"
 import { Breadcrumb, Button } from "flowbite-react"
-import { IconType } from "react-icons"
 import {FaUtensils} from 'react-icons/fa'
 import ArticleLayout from "@/layouts/ArticleLayout"
 
-interface SocialMediaBtnType {
-  Icon: IconType
-  href: string
-  title: string
-  className: string
-}
 
-const SocialMediaBtn= ({Icon, href, title, className}: SocialMediaBtnType)=> {
-  return (
-    <a target="_blank" rel="noreferrer" href={href} title={title} className={`${className} w-[45px] h-[45px] flex justify-center items-center text-white rounded-full`}>        
-      <Icon className="text-2xl"/>
-    </a>
-  )
-}
 
 const RecipeDetailPage= ()=> {
   type recipeType= typeof recipeJson[0]
   const route= useRouter()
-  const [currentUrl, setCurrentUrl]= useState('') 
   const [nutritionFacts, setNutritionFacts]= useState<string[][]>([]) 
   const [isLoading, setIsLoading]= useState(true)
   const [recommendedRecipe, setRecommendedRecipe]= useState<RecomendationArticles[]>([])
@@ -35,8 +20,6 @@ const RecipeDetailPage= ()=> {
     const findRecipe= recipeJson.find((recipe)=> recipe.nama==(route.query.name ?? ''))
     setRecipe(findRecipe)
 
-    setCurrentUrl(encodeURI(window.location.href))
-    
   }, [route.query])
 
   useEffect(()=> {
@@ -109,11 +92,12 @@ const RecipeDetailPage= ()=> {
                   baseUrl="/resep"
                   data={{
                     title: recipe.nama,
-                    headline: recipe.funFacts
+                    headline: recipe.funFacts,
+                    imageUrl: recipe.fotoResep
                   }}
                   recomendations={recommendedRecipe}
                 >
-                  <div className="bg-gray-500 rounded-md p-5 grid grid-cols-2  lg:grid-cols-3">
+                  <div className="border border-gray-300 rounded-md px-5 py-6 grid grid-cols-2 gap-y-3 text-center lg:grid-cols-3">
                       <div className="">
                         <h2 className="font-bold">Waktu Memasak :</h2>
                         <p>{recipe["Waktu memasak"]}</p>
@@ -174,9 +158,7 @@ const RecipeDetailPage= ()=> {
                     </>
                   }
 
-                  <h1
-                    className="font-bold text-3xl"
-                  >
+                  <h1 className="font-bold text-3xl">
                     Cara Memasak
                   </h1>
 
@@ -184,7 +166,7 @@ const RecipeDetailPage= ()=> {
                     recipe.tutorial.map((tutorial, k)=>(
                       <div key={k}>
                         <h3 className="font-bold mb-1">Langkah {k+1}</h3>
-                        <p className="pr-14 lg:pr-2">{tutorial}</p>
+                        <p className="pr-14 leading-relaxed lg:pr-2">{tutorial}</p>
                       </div>
                     ))
                   }
@@ -192,12 +174,12 @@ const RecipeDetailPage= ()=> {
                   <hr className="border-1 border-gray-300" />
 
                   <h1
-                    className="font-bold text-3xl"
+                    className="font-bold text-3xl pt-5"
                   >
                     Nutrition Facts <span className="text-sm font-normal">(per sajian)</span>
                   </h1>
 
-                  <div className="grid grid-cols-3 gap-5 md:grid-cols-4 md:gap-7">
+                  <div className="grid grid-cols-3 gap-5 md:grid-cols-4 md:gap-6 lg:gap-8">
                     {
                       nutritionFacts.map((nutritions, k)=> (
                         <div key={k}>

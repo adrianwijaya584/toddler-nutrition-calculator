@@ -62,7 +62,7 @@ const PdfPage= ()=> {
                   }}
                   imageBbPerPB="https://www.svgrepo.com/show/327408/logo-vercel.svg"
                   imageBbPerU="https://www.svgrepo.com/show/327408/logo-vercel.svg"
-                  imagePbPerUChart="https://www.svgrepo.com/show/327408/logo-vercel.svg"
+                  imagePbPerU="https://www.svgrepo.com/show/327408/logo-vercel.svg"
                 />
               </PDFViewer>
             </>

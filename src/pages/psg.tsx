@@ -14,6 +14,7 @@ import bbPerU from '@/data/bbperu.json'
 import pbPerU from '@/data/pbtbperu.json'
 import DocumentData from '@/components/DocumentData'
 import { toast } from "react-toastify"
+
 const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
   ssr: false
 })
@@ -108,7 +109,7 @@ const PsgPage= ()=> {
         width: canvasWidth
       })
 
-      const imagePbPerUChart= await toPng(pbPerUChart.current as HTMLDivElement, {
+      const imagePbPerU= await toPng(pbPerUChart.current as HTMLDivElement, {
         cacheBust: true,
         height: 600,
         width: canvasWidth
@@ -127,7 +128,7 @@ const PsgPage= ()=> {
         calculationResult={apiResult}
         imageBbPerU={imageBbPerU}
         imageBbPerPB={imageBbPerPBb}
-        imagePbPerUChart={imagePbPerUChart}
+        imagePbPerU={imagePbPerU}
       />).toBlob()
   
       saveAs(blob, `hasil-status-gizi-${name.replace(" ", "_")}-${dateCreated}.pdf`)
@@ -229,7 +230,7 @@ const PsgPage= ()=> {
             >
               <div className="space-y-8 px-5 pb-6 mx-auto xl:w-10/12">
 
-                <div className="border-1 p-4 grid mx-auto gap-x-3 gap-y-4 lg:grid-cols-3">
+                <div className="border-1 p-4 grid mx-auto gap-x-3 gap-y-2 lg:grid-cols-3">
                   <h2>Balita anda memiliki : <span className="font-bold">{apiResult.bb_u_informations.status} </span></h2>
                   <h2>Balita anda tergolong Gizi : <span className="font-bold">{apiResult.bb_pb_informations.status} </span></h2>
                   <h2>Tinggi/Panjang Badan Balita anda : <span className="font-bold">{apiResult.pb_tb_u_informations.status} </span></h2>
@@ -238,7 +239,7 @@ const PsgPage= ()=> {
                 <h1 className="text-center font-bold text-lg lg:text-2xl">Nutrisi Yang Di Butuhkan Per Hari</h1>
 
                 <div className="flex flex-col justify-center items-center space-y-12 lg:flex-row lg:justify-center lg:space-x-14 xl:space-x-20">
-                  <div className="border-8 rounded-full w-[150px] h-[150px] flex justify-center items-center flex-col space-y-2 lg:w-[180px] lg:h-[180px]">
+                  <div className="border-8 border-[#32B6C1] rounded-full w-[150px] h-[150px] flex justify-center items-center flex-col space-y-2 lg:w-[180px] lg:h-[180px]">
                     <h2 className="lg:text-lg">Total Energi</h2>
                     <h3 className="font-bold text-3xl">{apiResult.nutritionNeeds.energi}</h3>
                     <p>Energi</p>
@@ -265,7 +266,7 @@ const PsgPage= ()=> {
                   </div>
                 </div>
 
-                <h1 className="text-center font-bold text-xl lg:text-2xl">Konsumsi Gizi Seimbang yang disarankan</h1>
+                <h1 className="text-center pt-5 font-bold text-xl lg:text-2xl">Konsumsi Gizi Seimbang yang disarankan</h1>
 
                 <div className="border border-b-0 w-full rounded-md">
                   <PerDayNutritionBox
@@ -324,7 +325,7 @@ const PsgPage= ()=> {
                   status={apiResult.bb_u_informations.status}
                 />
                 <p>Nilai BBU : {apiResult.bbu.toFixed(2)}</p>
-                <p>{apiResult.bb_u_informations.articles}</p>
+                <p className="text-paragraph lg:w-2/3">{apiResult.bb_u_informations.articles}</p>
               </div>
             </Tabs.Item>
 
@@ -344,12 +345,15 @@ const PsgPage= ()=> {
                 </div>
               </div>
 
-              <InterpretationLabelBtn
-                hex={apiResult.bb_pb_informations.hex}
-                status={apiResult.bb_pb_informations.status}
-              />
-              <p>Nilai BB/PB : {apiResult.bb_pb.toFixed(2)}</p>
-              <p>{apiResult.bb_pb_informations.articles}</p>
+              <div className="space-y-2">
+                <InterpretationLabelBtn
+                  hex={apiResult.bb_pb_informations.hex}
+                  status={apiResult.bb_pb_informations.status}
+                />
+                <p>Nilai BB/PB : {apiResult.bb_pb.toFixed(2)}</p>
+                <p className="text-paragraph lg:w-2/3">{apiResult.bb_pb_informations.articles}</p>
+              </div>
+
             </Tabs.Item>
 
             <Tabs.Item
@@ -368,18 +372,18 @@ const PsgPage= ()=> {
                 </div>
               </div>
 
-              <InterpretationLabelBtn
-                hex={apiResult.pb_tb_u_informations.hex}
-                status={apiResult.pb_tb_u_informations.status}
-              />
-
-              <p>Nilai PB/U : {apiResult.pb_tb_u.toFixed(2)}</p>
-              <p>{apiResult.pb_tb_u_informations.articles}</p>
+              <div className="space-y-2">
+                <InterpretationLabelBtn
+                  hex={apiResult.pb_tb_u_informations.hex}
+                  status={apiResult.pb_tb_u_informations.status}
+                />
+                <p>Nilai PB/U : {apiResult.pb_tb_u.toFixed(2)}</p>
+                <p className="text-paragraph lg:w-2/3">{apiResult.pb_tb_u_informations.articles}</p>
+              </div>
             </Tabs.Item>
           </Tabs.Group>
         </div>
       }
-
     </div>
   )
 }

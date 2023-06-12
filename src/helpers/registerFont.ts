@@ -19,3 +19,13 @@ export const suisseNeue= localFont({
     },
   ]
 })
+
+export const Arial= localFont({
+  variable: '--font-arial',
+  src: [
+    {
+      path: './../../public/fonts/Poppins-Regular.ttf',
+      weight: 'normal'
+    },
+  ]
+})

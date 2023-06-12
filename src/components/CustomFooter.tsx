@@ -12,7 +12,7 @@ const CustomFooter= ()=> {
           <Link href="/" className="flex flex-row justify-center items-center relative">
             <Image
               src={TncLogo}
-              className="max-w-md w-auto h-auto"
+              className="max-w-md"
               width={40}
               height={40}
               priority={true}
@@ -22,22 +22,28 @@ const CustomFooter= ()=> {
         </Link>
           </div>
           <Footer.LinkGroup
-            className="flex-row space-x-3 items-center sm:mt-0"
+            className="flex-row items-center space-x-5 sm:mt-0"
           >
-            <Footer.Link href="#">
+           <li>
+            <Link href="/">
               Home
-            </Footer.Link>
-            <Footer.Link href="#">
+            </Link>
+           </li>
+           <li>
+            <Link href="/psg">
               Perhitungan
-            </Footer.Link>
-            <Footer.Link href="#">
+            </Link>
+           </li>
+           <li>
+            <Link href="/resep">
               Resep
-            </Footer.Link>
+            </Link>
+           </li>
           </Footer.LinkGroup>
         </div>
         <Footer.Divider />
         <Footer.Copyright
-          by="TNC Team"
+          by="TNC Team C23-M4098"
           year={2023}
         />
       </div>
