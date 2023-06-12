@@ -44,7 +44,7 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
             className="bg-green-500"
             title="Bagikan ke Whatsapp"
             Icon={FaWhatsapp}
-            onClick={()=> window.open(`https://wa.me/?text=Cek resep dan artikel untuk balita disini %0a${encodeURIComponent('https://toddler-nutrition-calculator.vercel.app/artikel/Seputar%20Obesitas%20Anak%20yang%20Perlu%20Moms%20and%20Dad%20Ketahui')}`)}
+            onClick={()=> window.open(`https://wa.me/?text=Cek resep dan artikel untuk balita disini %0a${encodeURIComponent(window.location.href)}`)}
           />
 
           <SocialMediaBtn
