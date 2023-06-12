@@ -44,21 +44,21 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
             className="bg-green-500"
             title="Bagikan ke Whatsapp"
             Icon={FaWhatsapp}
-            onClick={()=> window.open(`https://wa.me/?text=Cek resep dan artikel untuk balita disini ${window.location.href}`)}
+            onClick={()=> window.open(`https://wa.me/?text=Cek resep dan artikel untuk balita disini %0a${encodeURIComponent('https://toddler-nutrition-calculator.vercel.app/artikel/Seputar%20Obesitas%20Anak%20yang%20Perlu%20Moms%20and%20Dad%20Ketahui')}`)}
           />
 
           <SocialMediaBtn
             className="bg-blue-500"
             title="Bagikan ke Facebook"
             Icon={FaFacebook}
-            onClick={()=> window.open(`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`)}
+            onClick={()=> window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`)}
           />
 
           <SocialMediaBtn
             className="bg-blue-400"
             title="Bagikan ke Twitter"
             Icon={FaTwitter}
-            onClick={()=> window.open(`https://twitter.com/intent/tweet?url=${window.location.href}&text=Cek resep dan artikel untuk balita disini`)}
+            onClick={()=> window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Cek resep dan artikel untuk balita disini`)}
           />
         </div>
 

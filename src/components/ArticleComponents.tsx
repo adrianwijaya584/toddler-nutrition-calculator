@@ -38,10 +38,10 @@ export const ArticleComponent= (props: AtricleDataInterface)=> {
 
 export const SocialMediaBtn= ({Icon, className, onClick, title}: SocialMediaBtnType)=> {
   return (
-    <div onClick={()=> onClick()} className={`${className} w-[40px] h-[40px] flex justify-center items-center text-white rounded-full cursor-pointer`}>        
-      <Tooltip content={title} placement="bottom">
+    <Tooltip content={title} placement="top-start">
+      <div onClick={()=> onClick()} className={`${className} w-[40px] h-[40px] flex justify-center items-center text-white rounded-full cursor-pointer`}>        
         <Icon className="text-xl"/>
-      </Tooltip>
-    </div>
+      </div>
+    </Tooltip>
   )
 }

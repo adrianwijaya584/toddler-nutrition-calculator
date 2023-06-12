@@ -38,7 +38,7 @@ const ArticleDetailPage= ()=> {
           </Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          Apa itu stunting
+          {article?.title ?? ''}
         </Breadcrumb.Item>
       </Breadcrumb>
       
