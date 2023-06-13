@@ -75,7 +75,7 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
                 title={`Foto ${props.data.title}`}
                 src={props.data.imageUrl}
                 priority={true}
-                width={1000}
+                width={800}
                 height={300}
                 className="rounded-md w-full"
               />
