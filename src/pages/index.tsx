@@ -89,7 +89,7 @@ const Home= ()=> {
                     />
                   </div>
 
-                  <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-primary-1">{ArticleJson[0].title}</h3>
+                  <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-primary-2">{ArticleJson[0].title}</h3>
                   <p className="line-clamp-3 text-paragraph text-sm">{ArticleJson[0].headline}</p>
                 </Card>
               </Link>
@@ -111,7 +111,7 @@ const Home= ()=> {
                       </div>
 
                       <div className="mt-5 md:mt-0 md:w-[60%]">
-                        <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-primary-1">{article.title}</h3>
+                        <h3 className="line-clamp-2 font-bold text-xl leading-snug duration-500 hover:text-primary-2">{article.title}</h3>
                         <p className="line-clamp-3 mt-4 text-[#637381] text-sm">{article.headline}</p>  
                       </div>
                     </div>  

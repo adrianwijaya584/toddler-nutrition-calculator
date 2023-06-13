@@ -8,7 +8,7 @@
   "KandunganPerPorsi": [
     "297,8 kkal energi",
     "46.24 g karbohidrat",
-    "8.8 g lemak",
+    "8.8 lemak",
     "11.2 g protein"
   ],
   "bahan": [
@@ -47,7 +47,7 @@
     "10 g wortel parut 1 siung bawang merah",
     "1 siung bawang putih",
     "1 kuning telur bebek",
-    "Gula secukupnya",
+    "Gula Secukupnya",
     "Garam secukupnya",
     "Unsalted butter untuk menumis",
     "1 sdt evoo",
@@ -73,8 +73,8 @@
   "KandunganPerPorsi": [
     "297.8 kkal energi",
     "11,2 gram karbohidrat",
-    "0,3 gram lemak",
-    "1,2 gram protein",
+    "03 gram lemak",
+    "1.2 gram protein",
     "0 gram zat besi",
     "0 gram zinc",
     "3 gram kalsium"
@@ -92,7 +92,7 @@
 },
 {
   "nama": "Nasi Tim Hati Sapi",
-  "fotoResep":"https://img-global.cpcdn.com/recipes/3a672a6d697dabe5/680x482cq70/mpasi-7bulan-buah-naga-yogurt-foto-resep-utama.jpg",
+  "fotoResep":"https://d1sag4ddilekf6.cloudfront.net/compressed_webp/items/6-C2CVRTD1C6VELX-C2CVRTJXRAMXJE/detail/menueditor_item_dc7d32f59eb54f1abbbff17cf468272f_1652152156244209112.webp",
   "Waktu memasak": "30-45 menit",
   "Usia": "9-11",
   "Porsi": "3 Porsi",
@@ -277,7 +277,7 @@
   ]
 },
 {
-  "nama": "Pasta Creamy Daging dan Wortel",
+  "nama": "Pasta Creamy Daging & Wortel",
   "fotoResep":"https://img-global.cpcdn.com/recipes/2cb0976a5d16f8aa/680x482cq70/creamy-star-pasta-mpasi-12-foto-resep-utama.jpg",
   "Waktu memasak": "10-15 menit",
   "Usia": "12",
@@ -288,7 +288,7 @@
       "21,64 gram karbohidrat",
       "2 gram lemak",
       "12 gram protein",
-      "1.75 mg zat besi"      
+      "1.75 mg zat besi"
   ],
   "bahan": [
       "1 sachet Promina Promina Pasta Creamy Chicken Spinach",

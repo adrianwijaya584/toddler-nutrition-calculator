@@ -77,7 +77,7 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
                 priority={true}
                 width={800}
                 height={300}
-                className="rounded-md w-full"
+                className="rounded-md w-full object-scale-down max-h-[400px]"
               />
             </div>
             :
@@ -93,11 +93,13 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
                 key={k}
                 className="space-y-2 border border-gray-200 p-6 rounded-md"
               >
-                <h2 className="font-bold text-xl line-clamp-2">{recomendation.title}</h2>
+                <Link href={`${props.baseUrl}/${recomendation.title}`}>
+                  <h2 className="font-bold text-xl line-clamp-2 duration-500 hover:text-primary-2">{recomendation.title}</h2>
+                </Link>
                 <p className="line-clamp-2 text-paragraph md:pr-5 ">{recomendation.headline}</p>
                 <Link 
                   href={`${props.baseUrl}/${recomendation.title}`}
-                  className="flex items-center text-paragraph gap-x-2"
+                  className="flex items-center text-paragraph gap-x-2 duration-500 hover:text-primary-2"
                 >
                   Baca Lebih Banyak <FaArrowRight/>
                 </Link>
