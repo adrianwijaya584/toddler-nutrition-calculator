@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Card } from "flowbite-react"
 import Image from 'next/image'
 import Link from 'next/link'
+import Aos from 'aos'
 import DoctorImage from 'public/images/dokter-min.png'
 import ArticleJson from '@/data/artikel.json'
 
@@ -13,13 +14,8 @@ type ArticleType= typeof ArticleJson[0]
 const Home= ()=> {
   const [articles, setArticles]= useState<ArticleType[]>([])
 
-  async function initAos() {
-    const Aos= await import('aos')
-    Aos.init()
-  }
-
   useEffect(()=> {
-    initAos()
+    Aos.init()
 
     setArticles(ArticleJson.slice(1))
   }, [])

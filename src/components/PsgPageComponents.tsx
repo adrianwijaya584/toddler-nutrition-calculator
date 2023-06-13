@@ -13,7 +13,7 @@ export const FormLabel= ({label}: {label: string})=> <p className="mb-1 font-sem
 
 export const NutritionBox= (props: NutritionBoxData)=> {
   return (
-    <div className="bg-gray-300 w-24 h-24 rounded-md flex flex-col justify-end pb-5 relative md:w-28 lg:w-32 lg:h-28">
+    <div className="bg-white shadow-lg w-24 h-24 rounded-md flex flex-col justify-end pb-5 relative md:w-28 lg:w-32 lg:h-28">
       <props.Icon
         className="text-4xl absolute -top-5 left-1/2 transform -translate-x-1/2 md:text-5xl md:-top-7 xl:text-6xl xl:-top-8"
       />

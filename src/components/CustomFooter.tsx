@@ -6,7 +6,7 @@ import TncLogo from '~/icons/tnc_logo.png'
 const CustomFooter= ()=> {
   return (
     <Footer container={true}>
-      <div className="w-full text-center">
+      <div className="w-full text-center container mx-auto">
         <div className="w-full justify-between flex flex-col items-start space-y-5 sm:flex-row sm:items-center sm:space-y-0">
           <div>
           <Link href="/" className="flex flex-row justify-center items-center relative">

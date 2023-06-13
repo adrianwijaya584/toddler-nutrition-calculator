@@ -15,6 +15,7 @@ const RecipeIndexPage= ()=> {
 
     const getAge= (ages.includes(umur.toString())?umur:'semua').toString().toLowerCase()
 
+
     if (getAge=='semua') {
       return recipeJson
     }
@@ -26,7 +27,7 @@ const RecipeIndexPage= ()=> {
   }, [router.query])
 
   function filterAge(age: string) {
-    setFilteredAge(age)
+    setFilteredAge(age.toLocaleLowerCase())
 
     router.push({
       pathname: 'resep',
@@ -39,16 +40,16 @@ const RecipeIndexPage= ()=> {
   return (
     <div className="container min-h-screen m-auto px-4 flex flex-col space-y-8 py-4 lg:px-12 xl:px-24">
        <div className="text-center">
-        <h1 className="text-[#3056D3] font-bold text-base">Daftar Resep</h1>
-        <h2 className="font-bold text-2xl mt-1 mb-3 md:text-3xl">Apakah moms tahu?</h2>
-        <p className="mx-auto text-[#637381] text-sm md:w-3/4 md:text-base xl:w-1/2"> Menurut data survei status gizi indonesia pada tahun 2022 terdapat 4 permasalahan gizi balita di indonesia. Daripada bingung, yuk cari tahu tentang permasalahan gizi pada balita.</p>
+        <h1 className="text-[#3056D3] font-bold text-base">Refrensi Resep MPASI</h1>
+        <h2 className="font-bold text-2xl mt-1 mb-3 md:text-3xl">Moms and Dad penasaran? </h2>
+        <p className="mx-auto text-[#637381] text-sm md:w-3/4 md:text-base xl:w-1/2"> menu MPASI apa sih yang cocok diberikan kepada kecil supaya ga bosan? Yuk simak resep MPASI berikut ini</p>
       </div>
 
       <div className="grid  grid-cols-2 gap-3 md:grid-cols-4">
         {
           ages.map((age, k)=> (
             <Button 
-              className={`${age.toLowerCase()==filteredAge?'':'bg-primary-1'}`} 
+              className={`${age.toLowerCase()==filteredAge?'bg-primary-2':'bg-primary-1'} duration-500 hover:bg-primary-2`} 
               key={k} 
               onClick={()=> filterAge(age)}
             >

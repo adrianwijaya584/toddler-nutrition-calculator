@@ -23,7 +23,7 @@ const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
 const PsgPage= ()=> {
   const firstInput= useRef<HTMLInputElement>(null)
   const bbPerUChart= useRef<HTMLDivElement>(null)
-  const bbPerPbChart= useRef<HTMLDivElement>(null)
+  const bbPerPbChart= useRef<HTMLDivElement>(null)  
   const pbPerUChart= useRef<HTMLDivElement>(null)
 
   const [chartWidth, setChartWidth]= useState(1000)
