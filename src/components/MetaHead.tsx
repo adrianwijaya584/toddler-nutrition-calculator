@@ -26,7 +26,7 @@ const MetaHead= ()=> {
       <meta name="twitter:creator" content="@adrianwijaya584"/>
       <meta name="twitter:title" content="Toddler Nutrition Calculator"/>
       <meta name="twitter:description" content="Aplikasi informasi perhitungan gizi balita"/>
-      <meta name="twitter:image" content={`${window.location.origin}/icons/tnc_logo.png`}/>
+      <meta name="twitter:image" content={`/icons/tnc_logo.png`}/>
     </Head>
   )
 }
