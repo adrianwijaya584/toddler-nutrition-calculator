@@ -3,10 +3,10 @@ import * as yup from 'yup'
 
 export const validationDto= yup.object({
   name: yup.string().required('Nama wajib diisi'),
-  age: yup.number().min(0).required('Umur wajib diisi'),
+  age: yup.number().min(0, 'Umur minimal 0').required('Umur wajib diisi'),
   weight: yup.number().positive('Berat badan wajib diisi').required('Berat badan wajib diisi'),
   height: yup.number().positive('Tinggi badan wajib diisi').required('Tinggi wajib diisi'),
-  gender: yup.string().oneOf(['male', 'female']).required('Jenis kelamin wajib diisi'),
+  gender: yup.string().oneOf(['male', 'female'], 'Jenis kelamin wajib dipilih').required('Jenis kelamin wajib dipilih'),
 })
 
 export const FormLabel= ({label}: {label: string})=> <p className="mb-1 font-semibold text-sm">{label}</p>

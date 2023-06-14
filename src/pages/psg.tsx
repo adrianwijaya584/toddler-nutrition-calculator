@@ -38,6 +38,8 @@ const PsgPage= ()=> {
 
   async function submitForm(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    console.log(age);
+    
 
     try {
       const formData= {
@@ -166,8 +168,10 @@ const PsgPage= ()=> {
 
         <div className="w-full">
           <FormLabel label="Umur Balita" />
-          <TextInput type="number" placeholder="Masukan umur balita dalam bulan."  max={60} min={0} 
-          onChange={(e)=> setAge(+e.target.value)}
+          <TextInput type="number" placeholder="Masukan umur balita dalam bulan."  max={60} min={0} value={age.toString()}
+          onChange={(e)=> {
+            setAge(e.target.value?parseInt(e.target.value, 10):0)
+          }}
           />
         </div>
 
