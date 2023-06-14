@@ -61,15 +61,13 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
             onClick={()=> window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Cek resep dan artikel untuk balita disini`)}
           />
         </div>
-
-
       </div>
 
       <div className="flex flex-col space-y-12 mt-8 lg:space-y-0 lg:flex-row lg:space-x-10">
         <div className="space-y-6 lg:w-[60%]">
           {
             props.data.imageUrl?
-            <div className={`w-full relative bg-gray-200 min-h-[300px]`}>
+            <div className={`w-full relative bg-gray-200 min-h-[250px] md:min-h-[300px] flex justify-center items-center rounded-md`}>
               <Image
                 alt={`Foto ${props.data.title}`}
                 title={`Foto ${props.data.title}`}
@@ -77,7 +75,7 @@ const ArticleLayout= (props: PropsWithChildren<ArticleLayoutData>)=> {
                 priority={true}
                 width={800}
                 height={300}
-                className="rounded-md w-full object-scale-down max-h-[400px]"
+                className="rounded-md w-full object-scale-down"
               />
             </div>
             :
