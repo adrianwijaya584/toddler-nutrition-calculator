@@ -217,7 +217,10 @@ const PsgPage= ()=> {
           <p>Mengambil Data...</p>
         </div>
         :
-        apiResult&&
+        !apiResult?
+        <div className="text-center">
+          <h2 className="text-lg font-bold">Maaf anda tidak terhubung dengan internet</h2>
+        </div>:
         <div className="flex flex-col space-y-3">
           <h1 className="text-center text-2xl font-bold">Hasil Perhitungan</h1>
 
