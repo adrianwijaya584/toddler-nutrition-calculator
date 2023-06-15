@@ -19,13 +19,13 @@ const CustomFooter= ()=> {
               priority={true}
               alt="Flowbite Logo"
             />
-            <span className="self-center whitespace-nowrap text-xl font-semibold hidden md:block">Toddler Nutrition Calculator</span>
-            <span className="self-center whitespace-nowrap text-xl font-semibold md:hidden ">TNC</span>
+            <span className="self-center whitespace-nowrap text-xl font-semibold text-primary-2 hidden md:block">Toddler Nutrition Calculator</span>
+            <span className="self-center whitespace-nowrap text-xl font-semibold text-primary-2 md:hidden ">TNC</span>
           </Link>
 
           <div className="flex flex-col w-full space-y-7 md:flex-row md:justify-evenly md:space-y-0">
             <div className="md:max-w-[200px]">
-              <h2 className="flex text-gray-500 mb-6 text-base items-center space-x-3 font-semibold">
+              <h2 className="flex text-gray-500 mb-6 text-lg items-center space-x-3 font-semibold">
                 <FaMapMarkerAlt className="mr-2 text-xl"/>
                 Lokasi Kami
               </h2>
@@ -36,7 +36,7 @@ const CustomFooter= ()=> {
             </div>
 
             <div>
-              <h2 className="flex text-gray-500 mb-6 text-base items-center space-x-3 font-semibold">
+              <h2 className="flex text-gray-500 mb-6 text-lg items-center space-x-3 font-semibold">
                 <GoMail className="mr-2 text-xl"/>
                 Kontak Kami
               </h2>
@@ -49,7 +49,7 @@ const CustomFooter= ()=> {
             </div>
 
             <div>
-              <h2 className="flex text-gray-500 mb-6 text-base items-center space-x-3 font-semibold">
+              <h2 className="flex text-gray-500 mb-6 text-lg items-center space-x-3 font-semibold">
                 <FaLocationArrow className="mr-2 text-xl"/>
                 Navigasi
               </h2>

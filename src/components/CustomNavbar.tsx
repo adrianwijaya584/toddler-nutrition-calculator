@@ -42,7 +42,7 @@ const CustomNavbar= ()=> {
             priority={true}
             alt="Flowbite Logo"
           />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">TNC</span>
+          <span className="self-center whitespace-nowrap text-xl font-semibold text-primary-2">TNC</span>
         </Link>
 
         <Navbar.Toggle
