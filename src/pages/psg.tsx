@@ -70,7 +70,8 @@ const PsgPage= ()=> {
       
       if (error instanceof yup.ValidationError) {
         toast(error.errors[0], {
-          type: 'error'
+          type: 'error',
+          autoClose: 1500
         })
       } else {
         console.log(error);
