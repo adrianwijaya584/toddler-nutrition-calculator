@@ -10,7 +10,7 @@ const CustomFooter= ()=> {
     <Footer container>
       <div className="w-full">
         <div className="flex flex-col w-full space-y-7 md:space-x-8 md:flex-row">
-          <Link href="/" className="flex flex-row items-center relative">
+          <Link href="/" className="flex flex-row items-center justify-center relative sm:justify-start">
             <Image
               src={TncLogo}
               className="max-w-md"
@@ -19,8 +19,7 @@ const CustomFooter= ()=> {
               priority={true}
               alt="Flowbite Logo"
             />
-            <span className="self-center whitespace-nowrap text-xl font-semibold text-primary-2 hidden md:block">Toddler Nutrition Calculator</span>
-            <span className="self-center whitespace-nowrap text-xl font-semibold text-primary-2 md:hidden ">TNC</span>
+            <span className="self-center whitespace-nowrap font-semibold text-primary-2 text-lg sm:text-xl ">Toddler Nutrition Calculator</span>
           </Link>
 
           <div className="flex flex-col w-full space-y-7 md:flex-row md:justify-evenly md:space-y-0">
