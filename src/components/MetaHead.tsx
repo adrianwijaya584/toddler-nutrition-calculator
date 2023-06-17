@@ -10,6 +10,7 @@ const MetaHead= ()=> {
       <link rel="apple-touch-icon" href="/icons/icon-192x192.png"></link>
       <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
 
+      <meta name="dicoding:email" content="agungsurya771@gmail.com" />
       <meta name="description" content="Aplikasi informasi perhitungan gizi balita" />
       <meta name="theme_color" content="#fff" />
       <meta name="robots" content="noodp, noydir"/>
