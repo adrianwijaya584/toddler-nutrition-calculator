@@ -172,7 +172,7 @@ const PsgPage= ()=> {
         </div>
 
         <div className="w-full">
-          <FormLabel label="Umur Balita" />
+          <FormLabel label="Umur Balita (dalam bulan)" />
           <TextInput type="number" placeholder="Masukan umur balita dalam bulan."  max={60} min={0} value={age.toString()}
           onChange={(e)=> {
             setAge(e.target.value?parseInt(e.target.value, 10):0)
