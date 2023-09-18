@@ -80,7 +80,7 @@ export function bbpbStatusCheker(score: number): statusCheckerResult {
   else if ( score >= -3 && score < -2) {
     index= 1
   } 
-  else if (score >= -2 && score < 1) {
+  else if (score > -2 && score < 1) {
     index= 2
     hexIndex= 0
   }

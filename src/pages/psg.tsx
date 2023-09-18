@@ -375,8 +375,8 @@ const PsgPage= ()=> {
                         xSkipSize={5}
                         width={chartWidth}
                         resultPoints={{
-                          x: 0,
-                          y: 0,
+                          x: height,
+                          y: weight,
                         }}
                       />  
                     </div>
@@ -406,8 +406,8 @@ const PsgPage= ()=> {
                         xSkipSize={2}
                         width={chartWidth}
                         resultPoints={{
-                          x: 0,
-                          y: 0,
+                          x: age,
+                          y: height,
                         }}
                       />  
                     </div>
