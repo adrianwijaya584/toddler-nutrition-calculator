@@ -1,30 +1,30 @@
-import { Button, Select, Tabs, TextInput  } from "flowbite-react"
-import { FormEvent, useEffect, useRef, useState } from "react"
-import dynamic from 'next/dynamic'
-import axios from "axios"
-import moment from "moment"
-import * as yup from 'yup'
-import {MdOutlineEggAlt} from 'react-icons/md'
-import {LuWheat} from 'react-icons/lu'
-import {GiAlmond} from 'react-icons/gi'
-import { FormLabel, InterpretationLabelBtn, NutritionBox, PerDayNutritionBox, validationDto } from "@/components/PsgPageComponents"
+import { Button, Select, Tabs, TextInput  } from 'flowbite-react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
+import axios from 'axios';
+import moment from 'moment';
+import * as yup from 'yup';
+import {MdOutlineEggAlt} from 'react-icons/md';
+import {LuWheat} from 'react-icons/lu';
+import {GiAlmond} from 'react-icons/gi';
+import { FormLabel, InterpretationLabelBtn, NutritionBox, PerDayNutritionBox, validationDto } from '@/components/PsgPageComponents';
 
-import bbPerPb from '@/data/bbperpb.json'
-import bbPerU from '@/data/bbperu.json'
-import pbPerU from '@/data/pbtbperu.json'
-import DocumentData from '@/components/DocumentData'
-import { toast } from "react-toastify"
+import bbPerPb from '@/data/bbperpb.json';
+import bbPerU from '@/data/bbperu.json';
+import pbPerU from '@/data/pbtbperu.json';
+import DocumentData from '@/components/DocumentData';
+import { toast } from 'react-toastify';
 
-const ResultChart= dynamic(()=> import("@/components/ResultChart"), {
+const ResultChart= dynamic(()=> import('@/components/ResultChart'), {
   ssr: false
-})
-
+});
 
 const PsgPage= ()=> {
-  const firstInput= useRef<HTMLInputElement>(null)
-  const bbPerUChart= useRef<HTMLDivElement>(null)
-  const bbPerPbChart= useRef<HTMLDivElement>(null)  
-  const pbPerUChart= useRef<HTMLDivElement>(null)
+  const firstInput= useRef<HTMLInputElement>(null);
+  const bbPerUChart= useRef<HTMLDivElement>(null);
+  const bbPerPbChart= useRef<HTMLDivElement>(null);  
+  const pbPerUChart= useRef<HTMLDivElement>(null);
+  const calculationResultSection= useRef<HTMLDivElement>(null);
 
   const [chartWidth, setChartWidth]= useState(1000)
   const [name, setName]= useState('')
@@ -39,7 +39,7 @@ const PsgPage= ()=> {
   const [apiResult, setApiResult]= useState<APIResult>()
 
   async function submitForm(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
       const formData= {
@@ -51,20 +51,27 @@ const PsgPage= ()=> {
       }
 
       await validationDto.validate(formData, {
-        abortEarly: false
-      })
+        abortEarly: false,
+      });
 
-      setIsLoading(true)
+      setIsLoading(true);
 
-      const {data}= await axios.post<APIResult>("/api/psg", {
+      const {data}= await axios.post<APIResult>('/api/psg', {
         weight,
         height,
         age
-      })
+      });
 
-      setIsLoading(false)
-      setErrorMessage('')
-      setApiResult(data)
+      setIsLoading(false);
+      setErrorMessage('');
+      setApiResult(data);
+
+      setTimeout(()=> {
+        calculationResultSection.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }, 0);
     } catch (error) {
       setIsLoading(false)
       
@@ -74,7 +81,6 @@ const PsgPage= ()=> {
           autoClose: 1500
         })
       } else if (error instanceof axios.AxiosError) {
-
         if (error.code=='ERR_NETWORK') {
           setErrorMessage('Maaf Anda sedang tidak terhubung dengan internet.')
         } else {
@@ -122,7 +128,7 @@ const PsgPage= ()=> {
         width: canvasWidth
       })
 
-      const dateCreated= moment().format("DD-MM-YYYY_HH-mm-ss");
+      const dateCreated= moment().format('DD-MM-YYYY_HH-mm-ss');
       
       const blob= await pdf(<DocumentData
         biodata={{
@@ -138,7 +144,7 @@ const PsgPage= ()=> {
         imagePbPerU={imagePbPerU}
       />).toBlob()
   
-      saveAs(blob, `hasil-status-gizi-${name.replace(" ", "_")}-${dateCreated}.pdf`)
+      saveAs(blob, `hasil-status-gizi-${name.replace(' ', '_')}-${dateCreated}.pdf`)
 
       setIsDownloading(false)
     }, 0)
@@ -155,68 +161,73 @@ const PsgPage= ()=> {
   }, [])
 
   return (
-    <div className="container mx-auto py-7 px-6 md:px-14 lg:px-24 xl:px-28">
-      <div className="mb-8 space-y-2">
-        <h1 className="font-bold text-2xl lg:text-3xl">Kalkulator Perhitungan Gizi</h1>
+    <div className='container mx-auto py-7 px-6 md:px-14 lg:px-24 xl:px-28'>
+      <div className='mb-8 space-y-2'>
+        <h1 className='font-bold text-2xl lg:text-3xl'>Kalkulator Perhitungan Gizi</h1>
         <h2
-          className="text-paragraph"
-        >Yuk moms ukur Gizi dan kebutuhan nutrisi balitamu sekarang <br className="hidden md:block"  /> menggunakan Perhitungan gizi berstandar kemenkes.</h2>
+          className='text-paragraph'
+        >Yuk moms ukur Gizi dan kebutuhan nutrisi balitamu sekarang <br className='hidden md:block'  /> menggunakan Perhitungan gizi berstandar kemenkes.</h2>
       </div>
 
-      <form className="grid gap-x-5 gap-y-5 mb-14 grid-cols-1 md:grid-cols-2 md:gap-y-6" onSubmit={(e)=> submitForm(e)}>
-        <div className="w-full">
-          <FormLabel label="Nama Balita" />
-          <TextInput placeholder="Masukan nama balita." 
+      <form className='grid gap-x-5 gap-y-5 pb-9 grid-cols-1 md:grid-cols-2 md:gap-y-6' onSubmit={(e)=> submitForm(e)}>
+        <div className='w-full'>
+          <FormLabel label='Nama Balita' />
+          <TextInput placeholder='Masukan nama balita.' 
           ref={firstInput}
           onChange={(e)=> setName(e.target.value)} />
         </div>
 
-        <div className="w-full">
-          <FormLabel label="Umur Balita (dalam bulan)" />
-          <TextInput type="number" placeholder="Masukan umur balita dalam bulan."  max={60} min={0} value={age.toString()}
+        <div className='w-full'>
+          <FormLabel label='Umur Balita (dalam bulan)' />
+          <TextInput type='number' placeholder='Masukan umur balita dalam bulan.'  max={60} min={0} value={age.toString()}
           onChange={(e)=> {
             setAge(e.target.value?parseInt(e.target.value, 10):0)
           }}
           />
         </div>
 
-        <div className="w-full">
-          <FormLabel label="Berat Badan"  />
-          <TextInput type="number" placeholder="Masukan berat badan dalam Kg." inputMode="decimal" step={.1} min={0}
+        <div className='w-full'>
+          <FormLabel label='Berat Badan'  />
+          <TextInput type='number' placeholder='Masukan berat badan dalam Kg.' inputMode='decimal' step={.1} min={0}
               onChange={(e)=> setWeight(+e.target.value)}
           />
         </div>
 
-        <div className="w-full">
-          <FormLabel label="Tinggi Badan" />
-          <TextInput type="number" placeholder="Masukan tinggi badan dalam Cm." inputMode="decimal" step={.1} min={0}
+        <div className='w-full'>
+          <FormLabel label='Tinggi Badan' />
+          <TextInput type='number' placeholder='Masukan tinggi badan dalam Cm.' inputMode='decimal' step={.1} min={0}
               onChange={(e)=> setHeight(+e.target.value)}
           />
         </div>
 
-        <div className="w-full">
-          <FormLabel label="Jenis Kelamin" />
-          <Select placeholder="Masukan jenis kelamin balita." 
+        <div className='w-full'>
+          <FormLabel label='Jenis Kelamin' />
+          <Select placeholder='Masukan jenis kelamin balita.' 
               onChange={(e)=> setGender(e.target.value)}
           >
-            <option value="">Pilih Jenis Kelamin</option>
-            <option value="male">Laki-laki</option>
-            <option value="female">Perempuan</option>
+            <option value=''>Pilih Jenis Kelamin</option>
+            <option value='male'>Laki-laki</option>
+            <option value='female'>Perempuan</option>
           </Select>
         </div>
 
         <Button 
-          type="submit" 
-          className="w-full bg-primary-1 col-span-1 duration-500 md:col-span-2"
+          type='submit' 
+          className='w-full bg-primary-1 col-span-1 duration-500 md:col-span-2'
         >
-          Hitung
+          <div 
+            ref={calculationResultSection}
+          >
+            Hitung
+          </div>
         </Button>
+
       </form>
 
       {
         isLoading?
         <div
-          className="text-center"
+          className='text-center'
         >
           <p>Mengambil Data...</p>
         </div>
@@ -224,71 +235,71 @@ const PsgPage= ()=> {
         <div>
           {
             errorMessage&&
-            <div className="text-center">
-              <h2 className="text-lg font-bold">Maaf anda tidak terhubung dengan internet</h2>
+            <div className='text-center'>
+              <h2 className='text-lg font-bold'>Maaf anda tidak terhubung dengan internet</h2>
             </div>
           }  
           
           {
             apiResult&&
-            <div className="flex flex-col space-y-3">
-              <h1 className="text-center text-2xl font-bold">Hasil Perhitungan</h1>
+            <div className="flex flex-col space-y-4">
+              <h1 className='text-center text-2xl font-bold'>Hasil Perhitungan</h1>
 
-              <Button disabled={isDownloading} onClick={()=> downloadPdf()} isProcessing={isDownloading} className="bg-primary-1 duration-500">
+              <Button disabled={isDownloading} onClick={()=> downloadPdf()} isProcessing={isDownloading} className='bg-primary-1 duration-500'>
                 Download hasil perhitungan.
               </Button>
 
               <Tabs.Group
-                style="underline"
-                className="border border-gray-200 rounded-md"
+                style='underline'
+                className='border border-gray-200 rounded-md'
               >
                 <Tabs.Item 
-                  title="Rangkuman"
+                  title='Rangkuman'
                   tabIndex={0}
                 >
-                  <div className="space-y-8 px-5 pb-6 mx-auto xl:w-10/12">
+                  <div className='space-y-8 px-5 pb-6 mx-auto xl:w-10/12'>
 
-                    <div className="border-1 p-4 grid mx-auto gap-x-3 gap-y-2 lg:grid-cols-3">
-                      <h2>Balita anda memiliki : <span className="font-bold">{apiResult.bb_u_informations.status} </span></h2>
-                      <h2>Balita anda tergolong Gizi : <span className="font-bold">{apiResult.bb_pb_informations.status} </span></h2>
-                      <h2>Tinggi/Panjang Badan Balita anda : <span className="font-bold">{apiResult.pb_tb_u_informations.status} </span></h2>
+                    <div className='border-1 p-4 grid mx-auto gap-x-3 gap-y-2 lg:grid-cols-3'>
+                      <h2>Balita anda memiliki : <span className='font-bold'>{apiResult.bb_u_informations.status} </span></h2>
+                      <h2>Balita anda tergolong Gizi : <span className='font-bold'>{apiResult.bb_pb_informations.status} </span></h2>
+                      <h2>Tinggi/Panjang Badan Balita anda : <span className='font-bold'>{apiResult.pb_tb_u_informations.status} </span></h2>
                     </div>
 
-                    <h1 className="text-center font-bold text-lg lg:text-2xl">Nutrisi Yang Di Butuhkan Per Hari</h1>
+                    <h1 className='text-center font-bold text-lg lg:text-2xl'>Nutrisi Yang Di Butuhkan Per Hari</h1>
 
-                    <div className="flex flex-col justify-center items-center space-y-12 lg:flex-row lg:justify-center lg:space-x-14 xl:space-x-20">
-                      <div className="border-8 border-[#32B6C1] rounded-full w-[150px] h-[150px] flex justify-center items-center flex-col space-y-2 lg:w-[180px] lg:h-[180px]">
-                        <h2 className="lg:text-lg">Total Energi</h2>
-                        <h3 className="font-bold text-3xl">{apiResult.nutritionNeeds.energi}</h3>
+                    <div className='flex flex-col justify-center items-center space-y-12 lg:flex-row lg:justify-center lg:space-x-14 xl:space-x-20'>
+                      <div className='border-8 border-[#32B6C1] rounded-full w-[150px] h-[150px] flex justify-center items-center flex-col space-y-2 lg:w-[180px] lg:h-[180px]'>
+                        <h2 className='lg:text-lg'>Total Energi</h2>
+                        <h3 className='font-bold text-3xl'>{apiResult.nutritionNeeds.energi}</h3>
                         <p>Energi</p>
                       </div>
 
-                      <div className="flex flex-row items-center space-x-3 text-center md:space-x-6 xl:space-x-10">
+                      <div className='flex flex-row items-center space-x-3 text-center md:space-x-6 xl:space-x-10'>
                         <NutritionBox
                           Icon={LuWheat}
                           result={apiResult.nutritionNeeds.karbo}
-                          title="Karbohidrat"
+                          title='Karbohidrat'
                         />
 
                         <NutritionBox
                           Icon={MdOutlineEggAlt}
                           result={apiResult.nutritionNeeds.protein}
-                          title="Protein"
+                          title='Protein'
                         />
 
                         <NutritionBox
                           Icon={GiAlmond}
                           result={apiResult.nutritionNeeds.lemak}
-                          title="Lemak"
+                          title='Lemak'
                         />
                       </div>
                     </div>
 
-                    <h1 className="text-center pt-5 font-bold text-xl lg:text-2xl">Konsumsi Gizi Seimbang yang disarankan</h1>
+                    <h1 className='text-center pt-5 font-bold text-xl lg:text-2xl'>Konsumsi Gizi Seimbang yang disarankan</h1>
 
-                    <div className="border border-b-0 w-full rounded-md">
+                    <div className='border border-b-0 w-full rounded-md'>
                       <PerDayNutritionBox
-                        time="Pagi"
+                        time='Pagi'
                         nutritionNeeds={{
                           energy: apiResult.nutritionNeedsPerServing.energi_pagi_siang,
                           carbo: apiResult.nutritionNeedsPerServing.karbo_pagi_siang,
@@ -298,7 +309,7 @@ const PsgPage= ()=> {
                       />
 
                       <PerDayNutritionBox
-                        time="Siang"
+                        time='Siang'
                         nutritionNeeds={{
                           energy: apiResult.nutritionNeedsPerServing.energi_pagi_siang,
                           carbo: apiResult.nutritionNeedsPerServing.karbo_pagi_siang,
@@ -308,7 +319,7 @@ const PsgPage= ()=> {
                       />
 
                       <PerDayNutritionBox
-                        time="Malam"
+                        time='Malam'
                         nutritionNeeds={{
                           energy: apiResult.nutritionNeedsPerServing.energi_malam,
                           carbo: apiResult.nutritionNeedsPerServing.karbo_malam,
@@ -322,81 +333,93 @@ const PsgPage= ()=> {
                 </Tabs.Item>
 
                 <Tabs.Item
-                  title="Berat Badan per Umur"
+                  title='Berat Badan per Umur'
                   tabIndex={0}
                 >
-                  <div className="overflow-x-auto mb-5">
-                    <div className="flex xl:justify-center xl:items-center" ref={bbPerUChart}>
+                  <div className='overflow-x-auto mb-5'>
+                    <div className='flex xl:justify-center xl:items-center' ref={bbPerUChart}>
                       <ResultChart
-                        xTitle="Umur (bulan)"
-                        yTitle="Berat Badan (kg)"
+                        xTitle='Umur (bulan)'
+                        yTitle='Berat Badan (kg)'
                         chartData={bbPerU}
                         xSkipSize={2}
                         width={chartWidth}
+                        resultPoints={{
+                          x: age,
+                          y: weight,
+                        }}
                       />   
                     </div>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className='space-y-2'>
                     <InterpretationLabelBtn
                       hex={apiResult.bb_u_informations.hex}
                       status={apiResult.bb_u_informations.status}
                     />
                     <p>Nilai BBU : {apiResult.bbu.toFixed(2)}</p>
-                    <p className="text-paragraph lg:w-2/3">{apiResult.bb_u_informations.articles}</p>
+                    <p className='text-paragraph lg:w-2/3'>{apiResult.bb_u_informations.articles}</p>
                   </div>
                 </Tabs.Item>
 
                 <Tabs.Item
-                  title="Berat Badan per Panjang Badan"
+                  title='Berat Badan per Panjang Badan'
                   tabIndex={0}
                 >
-                  <div className="overflow-x-auto mb-6">
-                    <div className="flex xl:justify-center xl:items-center" ref={bbPerPbChart}>
+                  <div className='overflow-x-auto mb-6'>
+                    <div className='flex xl:justify-center xl:items-center' ref={bbPerPbChart}>
                       <ResultChart
-                        xTitle="Panjang Badan (cm)"
-                        yTitle="Berat Badan (kg)"
+                        xTitle='Panjang Badan (cm)'
+                        yTitle='Berat Badan (kg)'
                         chartData={bbPerPb}
                         xSkipSize={5}
                         width={chartWidth}
+                        resultPoints={{
+                          x: 0,
+                          y: 0,
+                        }}
                       />  
                     </div>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className='space-y-2'>
                     <InterpretationLabelBtn
                       hex={apiResult.bb_pb_informations.hex}
                       status={apiResult.bb_pb_informations.status}
                     />
                     <p>Nilai BB/PB : {apiResult.bb_pb.toFixed(2)}</p>
-                    <p className="text-paragraph lg:w-2/3">{apiResult.bb_pb_informations.articles}</p>
+                    <p className='text-paragraph lg:w-2/3'>{apiResult.bb_pb_informations.articles}</p>
                   </div>
 
                 </Tabs.Item>
 
                 <Tabs.Item
-                  title="Panjang Badan per Umur"
+                  title='Panjang Badan per Umur'
                   tabIndex={0}
                 >
-                  <div className="overflow-x-auto mb-6">
-                    <div className="flex xl:justify-center xl:items-center" ref={pbPerUChart}>
+                  <div className='overflow-x-auto mb-6'>
+                    <div className='flex xl:justify-center xl:items-center' ref={pbPerUChart}>
                       <ResultChart
-                        xTitle="Umur (bulan)"
-                        yTitle="Panjang Badan (cm)"
+                        xTitle='Umur (bulan)'
+                        yTitle='Panjang Badan (cm)'
                         chartData={pbPerU}
                         xSkipSize={2}
                         width={chartWidth}
+                        resultPoints={{
+                          x: 0,
+                          y: 0,
+                        }}
                       />  
                     </div>
                   </div>
 
-                  <div className="space-y-2">
+                  <div className='space-y-2'>
                     <InterpretationLabelBtn
                       hex={apiResult.pb_tb_u_informations.hex}
                       status={apiResult.pb_tb_u_informations.status}
                     />
                     <p>Nilai PB/U : {apiResult.pb_tb_u.toFixed(2)}</p>
-                    <p className="text-paragraph lg:w-2/3">{apiResult.pb_tb_u_informations.articles}</p>
+                    <p className='text-paragraph lg:w-2/3'>{apiResult.pb_tb_u_informations.articles}</p>
                   </div>
                 </Tabs.Item>
               </Tabs.Group>

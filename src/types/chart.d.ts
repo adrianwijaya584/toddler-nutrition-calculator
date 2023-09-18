@@ -4,6 +4,7 @@ interface ChartProps {
   chartData: ChartJsonData
   xSkipSize?: number
   width: number
+  resultPoints: ChartPoints
 }
 
 interface ChartPoints {

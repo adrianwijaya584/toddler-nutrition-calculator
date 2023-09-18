@@ -15,14 +15,14 @@ const nextConfig = {
   typescript: {
     tsconfigPath: '/tsconfig.json'
   },
-  rewrites: async ()=> {
-    return [
-      {
-        source: '/api/:path*',
-        destination: 'http://54.254.113.229/py/:path*',
-      }
-    ]
-  }
+  // rewrites: async ()=> {
+  //   return [
+  //     {
+  //       source: '/api/:path*',
+  //       destination: 'http://54.254.113.229/py/:path*',
+  //     }
+  //   ]
+  // }
 }
 
 const withPWA = require('next-pwa')({

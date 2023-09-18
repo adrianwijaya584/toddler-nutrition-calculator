@@ -1,25 +1,24 @@
 import { Line } from "react-chartjs-2"
 import { Chart, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler, CartesianTickOptions } from 'chart.js'
 
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler)
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler);
 
 const ResultChart= (props: ChartProps)=> {
   const datas: ChartJsonData & ResultType=  {
     ...props.chartData,
-    hasil: [
-      // {
-      //   x: 21,
-      //   y: 40
-      // },
-      // {
-      //   x: 70,
-      //   y: 9
-      // }, {
-      //   x: props.chartData.median[props.chartData.median.length - 1].x,
-      //   y: 0
-      // }
+    hasil: [ 
+      {
+        x: 0,
+        y: 0,
+      },
+      props.resultPoints,
+      {
+        x: props.chartData.median[props.chartData.median.length - 1].x,
+        y: 0
+      }
     ]
   }
+
 
   const xTicksOption: Partial<CartesianTickOptions>= !props.xSkipSize?{}:{
     autoSkip: false,
