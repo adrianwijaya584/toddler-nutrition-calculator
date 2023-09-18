@@ -45,9 +45,9 @@ const CustomNavbar= ()=> {
           <span className="self-center whitespace-nowrap text-xl font-semibold text-primary-2">TNC</span>
         </Link>
 
-        <Navbar.Toggle
+        {/* <Navbar.Toggle
           onClick={()=> setShowMenu((show)=> !show)}
-        />
+        /> */}
         
         <ul
           className={`${showMenu?'fixed w-full top-[70px] left-0 bg-gray-50 border-gray-100 md:bg-transparent md:relative':'hidden'}  font-medium flex-col px-4 md:p-0 rounded-lg pb-5 md:flex md:flex-row md:mt-0 md:border-0 md:top-0 `}
