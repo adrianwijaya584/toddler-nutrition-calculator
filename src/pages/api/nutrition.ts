@@ -65,4 +65,5 @@ export default async function handler(
     }
   }
   
+  return res.send('method not allowed');
 }
