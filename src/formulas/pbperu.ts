@@ -9,7 +9,7 @@ const pbperu= (height: number, age: number)=> {
       let pos= 0;
       let z_score: number= 0;
 
-      fs.createReadStream('./src/data/pbtbperu.csv')
+      fs.createReadStream(process.cwd() + '/data/pbtbperu.csv')
       .pipe(parse())
       .on('data', (row: string[])=> {
         if (!pos) {

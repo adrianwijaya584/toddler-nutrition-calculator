@@ -9,7 +9,7 @@ const bbperpb= (weight: number, height: number)=> {
       let pos= 0;
       let z_score: number= 0;
 
-      fs.createReadStream('./src/data/bbperpb_formatted.csv')
+      fs.createReadStream(process.cwd() + '/data/bbperpb_formatted.csv')
       .pipe(parse())
       .on('data', (row)=> {
         if (!pos) {

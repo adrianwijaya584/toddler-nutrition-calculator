@@ -23,7 +23,7 @@ const nextConfig = {
       // }
       {
         source: '/api/psg',
-        destination: 'http://54.254.113.229/py/psg',
+        destination: 'https://toddler-nutrition-calculator-production.up.railway.app/psg',
       }
     ]
   }
