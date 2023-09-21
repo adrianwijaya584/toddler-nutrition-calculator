@@ -7,13 +7,14 @@ import * as yup from 'yup';
 import {MdOutlineEggAlt} from 'react-icons/md';
 import {LuWheat} from 'react-icons/lu';
 import {GiAlmond} from 'react-icons/gi';
-import { FormLabel, InterpretationLabelBtn, NutritionBox, PerDayNutritionBox, validationDto } from '@/components/PsgPageComponents';
+import { toast } from 'react-toastify';
+import {useSignal} from '@preact/signals-react';
 
+import { FormLabel, InterpretationLabelBtn, NutritionBox, PerDayNutritionBox, validationDto } from '@/components/PsgPageComponents';
 import bbPerPb from '@/data/bbperpb.json';
 import bbPerU from '@/data/bbperu.json';
 import pbPerU from '@/data/pbtbperu.json';
 import DocumentData from '@/components/DocumentData';
-import { toast } from 'react-toastify';
 
 const ResultChart= dynamic(()=> import('@/components/ResultChart'), {
   ssr: false
@@ -26,17 +27,23 @@ const PsgPage= ()=> {
   const pbPerUChart= useRef<HTMLDivElement>(null);
   const calculationResultSection= useRef<HTMLDivElement>(null);
 
-  const [chartWidth, setChartWidth]= useState(1000)
-  const [name, setName]= useState('')
-  const [age, setAge]= useState(0)
-  const [weight, setWeight]= useState(0)
-  const [height, setHeight]= useState(0)
-  const [gender, setGender]= useState('')
-  const [isLoading, setIsLoading]= useState(false)
-  const [errorMessage, setErrorMessage]= useState('')
-  const [isDownloading, setIsDownloading]= useState(false)
+  const [chartWidth, setChartWidth]= useState(1000);
+  const [name, setName]= useState('');
+  const [age, setAge]= useState(0);
+  const [weight, setWeight]= useState(0);
+  const [height, setHeight]= useState(0);
+  const [gender, setGender]= useState('');
+  const [isLoading, setIsLoading]= useState(false);
+  const [errorMessage, setErrorMessage]= useState('');
+  const [isDownloading, setIsDownloading]= useState(false);
 
-  const [apiResult, setApiResult]= useState<APIResult>()
+  const chartData= useSignal({
+    age: 0,
+    weight: 0,
+    height: 0,
+  });
+
+  const [apiResult, setApiResult]= useState<APIResult>();
 
   async function submitForm(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -65,6 +72,12 @@ const PsgPage= ()=> {
       setIsLoading(false);
       setErrorMessage('');
       setApiResult(data);
+
+      chartData.value= {
+        age,
+        weight,
+        height,
+      }
 
       setTimeout(()=> {
         calculationResultSection.current?.scrollIntoView({
@@ -345,8 +358,8 @@ const PsgPage= ()=> {
                         xSkipSize={2}
                         width={chartWidth}
                         resultPoints={{
-                          x: age,
-                          y: weight,
+                          x: chartData.value.age,
+                          y: chartData.value.weight,
                         }}
                       />   
                     </div>
@@ -375,8 +388,8 @@ const PsgPage= ()=> {
                         xSkipSize={5}
                         width={chartWidth}
                         resultPoints={{
-                          x: height,
-                          y: weight,
+                          x: chartData.value.height,
+                          y: chartData.value.weight,
                         }}
                       />  
                     </div>
@@ -406,8 +419,8 @@ const PsgPage= ()=> {
                         xSkipSize={2}
                         width={chartWidth}
                         resultPoints={{
-                          x: age,
-                          y: height,
+                          x: chartData.value.age,
+                          y: chartData.value.height,
                         }}
                       />  
                     </div>
