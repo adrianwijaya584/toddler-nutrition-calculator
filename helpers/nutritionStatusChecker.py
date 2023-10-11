@@ -12,7 +12,7 @@ def bbuStatusCheker(score):
   elif score >= -2 and score <= 1:
     index= 2
     hexIndex= 0
-  elif score > 2:
+  elif score > 1:
     index= 3
 
   return {
